@@ -1,0 +1,18 @@
+{
+  "courses": {
+    "title": "kurslar",
+    "button": "hammasini ko'rish"
+  },
+  "aboutus": {
+    "header": "biz haqimizda",
+    "title": "frontend development kursi",
+    "info": "Bu sharob sanoatida jiddiy martaba qurishni, o'z malakalarini oshirishni yoki sharob haqida oddiy bilimlarni olishni xohlovchilar uchun yaratilgan noyob ta'lim loyihasi bo'lib, olijanob ichimlikdan yanada ko'proq zavq olish va restoranda yaxshisini tanlash uchun. supermarket o'z-o'zidan."
+  },
+  "teacher": {
+    "header": "Ustozlar",
+    "info": "Tanishing, ko'p yillik tajribaga ega iqtidorli o'qituvchilarimiz!"
+  },
+  "calendar": {
+    "notFound": "Kurs topilmadi"
+  }
+}

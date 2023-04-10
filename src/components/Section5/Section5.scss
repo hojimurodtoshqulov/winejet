@@ -1,0 +1,59 @@
+@import "../../styles/styles.scss";
+
+.section5 {
+  padding: 0 3rem;
+  margin: 5rem 0;
+  background-color: $blue;
+
+  @include phones {
+    // margin: 2rem 0;
+  }
+
+  &__wrapper {
+    max-width: 135rem;
+    height: 31.5rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $white;
+
+    @include laptop-xl {
+      // display: none;
+      justify-content: center;
+      text-align: center;
+    }
+
+    @include tablet {
+      height: 25rem;
+    }
+    h1 {
+      font-size: 3.6rem;
+
+      @include tablet {
+        font-size: 2.5rem;
+      }
+    }
+
+    p {
+      width: 70%;
+      font-size: 2.4rem;
+      margin-top: 3.1rem;
+      line-height: 140%;
+
+      @include laptop-xl {
+        width: 100%;
+      }
+
+      @include tablet {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  &__left-side {
+    @include laptop-xl {
+      display: none;
+    }
+  }
+}

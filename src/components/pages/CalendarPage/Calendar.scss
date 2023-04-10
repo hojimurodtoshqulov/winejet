@@ -1,0 +1,404 @@
+@import "../../../styles/styles.scss";
+
+.calendar {
+  margin: 10rem 0 4rem 0;
+
+  .not-found {
+    color: #414141;
+  }
+
+  &__container {
+    max-width: 133rem;
+    padding: 0 2rem;
+    margin: 0 auto;
+
+    @include phones {
+      padding: 0 1rem;
+    }
+  }
+
+  &__title {
+    font-size: 4.4rem;
+    padding: 3rem 0;
+    color: #414141;
+    text-align: center;
+    font-family: "NextArt-Bold", sans-serif;
+    margin-bottom: 4rem;
+
+    @include laptop {
+      font-size: 4rem;
+    }
+
+    @include tablet {
+      font-size: 3rem;
+      font-family: "NextArt-semibold", sans-serif;
+    }
+  }
+
+  &__header-wrapper {
+    @include between-center;
+    margin: 8rem 0;
+  }
+
+  &__header-currentData {
+    display: flex;
+
+    p,
+    span {
+      font-family: "NextArt-Bold", sans-serif;
+      font-size: 2.4rem;
+      color: #000;
+      @include phones {
+        font-size: 1.5rem;
+      }
+    }
+
+    span {
+      display: block;
+      margin: 0 1rem;
+      cursor: pointer;
+    }
+  }
+
+  &__date-wrapper {
+    @include between-center;
+    flex-wrap: wrap;
+    margin-bottom: 4.5rem;
+
+    @include laptop {
+      flex-direction: column;
+    }
+
+    // &:nth-child(odd) {
+    //   .calendar__weekDay {
+    //     background-color: red;
+    //   }
+    //   .calendar__hour-info {
+    //     border-color: red;
+    //   }
+    // }
+  }
+
+  &__weekDay {
+    padding: 1rem;
+    background-color: $red;
+    color: $white;
+    text-align: center;
+    min-width: 22rem;
+
+    @include laptop {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 6rem;
+
+      @include phones {
+        font-size: 4rem;
+      }
+    }
+    span {
+      font-size: 2.2rem;
+
+      @include phones {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &__weekDay,
+  &__hour-info {
+    margin-bottom: 2rem;
+  }
+
+  &__hour-info {
+    display: block;
+    color: #414141;
+    border-left: 0.7rem solid $red;
+    padding-left: 2.8rem;
+
+    &:hover {
+      color: #414141;
+    }
+
+    @include laptop {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-family: "NextArt-Bold", sans-serif;
+      font-size: 2.4rem;
+    }
+
+    h3 {
+      color: #414141;
+      font-family: "NextArt-semibold", sans-serif;
+      font-size: 2.4rem;
+      margin: 1.2rem 0;
+
+      @include phones {
+        font-size: 2rem;
+      }
+    }
+
+    span {
+      display: block;
+      font-size: 1.8rem;
+    }
+  }
+}
+
+.calendar-header-filter {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  p {
+    color: #414141;
+    font-size: 2.4rem;
+    font-family: "NextArt-Bold", sans-serif;
+
+    @include phones {
+      font-size: 1.5rem;
+    }
+
+    &:last-child {
+      margin-left: 1.9rem;
+    }
+  }
+}
+
+.react-calendar {
+  width: 100%;
+  // height: 80vh;
+  max-width: 100%;
+  background: $reddishBrown;
+  border: 1px solid #a0a096;
+  line-height: 1.125em;
+}
+
+.highlight {
+  // background-color: red;
+  position: relative;
+  z-index: 2;
+  color: $white;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5rem;
+    border-radius: 50%;
+    z-index: -1;
+    height: 5rem;
+    background-color: $green !important;
+  }
+}
+
+.react-calendar--doubleView {
+  // width: 700px;
+}
+.react-calendar--doubleView .react-calendar__viewContainer {
+  display: flex;
+  margin: -0.5em;
+}
+.react-calendar--doubleView .react-calendar__viewContainer > * {
+  width: 50%;
+  margin: 0.5em;
+}
+.react-calendar,
+.react-calendar *,
+.react-calendar *:before,
+.react-calendar *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.react-calendar button {
+  margin: 0;
+  border: 0;
+  outline: none;
+}
+.react-calendar button:enabled:hover {
+  cursor: pointer;
+}
+.react-calendar__navigation {
+  display: flex;
+  // height: 44px;
+  padding: 3rem 0;
+  margin-bottom: 1em;
+}
+.react-calendar__navigation button {
+  color: $white;
+  font-size: 2.5rem;
+  margin: 0 2rem;
+  font-family: "NextArt-Bold", sans-serif;
+  background-color: transparent;
+  padding: 1.5rem 1.5rem;
+  transition: all 0.1s linear;
+
+  @include tablet {
+    font-size: 1.5rem;
+    margin: 0 1rem;
+  }
+}
+.react-calendar__navigation button:disabled {
+  background-color: #f0f0f0;
+}
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background: $redBackground;
+}
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  padding: 1rem 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+
+  @include tablet {
+    font-size: 1.5rem;
+  }
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 0.5em;
+  color: $white;
+}
+.react-calendar__month-view__weekNumbers .react-calendar__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+.react-calendar__month-view__days__day--weekend {
+  color: #f1c70f !important;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+  padding: 2em 0.5em;
+}
+
+.react-calendar__year-view__months__month:hover {
+  background-color: red !important;
+}
+
+.react-calendar__year-view__months__month::after {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+}
+
+.react-calendar__tile--active {
+  // background: #006edc;
+  // color: white;
+  position: relative;
+  z-index: 1;
+  color: $white;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5rem;
+    border-radius: 50%;
+    z-index: -1;
+    height: 5rem;
+    // background-color: yellow;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    background: linear-gradient(180deg, #c0222b 0%, #8e1a20 100%) !important;
+  }
+}
+
+.react-calendar__tile--now {
+  position: relative;
+  // color: #000 !important;
+
+  z-index: 1;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5rem;
+    border-radius: 50%;
+    z-index: -1;
+    height: 5rem;
+    border: 2px solid yellow;
+    // background-color: yellow !important;
+  }
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  // background: #;
+}
+.react-calendar__tile {
+  max-width: 100%;
+  display: block;
+  padding: 2rem 0;
+  margin-bottom: 4rem !important;
+  font-size: 1.5rem;
+  line-height: 16px;
+  position: relative;
+  background-color: transparent;
+  z-index: 3;
+  color: $white;
+  font-family: "NextArt-semibold", sans-serif !important;
+  transition: all 0.2s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5rem;
+    border-radius: 50%;
+    z-index: -1;
+    height: 5rem;
+  }
+
+  &:hover::after {
+    background-color: $reddishBrown;
+  }
+}
+.react-calendar__tile:disabled {
+  background-color: #f0f0f0;
+}
+// .react-calendar__tile:enabled:hover,
+// .react-calendar__tile:enabled:focus {
+//   background-color: #e6e6e6;
+// }
+
+// .react-calendar__tile--now:enabled:hover,
+// .react-calendar__tile--now:enabled:focus ba{
+//   background: #ffffa9;
+// }
+.react-calendar__tile--hasActive {
+  // background: #76baff;
+}
+// .react-calendar__tile--hasActive:enabled:hover,
+// .react-calendar__tile--hasActive:enabled:focus {
+//   background: #a9d4ff;
+// }
+
+// .react-calendar--selectRange .react-calendar__tile--hover {
+//   background-color: #e6e6e6;
+// }

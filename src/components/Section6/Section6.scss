@@ -1,0 +1,175 @@
+@import "../../styles/styles.scss";
+
+.section6 {
+	margin: 14rem 0 5rem 0;
+	padding: 0 2rem;
+
+	@include laptop-xl {
+		margin: 4rem 0 5rem 0;
+	}
+
+	@include phones {
+		padding: 0 1rem;
+	}
+
+	&__container {
+		max-width: 145rem;
+		margin: 0 auto;
+	}
+
+	&__title {
+		font-size: 4.8rem;
+		color: #414141;
+		font-family: "NextArt-Bold", sans-serif;
+		text-align: center;
+		width: 70%;
+		text-align: center;
+		margin: 0 auto 5rem auto;
+		@include tablet {
+			font-size: 4rem;
+		}
+
+		@include phones {
+			font-size: 3rem;
+			margin-bottom: 2rem;
+			margin: 1rem auto;
+			font-size: 2rem;
+		}
+	}
+
+	&__img-wrapper {
+		@include between-center;
+		position: relative;
+		@include phones {
+			flex-direction: column;
+		}
+	}
+
+	&__img {
+		&:nth-child(1) {
+			width: 70%;
+		}
+
+		&:nth-child(2) {
+			width: 30%;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__img2 {
+		&:nth-child(1) {
+			width: 60%;
+		}
+
+		&:nth-child(2) {
+			width: 40%;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__img,
+	&__img2 {
+		height: 48.2rem;
+		margin: 1rem 1rem;
+		overflow: hidden;
+
+		@include laptop {
+			width: 50% !important;
+			height: 40rem;
+		}
+
+		@include phones {
+			width: 100% !important;
+			height: 30rem;
+		}
+		img {
+			transition: all 0.2s ease;
+		}
+		&:hover img {
+			transform: scale(1.1);
+		}
+	}
+
+	&__card1,
+	&__card2 {
+		position: absolute;
+		z-index: 4;
+		padding: 3.9rem 4rem;
+		width: 58%;
+		@include tablet {
+			display: none;
+		}
+
+		p {
+			font-size: 16.5px;
+			color: $white;
+			font-family: "NextArt-Bold", sans-serif;
+		}
+	}
+
+	&__card1 {
+		left: 69.6%;
+		margin: 1rem;
+		transform: translateX(-50%);
+		top: 0;
+		background: $reddishBrown;
+	}
+	&__card2 {
+		padding: 5.5rem 4rem;
+		left: 0;
+		margin: 0 1rem;
+		top: 1%;
+		transform: translateY(-50%);
+		background: linear-gradient(to bottom, #d82730, #77171c);
+	}
+
+	&__footer-card-wrapper {
+		display: none !important;
+		width: 100%;
+
+		@include tablet {
+			display: flex !important;
+			justify-content: space-between;
+		}
+
+		@include phones {
+			flex-direction: column;
+		}
+	}
+
+	&__footer-card {
+		width: 50%;
+		margin: 1rem;
+		padding: 2.9rem 2.1rem;
+
+		@include phones {
+			width: 100%;
+			margin: 0;
+			margin-bottom: 1rem;
+		}
+		p {
+			font-size: 1.6rem;
+			color: $white;
+			font-family: "NextArt-Bold", sans-serif;
+			@include phones {
+				text-align: center;
+			}
+		}
+		&:first-child {
+			background: linear-gradient(to bottom, #d82730, #77171c);
+		}
+		&:last-child {
+			background-color: $reddishBrown;
+		}
+	}
+}

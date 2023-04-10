@@ -1,0 +1,156 @@
+@import "../../styles/styles.scss";
+
+.footer {
+  background-color: $reddishBrown;
+  padding: 0 3rem;
+
+  @include tablet {
+    padding: 0 1rem;
+  }
+
+  &__container {
+    padding: 6.6rem 0;
+    margin: 14rem auto 0 auto;
+    max-width: 135rem;
+
+    @include laptop-xl {
+      padding: 3rem 0;
+      margin: 5rem 0 0 0;
+    }
+
+    @include phones {
+      padding: 3rem 0;
+      margin: 0;
+    }
+  }
+
+  &__logo-wrapper {
+    text-align: center;
+    a {
+      display: flex;
+      // max-width: 200px;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  &__wrapper {
+    padding: 10rem 0 9rem 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.1rem solid $white;
+
+    @include laptop {
+      flex-wrap: wrap;
+    }
+
+    @include phones {
+      padding: 5rem 0 4rem 0;
+      flex-wrap: wrap;
+    }
+
+    .column-wrap {
+      margin: 2rem 3rem;
+    }
+
+    h6 {
+      font-family: "NextArt-semibold", sans-serif;
+      color: $white;
+      font-size: 2.4rem;
+      margin-bottom: 1.6rem;
+
+      @include phones {
+        font-size: 2rem;
+      }
+    }
+
+    a {
+      color: $white;
+      display: block;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+
+      @include phones {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  &__contact-info {
+    display: flex;
+
+    p {
+      color: $white;
+      margin: 1rem 0.8rem;
+      font-size: 2rem;
+    }
+  }
+
+  &__input-wrapper {
+    display: flex;
+
+    @include laptop-xl {
+      flex-direction: column;
+    }
+
+    input {
+      border: none;
+      outline: none;
+      padding: 2rem;
+      font-size: 2rem;
+      width: 24.6rem;
+      height: 6.1rem;
+
+      @include laptop-xl {
+        width: 100%;
+      }
+    }
+
+    button {
+      background: $redBackground;
+      padding: 0 2rem;
+      font-size: 2rem;
+
+      border: none;
+      color: $white;
+
+      @include laptop-xl {
+        width: 100%;
+        margin-top: 2rem;
+        height: 6rem;
+      }
+    }
+  }
+
+  &__social-wrapper {
+    display: flex;
+    align-items: center;
+    a {
+      display: block;
+      width: 4rem;
+      margin-right: 3rem;
+
+      @include phones {
+        width: 3rem;
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__copyright {
+    padding-top: 5rem;
+    color: $white;
+    font-size: 1.2rem;
+    text-align: center;
+    font-family: "NextArt-thin", sans-serif;
+  }
+}

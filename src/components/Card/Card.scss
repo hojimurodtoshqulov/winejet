@@ -1,0 +1,122 @@
+@import "../../styles/styles.scss";
+
+.card-component {
+  width: 38rem;
+  padding: 2rem;
+  display: block;
+  margin: 2rem;
+  border: 0.2rem solid #797979;
+
+  @include phones {
+    width: 33rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    // width: 100%;
+    margin: 2rem 0;
+  }
+
+  &__img-wrapper {
+    width: 100%;
+    height: 33rem;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.2s ease;
+    }
+  }
+
+  &__title {
+    padding: 1rem 0 1.8rem 0;
+    @include between-center;
+    color: $reddishBrown !important;
+
+    h1 {
+      word-wrap: break-word;
+      font-size: 3.2rem;
+      line-height: 3.6rem;
+      color: $reddishBrown !important;
+
+      @include phones {
+        font-size: 2.5rem;
+      }
+    }
+
+    div {
+      width: 7.4rem;
+      text-align: center;
+    }
+
+    p {
+      font-size: 4.4rem;
+      margin-left: 1rem;
+
+      @include phones {
+        font-size: 3rem;
+      }
+    }
+
+    span {
+      display: block;
+      font-size: 1.6rem;
+
+      @include phones {
+        font-size: 1.3rem;
+      }
+    }
+
+    h1 {
+      width: 70%;
+    }
+
+    p {
+      width: 30%;
+    }
+  }
+
+  &__desc {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    p {
+      font-size: 2rem;
+      color: #000;
+      line-height: 2.3rem;
+      width: 75%;
+
+      @include phones {
+        font-size: 1.5rem;
+      }
+    }
+
+    img {
+      width: 5.4rem;
+
+      @include phones {
+        width: 4rem;
+      }
+    }
+  }
+
+  &:hover .card-component__img-wrapper img {
+    transform: scale(1.1);
+  }
+
+  &:hover .card-arrow img {
+    animation: arrow 0.8s infinite;
+
+    @keyframes arrow {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(-0.8rem);
+      }
+    }
+  }
+}

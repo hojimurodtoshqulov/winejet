@@ -1,0 +1,109 @@
+@import "../../../styles/styles.scss";
+
+.courses {
+  padding: 0 3rem;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  margin-top: 3rem;
+
+  &__container {
+    max-width: 133rem;
+    margin: 0 auto;
+  }
+
+  &__wrapper {
+    padding: 20rem 0 24rem 0;
+    width: 50%;
+
+    @include laptop {
+      width: 100%;
+    }
+
+    @include phones {
+      width: 100%;
+
+      padding: 13rem 0;
+    }
+
+    h1 {
+      font-family: "NextArt-Bold", sans-serif;
+      padding-left: 1rem;
+      font-size: 4.4rem;
+      color: #d22630;
+      margin-bottom: 2rem;
+      border-left: 0.7rem solid #d22630;
+
+      @include laptop {
+        font-size: 3rem;
+      }
+    }
+
+    p {
+      color: $white;
+      font-size: 2.4rem;
+      line-height: 3.6rem;
+
+      @include laptop {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+.courses-items {
+  padding: 7rem 0;
+
+  &__container {
+    max-width: 133rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  &__title {
+    font-family: "NextArt-Bold";
+    font-size: 4.8rem;
+    color: black;
+    margin-bottom: 8.4rem;
+
+    @include laptop {
+      font-size: 4rem;
+    }
+
+    @include phones {
+      font-size: 3rem;
+    }
+  }
+
+  &__tab-wrapper {
+    display: flex;
+    margin-bottom: 5rem;
+
+    @include phones {
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+
+    li {
+      font-family: "NextArt-Bold";
+      margin-right: 6rem;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      font-size: 2.6rem;
+      padding-bottom: 1.6rem;
+
+      @include laptop {
+        font-size: 1.5rem;
+      }
+
+      @include tablet {
+        font-size: 1.5rem;
+        margin-right: 2rem;
+      }
+
+      &.active-tab {
+        border-bottom: 0.3rem solid #000;
+      }
+    }
+  }
+}

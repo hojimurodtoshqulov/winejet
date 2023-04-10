@@ -1,0 +1,129 @@
+@import "../../../styles/styles.scss";
+
+.contact-page {
+	margin: 10rem 0;
+
+	&__container {
+		max-width: 133rem;
+		margin: 0 auto;
+		padding: 0 2rem;
+	}
+
+	&__title {
+		font-size: 4.4rem;
+		color: #414141;
+		text-align: center;
+		padding: 4rem 0;
+
+		@include tablet {
+			font-size: 3rem;
+			padding: 2rem 0;
+		}
+	}
+
+	&__wrapper {
+		display: flex;
+		justify-content: space-between;
+
+		@include laptop {
+			flex-direction: column;
+		}
+	}
+
+	&__inputs {
+		width: 50%;
+
+		@include laptop {
+			width: 70%;
+		}
+
+		@include phones {
+			width: 100%;
+		}
+		h1 {
+			font-size: 2rem;
+			color: #414141;
+			text-align: center;
+			margin-bottom: 3rem;
+		}
+		input,
+		textarea {
+			display: block;
+			width: 100%;
+			margin-bottom: 3rem;
+			padding: 1rem 2rem;
+			border: 1px solid #414141;
+			border-radius: 0.5rem;
+			font-size: 2rem;
+			outline: none;
+		}
+
+		textarea {
+			resize: none;
+		}
+
+		button {
+			display: block;
+			background: linear-gradient(to bottom, #c8252d, #84191f);
+			padding: 0.7rem 5rem;
+			font-size: 2rem;
+			color: $white;
+			margin: 0 auto;
+			transition: all 0.2s ease;
+			border: none;
+
+			&:hover {
+				transform: scale(1.05);
+			}
+		}
+	}
+
+	&__info-wrapper {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+
+		div {
+			display: flex;
+			align-items: center;
+		}
+		p {
+			font-size: 2rem;
+			color: #414141;
+
+			&:last-child {
+				margin-left: 2rem;
+			}
+
+			@include phones {
+				font-size: 1.5rem;
+			}
+		}
+
+		@include laptop {
+			width: 70%;
+			margin-top: 4rem;
+		}
+
+		@include phones {
+			width: 100%;
+			height: 20rem;
+		}
+	}
+
+	&__map-wrapper {
+		margin-top: 5rem;
+		width: 100%;
+		height: 40rem;
+
+		@include laptop {
+			width: 100%;
+			height: 30rem;
+		}
+
+		@include laptop {
+			height: 20rem;
+		}
+	}
+}

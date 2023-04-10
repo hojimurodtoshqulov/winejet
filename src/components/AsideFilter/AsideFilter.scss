@@ -1,0 +1,60 @@
+@import "../../styles/styles.scss";
+
+.asideFilter {
+  &__side-container {
+    position: fixed;
+    left: -40rem;
+    z-index: 10000;
+    top: 0;
+    background: $redBackground;
+    padding: 4rem;
+    bottom: 0;
+    width: 40rem;
+    height: 100vh;
+    overflow: auto;
+    transition: all 0.4s ease;
+
+    @include phones {
+      width: 100%;
+      left: -100%;
+    }
+  }
+
+  &__side-active {
+    left: 0;
+  }
+
+  &__close-icons {
+    font-size: 6rem;
+    cursor: pointer;
+  }
+
+  &__checkbox-wrapper {
+    margin-top: 3.2rem;
+  }
+
+  &__titles {
+    font-size: 2.4rem;
+    color: #fff;
+    margin-bottom: 3.2rem;
+  }
+
+  &__hours-wrapper {
+    margin-bottom: 3.2rem;
+
+    input {
+      padding: 2rem;
+      font-family: "NextArt-Bold", sans-serif;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      border-radius: 6px;
+      background-color: transparent;
+      width: 80%;
+      font-size: 2rem;
+      color: #fff;
+
+      @include tablet {
+        width: 100%;
+      }
+    }
+  }
+}
