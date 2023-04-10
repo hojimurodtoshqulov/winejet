@@ -29,9 +29,13 @@
 	&__slider {
 		transition: all 1.3s linear;
 		min-width: 100%;
-
 		&.active-slider {
 			transition: all 1.1s linear;
+		}
+		&-loc {
+			@include phones {
+				width: 50%;
+			}
 		}
 	}
 

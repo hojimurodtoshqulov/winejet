@@ -114,7 +114,6 @@ const Landing = () => {
           <div className="landing__slider-wrapper">
             {leftSideSlider.map(({ title, titleSpan, desc }, i) => {
               const [firstWord, ...others] = title.split(" ");
-
               return (
                 <div
                   className={`landing__slider ${
@@ -165,7 +164,7 @@ const Landing = () => {
                   <span>
                     <TiLocationOutline />
                   </span>
-                  <p>{loc}</p>
+                  <p className="landing__slider-loc">{loc}</p>
                 </li>
               </ul>
             ))}
