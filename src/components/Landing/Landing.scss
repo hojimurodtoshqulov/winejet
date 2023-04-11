@@ -1,12 +1,27 @@
 @import "../../styles/styles.scss";
 
 .landing {
+	position: relative;
 	padding: 20rem 0 15rem 0;
 	background-size: cover !important;
 	background-repeat: no-repeat !important;
 	background-position: center !important;
+	&:after {
+		content: "";
+		display: inline-block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background: rgba(0,0,0,.5);
+		//z-index: 1;
+	}
+
 
 	&__wrapper {
+		position: relative;
+		z-index: 1;
 		display: flex;
 		justify-content: space-between;
 		max-width: 135rem;
@@ -23,19 +38,17 @@
 		display: flex;
 		// background-color: red;
 	}
+
 	.buy {
 		margin-top: 3rem;
 	}
+
 	&__slider {
 		transition: all 1.3s linear;
 		min-width: 100%;
+
 		&.active-slider {
 			transition: all 1.1s linear;
-		}
-		&-loc {
-			@include phones {
-				width: 50%;
-			}
 		}
 	}
 
@@ -71,6 +84,7 @@
 
 	&__right {
 		margin-top: 5rem;
+
 		h1 {
 			font-size: 3.9rem;
 			color: $white;
@@ -155,6 +169,8 @@
 	}
 
 	&__dots-container {
+		position: relative;
+		z-index: 10;
 		margin-top: 11rem;
 
 		display: flex;
@@ -162,6 +178,7 @@
 	}
 
 	&__dots-wrapper {
+
 		display: flex;
 
 		.slider-dots {
