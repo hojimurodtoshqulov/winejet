@@ -190,10 +190,13 @@ const Teachers = () => {
 						>
 							{console.log("img >>> ", img.src)}
 							<img src={img.src} alt="teachers" />
+							<p>Ali Vali</p>
+							
 						</motion.div>
 					) : (
 						<div className="teachers__img" key={i}>
 							<img src={img.src} alt="teachers" />
+							<p>Ali Vali</p>
 						</div>
 					)
 				)}
