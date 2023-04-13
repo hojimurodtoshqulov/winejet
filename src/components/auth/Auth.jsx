@@ -16,13 +16,15 @@ export default function Auth() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_API_URL}user/sign-in`, data)
+      .get(
+        `${process.env.REACT_APP_API_URL}/auth/login?password=${data.password}&username=${data.username}`
+      )
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           const token = res.data.token;
           const tokenData = jwt(token);
 
-          if (tokenData.role == "admin") {
+          if (tokenData.role === "admin") {
             sessionStorage.setItem("token", token);
             navigate("/admin", { replace: true });
           } else {
@@ -38,7 +40,7 @@ export default function Auth() {
     const sessionToken = sessionStorage.getItem("token");
     if (sessionToken) {
       const tokenData = jwt(sessionToken);
-      if (tokenData.role == "admin") {
+      if (tokenData.role === "admin") {
         navigate("/admin", { replace: true });
       }
     }
