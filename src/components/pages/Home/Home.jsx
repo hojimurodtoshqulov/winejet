@@ -41,10 +41,11 @@ const Home = () => {
 		threshold: 0.4,
 	});
 
+
 	useEffect(() => {
 		axios
-			.get("http://192.168.0.154:8080/api/courses/get-main")
-			.then((res) => console.log(res));
+			.get("http://nodejssampleapp-env.eba-3p8rms3b.eu-west-2.elasticbeanstalk.com/")
+			.then((res) => console.log("Result >>>",res));
 	}, []);
 	const { t } = useTranslation();
 	const [data, setData] = useState(staticData.courses);
