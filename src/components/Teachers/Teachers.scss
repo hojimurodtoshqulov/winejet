@@ -63,7 +63,7 @@
     p {
       position: absolute;
       left: 0;
-      bottom: -100%;
+      bottom: 0%;
       z-index: 10;
       color: #fff;
       font-size: 18px;
@@ -88,9 +88,6 @@
 
     &:hover img {
       transform: scale(1.1);
-    }
-    &:hover p {
-      bottom: 0%;
     }
   }
 

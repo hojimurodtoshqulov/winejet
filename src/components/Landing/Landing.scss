@@ -136,7 +136,8 @@
       margin-bottom: 3rem;
 
       @include laptop {
-        justify-content: center;
+        justify-content: flex-start;
+        width: fit-content;
       }
     }
 
@@ -144,6 +145,7 @@
       font-size: 2rem;
       color: $white;
       padding-left: 2rem;
+      text-align: initial;
 
       @include tablet {
         font-size: 1.5rem;
@@ -163,7 +165,14 @@
       margin-left: 3rem;
 
       @include tablet {
-        font-size: 2rem;
+      }
+    }
+
+    @include tablet {
+      .li-wrap {
+        width: min-content;
+        margin-right: auto;
+        margin-left: auto;
       }
     }
   }

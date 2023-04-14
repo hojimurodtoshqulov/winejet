@@ -15,32 +15,40 @@ export default function Auth() {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/auth/login?password=${data.password}&username=${data.username}`
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          const token = res.data.token;
-          const tokenData = jwt(token);
 
-          if (tokenData.role === "admin") {
+    console.log(
+      `${process.env.REACT_APP_API_URL}/auth/login?password=${data.password}&username=${data.username}`
+    );
+
+    const url = `${process.env.REACT_APP_API_URL}/auth/login?password=${data.password}&username=${data.username}`;
+
+    console.log();
+
+    axios.get(url)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          const token = res.data.message;
+          const tokenData = jwt(token);
+          if (tokenData.sub === "admin") {
             sessionStorage.setItem("token", token);
             navigate("/admin", { replace: true });
           } else {
             alert("Admin user not found");
           }
         }
+        return res;
       })
       .catch((err) => {
-        alert("User not found");
+        console.log(err);
+        // alert("User not found");
       });
   };
   useEffect(() => {
     const sessionToken = sessionStorage.getItem("token");
     if (sessionToken) {
       const tokenData = jwt(sessionToken);
-      if (tokenData.role === "admin") {
+      if (tokenData.admin === "admin") {
         navigate("/admin", { replace: true });
       }
     }

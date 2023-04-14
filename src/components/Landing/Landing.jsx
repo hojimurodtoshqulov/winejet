@@ -78,7 +78,6 @@ const Landing = () => {
 
   const sliderPositions = calculateSliderPositions(numberOfSlides, width);
 
-   
   const handleDotClick = (index) => {
     setActiveDot(index);
     setSliderPosition(-sliderPositions[index]);
@@ -148,24 +147,26 @@ const Landing = () => {
                   transform: `translateX(${sliderPosition}px)`,
                 }}
               >
-                <li>
-                  <span>
-                    <HiOutlineCalendar />
-                  </span>
-                  <p>{date}</p>
-                </li>
-                <li>
-                  <span>
-                    <AiOutlineClockCircle />
-                  </span>
-                  <p>{hours}</p>
-                </li>
-                <li>
-                  <span>
-                    <TiLocationOutline />
-                  </span>
-                  <p className="landing__slider-loc">{loc}</p>
-                </li>
+                <div className="li-wrap">
+                  <li>
+                    <span>
+                      <HiOutlineCalendar />
+                    </span>
+                    <p>{date}</p>
+                  </li>
+                  <li>
+                    <span>
+                      <AiOutlineClockCircle />
+                    </span>
+                    <p>{hours}</p>
+                  </li>
+                  <li>
+                    <span>
+                      <TiLocationOutline />
+                    </span>
+                    <p className="landing__slider-loc">{loc}</p>
+                  </li>
+                </div>
               </ul>
             ))}
           </div>
