@@ -14,7 +14,7 @@
     top: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     //z-index: 1;
   }
 
@@ -45,6 +45,7 @@
   &__slider {
     transition: all 1.3s linear;
     min-width: 100%;
+    // margin: rem 0;
 
     &.active-slider {
       transition: all 1.1s linear;
@@ -165,6 +166,7 @@
       margin-left: 3rem;
 
       @include tablet {
+        margin-left: 0;
       }
     }
 
@@ -173,6 +175,7 @@
         width: min-content;
         margin-right: auto;
         margin-left: auto;
+        margin-bottom: 9rem;
       }
     }
   }
@@ -184,6 +187,10 @@
 
     display: flex;
     justify-content: center;
+
+    @include laptop {
+      margin-top: 3rem;
+    }
   }
 
   &__dots-wrapper {
