@@ -56,8 +56,7 @@ const Navbar = () => {
 				<div className="navbar__wrapper">
 					<div className="navbar__logo-wrapper">
 						<Link to={""}>
-							<img src="/images/logo.png" alt="" />
-							<img src="/images/Internatiol.png" alt="" />
+							<img className="logo-group" src="/images/logoGroup.png" alt="" />
 						</Link>
 					</div>
 					<ul className="navbar__links-wrapper">

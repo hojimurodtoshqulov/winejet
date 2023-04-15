@@ -12,8 +12,7 @@ function Footer() {
       <div className="footer__container">
         <div className="footer__logo-wrapper">
           <Link to="/">
-            <img src="/images/logo.png" alt="" />
-            <img src="/images/internatiol.png" alt="" />
+            <img src="/images/logoGroup.png" alt="" />
           </Link>
         </div>
         <div className="footer__wrapper">
@@ -63,13 +62,13 @@ function Footer() {
               Join us
             </h6>
             <div className="footer__social-wrapper">
-              <a className="social_icons" href="https://github.com/Nurmuhammad032/ijara/blob/master/src/components/Header/SideMenu/SideMenu.tsx">
+              <a className="social_icons" href="">
                 <BsInstagram />
               </a>
-              <a className="social_icons" href="https://github.com/Nurmuhammad032/ijara/blob/master/src/components/Header/SideMenu/SideMenu.tsx">
+              <a className="social_icons" href="">
                 <FiFacebook />
               </a>
-              <a className="social_icons" href="https://github.com/Nurmuhammad032/ijara/blob/master/src/components/Header/SideMenu/SideMenu.tsx">
+              <a className="social_icons" href="">
                 <RxTwitterLogo />
               </a>
             </div>
