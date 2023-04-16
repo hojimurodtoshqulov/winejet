@@ -4,3 +4,28 @@
   border-radius: 5px;
   background-color: #191c24;
 }
+
+.teacherView {
+  gap: 1rem;
+  .imgBox {
+    height: 300px;
+    width: 250px;
+    // background-color: red;
+    border: 1px solid #6c7293;
+    img {
+      display: block;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
+  .teacherName {
+    font-size: 1.5rem;
+    color: #6c7293;
+  }
+}

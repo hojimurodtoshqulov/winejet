@@ -14,6 +14,9 @@ import style from "./Teachers.module.scss";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { constatns } from "../../../redux/constants";
+import { useEffect } from "react";
 
 const darkTheme = createTheme({
   palette: {
@@ -33,7 +36,12 @@ const MyForm = () => {
   const [fullName, setFullName] = React.useState("");
   const [descriptionUZ, setDescriptionUZ] = React.useState("");
   const [descriptionRU, setDescriptionRU] = React.useState("");
-  const [image, setImage] = React.useState();
+  const [image, setImage] = React.useState(null);
+
+  const { formType } = useSelector((state) => state.admin);
+  const { teacher } = useSelector((state) => state.admin);
+
+  console.log(formType);
 
   const navigation = useNavigate();
 
@@ -49,6 +57,20 @@ const MyForm = () => {
     setDescriptionRU(event.target.value);
   };
 
+  const clearValues = () => {
+    setFullName("");
+    setDescriptionUZ("");
+    setDescriptionRU("");
+    setImage(null);
+  };
+
+  useEffect(() => {
+    if (formType === constatns.form.updating) {
+      setFullName(teacher.fullName);
+      setDescriptionUZ(teacher.infoUz);
+      setDescriptionRU(teacher.infoRu);
+    }
+  }, []);
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     const allowedFormats = ["image/png", "image/jpeg", "image/jpg"];
@@ -63,10 +85,9 @@ const MyForm = () => {
     event.preventDefault();
 
     // Image validation
-    if (!image) alert("Insert image");
+    if (!image) return alert("Insert image");
     const formdata = new FormData();
     formdata.append("file", image);
-    console.log([...formdata]);
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/files`, formdata, {
@@ -76,7 +97,6 @@ const MyForm = () => {
         },
       })
       .then((res) => {
-        console.log(res.data.message);
         return res.data.message;
       })
       .then((imgId) => {
@@ -100,6 +120,7 @@ const MyForm = () => {
       })
       .then((data) => {
         NotificationManager.success("Teacher succussfully created", "Success!");
+        clearValues();
         navigation("/admin/teacher", { replace: true });
       })
       .catch((err) => {
@@ -114,12 +135,73 @@ const MyForm = () => {
       }); */
   };
 
+  const handleEdit = async (event) => {
+    event.preventDefault();
+
+    const updatedData = {
+      fullName: fullName || teacher.fullName,
+      infoUz: descriptionUZ || teacher.infoUz,
+      infoRu: descriptionRU || teacher.infoRu,
+      attachmentId: teacher.attachmentId,
+      id: teacher.id,
+    };
+
+    try {
+      // Image validation
+
+      console.log(image);
+      if (image) {
+        console.log(image);
+        const formdata = new FormData();
+        formdata.append("file", image);
+
+        updatedData.attachmentId = await axios
+          .post(`${process.env.REACT_APP_API_URL}/files`, formdata, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+          })
+          .then((res) => {
+            return res.data.message;
+          });
+      }
+      console.log(updatedData);
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/teachers`,
+        updatedData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      clearValues();
+      navigation("/admin/teacher", { replace: true });
+      NotificationManager.success("Teacher succussfully created", "Success!");
+      clearValues();
+    } catch (error) {
+      NotificationManager.error("Something went wrong", "Error!");
+      console.log(error);
+    }
+  };
+
   return (
     <ThemeProvider theme={darkTheme}>
-      <Box component="form" onSubmit={handleSubmit}>
+      <Box
+        component="form"
+        onSubmit={(e) => {
+          formType === constatns.form.creating
+            ? handleSubmit(e)
+            : handleEdit(e);
+        }}
+      >
         <div className={style.formWrap}>
           <Typography variant="h5" color="textPrimary" sx={{ marginBottom: 2 }}>
-            Add a new teacher
+            {formType === constatns.form.creating ? "Add a new" : "Update the "}
+            teacher
           </Typography>
           <Box sx={{ marginBottom: 2 }}>
             <TextField
@@ -174,10 +256,27 @@ const MyForm = () => {
               Image uploaded: {image.name}
             </Typography>
           )}
-          <Box sx={{ marginTop: 2 }}>
-            
+          <Box
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
             <Button variant="contained" type="submit" color="secondary">
               Submit
+            </Button>
+            <Button
+              onClick={() => {
+                clearValues();
+                navigation("/admin/teacher", { replace: true });
+              }}
+              variant="contained"
+              type="button"
+              color="secondary"
+            >
+              Back
             </Button>
           </Box>
         </div>

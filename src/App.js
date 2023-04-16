@@ -38,7 +38,7 @@ import { NotificationContainer } from "react-notifications";
 import { ScrollTop } from "./components";
 import TeachersAdmin from "./components/pages/TeachersAdmin/TeachersAdmin";
 import TeacherCreate from "./components/pages/TeachersAdmin/TeacherCreateNew";
-import TeacherView from "./components/pages/TeachersAdmin/TeacherView";
+import TeacherView from "./components/pages/TeachersAdmin/TeacherViewNew";
 
 function App() {
   setTimeout(function () {

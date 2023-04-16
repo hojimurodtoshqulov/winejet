@@ -24,7 +24,8 @@ export default function Auth() {
 
     console.log();
 
-    axios.get(url)
+    axios
+      .get(url)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
