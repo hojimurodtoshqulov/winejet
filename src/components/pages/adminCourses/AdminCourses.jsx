@@ -16,9 +16,12 @@ export default function AdminCourses() {
       });
   };
 
+  console.log(data);
+
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}courses/get`).then((res) => {
-      setData(res.data.data.result);
+    axios.get(`${process.env.REACT_APP_API_URL}/courses`).then((res) => {
+      console.log(res);
+      setData(res.data);
     });
   }, [count]);
 
@@ -53,7 +56,7 @@ export default function AdminCourses() {
                         return (
                           <tr key={index}>
                             <th scope="row">{item.id}</th>
-                            <td>{item.title_ru}</td>
+                            <td>{item.titleRu}</td>
                             <td>
                               <NavLink
                                 to={`view/${item.id}`}
