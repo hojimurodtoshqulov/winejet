@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFormType } from "../../../redux/admin/adminSlice";
 import { constatns } from "../../../redux/constants";
+import { NotificationManager } from "react-notifications";
 
 function TeachersAdmin({ usersState, updateUsers }) {
   const dispatch = useDispatch();
@@ -13,12 +14,17 @@ function TeachersAdmin({ usersState, updateUsers }) {
   const [count, setCount] = useState(1);
   const handleDelete = (id) => {
     axios
-      .delete(`${process.env.REACT_APP_API_URL}teachers/delete/${id}`)
+      .delete(`${process.env.REACT_APP_API_URL}/teachers/${id}`)
       .then((res) => {
         if (res.status == 200) {
           setCount(count + 1);
+          NotificationManager.success("Teacher deleted", "Success!");
           // navigation("/admin/users", { replace: true } )
         }
+      })
+      .catch((err) => {
+        NotificationManager.error("Something went wrong", "Error!");
+        console.log(err);
       });
   };
 
