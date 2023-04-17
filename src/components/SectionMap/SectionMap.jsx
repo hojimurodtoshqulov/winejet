@@ -5,7 +5,9 @@ const SectionMap = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>КАРТА</h1>
-      <CustoMap />
+      <div className={styles.cardWrapper}>
+        <CustoMap />
+      </div>
     </div>
   );
 };

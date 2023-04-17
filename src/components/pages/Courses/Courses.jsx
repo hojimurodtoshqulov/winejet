@@ -103,13 +103,13 @@ const Courses = () => {
         className="courses"
         style={{
           background:
-            "linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(/images/courses-bg.png)",
+            "linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(/images/courses-back.png)",
         }}
       >
         <div className="courses__container">
           <div className="courses__wrapper">
-            <h1>все курсы Corem ipsum dolor sit </h1>
-            <p>
+            <h1 data-aos="flip-up">все курсы Corem ipsum dolor sit </h1>
+            <p data-aos="flip-down">
               Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
               vulputate libero et velit interdum, ac aliquet odio mattis.
             </p>
@@ -120,7 +120,9 @@ const Courses = () => {
       <section className="courses-items">
         <div className="courses-items__container">
           <div>
-            <h1 className="courses-items__title">все курсы</h1>
+            <h1 data-aos="fade-down" className="courses-items__title">
+              все курсы
+            </h1>
 
             <ul className="courses-items__tab-wrapper">
               <li
@@ -149,6 +151,7 @@ const Courses = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -50 }}
                     transition={{ type: "tween" }}
+                    data-aos="flip-left"
                   >
                     <Card
                       img={item.img}

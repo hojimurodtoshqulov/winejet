@@ -20,6 +20,7 @@
     text-align: center;
 
     a {
+      border: 1px solid transparent;
       background-color: $reddishBrown;
       font-size: 2.2rem;
       color: $white;
@@ -30,6 +31,7 @@
       &:hover {
         background-color: transparent;
         color: $reddishBrown;
+        border-color: $reddishBrown;
       }
     }
   }

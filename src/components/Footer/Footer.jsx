@@ -2,6 +2,9 @@ import "./Footer.scss";
 import { Link } from "react-router-dom";
 import { BsTelephone } from "react-icons/bs";
 import { HiOutlineLocationMarker } from "react-icons/hi";
+import { BsInstagram } from "react-icons/bs";
+import { FiFacebook } from "react-icons/fi";
+import { RxTwitterLogo } from "react-icons/rx";
 
 function Footer() {
   return (
@@ -9,8 +12,7 @@ function Footer() {
       <div className="footer__container">
         <div className="footer__logo-wrapper">
           <Link to="/">
-            <img src="/images/logo.png" alt="" />
-            <img src="/images/internatiol.png" alt="" />
+            <img src="/images/logoGroup.png" alt="" />
           </Link>
         </div>
         <div className="footer__wrapper">
@@ -60,14 +62,14 @@ function Footer() {
               Join us
             </h6>
             <div className="footer__social-wrapper">
-              <a href="https://github.com/Nurmuhammad032/ijara/blob/master/src/components/Header/SideMenu/SideMenu.tsx">
-                <img src="/images/telegram.png" alt="" />
+              <a className="social_icons" href="">
+                <BsInstagram />
               </a>
-              <a href="https://github.com/Nurmuhammad032/ijara/blob/master/src/components/Header/SideMenu/SideMenu.tsx">
-                <img src="/images/facebook.png" alt="" />
+              <a className="social_icons" href="">
+                <FiFacebook />
               </a>
-              <a href="https://github.com/Nurmuhammad032/ijara/blob/master/src/components/Header/SideMenu/SideMenu.tsx">
-                <img src="/images/insta.png" alt="" />
+              <a className="social_icons" href="">
+                <RxTwitterLogo />
               </a>
             </div>
           </div>

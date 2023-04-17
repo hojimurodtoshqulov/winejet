@@ -1,185 +1,217 @@
 @import "../../styles/styles.scss";
 
 .landing {
-	padding: 20rem 0 15rem 0;
-	background-size: cover !important;
-	background-repeat: no-repeat !important;
-	background-position: center !important;
+  position: relative;
+  padding: 20rem 0 15rem 0;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  &:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    //z-index: 1;
+  }
 
-	&__wrapper {
-		display: flex;
-		justify-content: space-between;
-		max-width: 135rem;
-		margin: 0 auto;
+  &__wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    max-width: 135rem;
+    margin: 0 auto;
 
-		@include laptop {
-			flex-direction: column;
-			align-items: center;
-		}
-	}
+    @include laptop {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 
-	&__slider-wrapper {
-		overflow: hidden;
-		display: flex;
-		// background-color: red;
-	}
-	.buy {
-		margin-top: 3rem;
-	}
-	&__slider {
-		transition: all 1.3s linear;
-		min-width: 100%;
-		&.active-slider {
-			transition: all 1.1s linear;
-		}
-		&-loc {
-			@include phones {
-				width: 50%;
-			}
-		}
-	}
+  &__slider-wrapper {
+    overflow: hidden;
+    display: flex;
+    // background-color: red;
+  }
 
-	&__right,
-	&__left {
-		width: 50%;
-		padding: 0 14rem;
-		max-width: 40rem;
-		box-sizing: content-box;
-		margin-bottom: 3rem;
-		@include laptop-xxl {
-			padding: 0 10rem;
-		}
+  .buy {
+    margin-top: 3rem;
+  }
 
-		@include laptop-xl {
-			padding: 0 3rem;
-		}
+  &__slider {
+    transition: all 1.3s linear;
+    min-width: 100%;
+    // margin: rem 0;
 
-		@include laptop {
-			margin-bottom: 3rem;
-			text-align: center;
-		}
+    &.active-slider {
+      transition: all 1.1s linear;
+    }
+  }
 
-		@include tablet {
-			width: 100%;
-			padding: 0;
-		}
+  &__right,
+  &__left {
+    width: 50%;
+    padding: 0 14rem;
+    max-width: 40rem;
+    box-sizing: content-box;
+    margin-bottom: 3rem;
+    @include laptop-xxl {
+      padding: 0 10rem;
+    }
 
-		@include phones {
-			width: 33rem;
-		}
-	}
+    @include laptop-xl {
+      padding: 0 3rem;
+    }
 
-	&__right {
-		margin-top: 5rem;
-		h1 {
-			font-size: 3.9rem;
-			color: $white;
-			line-height: 7rem;
-			letter-spacing: 0.2rem;
-			margin-bottom: 3rem;
-			@include tablet {
-				font-size: 3rem;
-				line-height: 4rem;
-			}
-		}
+    @include laptop {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
 
-		span {
-			color: $red;
-		}
+    @include tablet {
+      width: 100%;
+      padding: 0;
+    }
 
-		h1.notFirstSlide-title,
-		h1.notFirstSlide-title span {
-			// color: $green;
-		}
+    @include phones {
+      width: 33rem;
+    }
+  }
 
-		p {
-			color: $white;
-			font-size: 2rem;
-			margin: 3.9rem 0;
-			line-height: 2.7rem;
+  &__right {
+    margin-top: 5rem;
 
-			@include tablet {
-				font-size: 1.5rem;
-			}
-		}
+    h1 {
+      font-size: 3.9rem;
+      color: $white;
+      line-height: 7rem;
+      letter-spacing: 0.2rem;
+      margin-bottom: 3rem;
+      @include tablet {
+        font-size: 3rem;
+        line-height: 4rem;
+      }
+    }
 
-		a {
-			color: $white;
-			font-size: 2rem;
-			background-color: $red;
-			padding: 1.5rem 3rem;
-		}
-	}
+    span {
+      color: $red;
+    }
 
-	&__left {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
+    h1.notFirstSlide-title,
+    h1.notFirstSlide-title span {
+      // color: $green;
+    }
 
-		li {
-			display: flex;
-			align-items: center;
-			margin-top: 1rem;
-			margin-bottom: 3rem;
+    p {
+      color: $white;
+      font-size: 2rem;
+      margin: 3.9rem 0;
+      line-height: 2.7rem;
 
-			@include laptop {
-				justify-content: center;
-			}
-		}
+      @include tablet {
+        font-size: 1.5rem;
+      }
+    }
 
-		p {
-			font-size: 2rem;
-			color: $white;
-			padding-left: 2rem;
+    a {
+      color: $white;
+      font-size: 2rem;
+      background-color: $red;
+      padding: 1.5rem 3rem;
+    }
+  }
 
-			@include tablet {
-				font-size: 1.5rem;
-			}
-		}
+  &__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-		span {
-			display: block;
-			font-size: 3rem;
-			color: $white;
-		}
+    li {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+      margin-bottom: 3rem;
 
-		h6 {
-			font-size: 3rem;
-			color: $white;
-			padding-bottom: 2rem;
+      @include laptop {
+        justify-content: flex-start;
+        width: fit-content;
+      }
+    }
 
-			@include tablet {
-				font-size: 2rem;
-			}
-		}
-	}
+    p {
+      font-size: 2rem;
+      color: $white;
+      padding-left: 2rem;
+      text-align: initial;
 
-	&__dots-container {
-		margin-top: 11rem;
+      @include tablet {
+        font-size: 1.5rem;
+      }
+    }
 
-		display: flex;
-		justify-content: center;
-	}
+    span {
+      display: block;
+      font-size: 3rem;
+      color: $white;
+    }
 
-	&__dots-wrapper {
-		display: flex;
+    h6 {
+      font-size: 3rem;
+      color: #d22630;
+      padding-bottom: 2rem;
+      margin-left: 3rem;
 
-		.slider-dots {
-			width: 9.3rem;
-			height: 1rem;
-			background-color: rgba(255, 255, 255, 0.5);
-			cursor: pointer;
-			margin: 0 2rem;
-			transition: all 0.2s;
+      @include tablet {
+        margin-left: 0;
+      }
+    }
 
-			@include tablet {
-				width: 5rem;
-				height: 0.6rem;
-			}
-		}
+    @include tablet {
+      .li-wrap {
+        width: min-content;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 9rem;
+      }
+    }
+  }
 
-		.active-dot {
-			background-color: $white;
-		}
-	}
+  &__dots-container {
+    position: relative;
+    z-index: 10;
+    margin-top: 11rem;
+
+    display: flex;
+    justify-content: center;
+
+    @include laptop {
+      margin-top: 3rem;
+    }
+  }
+
+  &__dots-wrapper {
+    display: flex;
+
+    .slider-dots {
+      width: 9.3rem;
+      height: 1rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      margin: 0 2rem;
+      transition: all 0.2s;
+
+      @include tablet {
+        width: 5rem;
+        height: 0.6rem;
+      }
+    }
+
+    .active-dot {
+      background-color: $white;
+    }
+  }
 }

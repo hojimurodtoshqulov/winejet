@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const SelectComponent = () => {
-  const [language, setLanguage] = useState("uz");
+  const [language, setLanguage] = useState("ru");
   const { i18n } = useTranslation();
 
   const handleChange = (event) => {

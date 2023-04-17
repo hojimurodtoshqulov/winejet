@@ -41,6 +41,7 @@ const Course = () => {
   const [data, setData] = useState(staticData.data);
   const params = useParams();
   const alias = params.slug;
+
   useEffect(() => {
     return;
     axios
@@ -62,7 +63,7 @@ const Course = () => {
         <div className="course-page__container">
           <div className="course-page__wrapper">
             <div className="course-page__right">
-              <div>
+              <div data-aos="flip-left">
                 <h1>{getContent(data.title_ru, data.title_uz)}</h1>
                 <p className="course-page__desc-header">
                   {getContent("старт", "boshlanish")}: {date.getDate()}{" "}
@@ -118,7 +119,7 @@ const Course = () => {
           <h1>Vorem ipsum dolor </h1>
           <div className="course-page__sectoin-2-wrapper">
             {data1.map((item, i) => (
-              <div key={i} className="course-page__cards">
+              <div data-aos="fade-up" key={i} className="course-page__cards">
                 <img src="/images/course-section2-img.png" alt="" />
                 <p>{item}</p>
               </div>

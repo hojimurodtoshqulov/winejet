@@ -45,22 +45,24 @@ const Contact = () => {
   return (
     <section className="contact-page">
       <div className="contact-page__container">
-        <h1 className="contact-page__title">КОНТАКТЫ</h1>
+        <h1 data-aos="fade-down" className="contact-page__title">
+          КОНТАКТЫ
+        </h1>
         <div className="contact-page__wrapper">
           <div className="contact-page__info-wrapper">
-            <div>
+            <div data-aos="fade-left">
               <p>
                 <BsTelephone />
               </p>
               <p>+998 95 052 46 26</p>
             </div>
-            <div>
+            <div data-aos="fade-right">
               <p>
                 <MdOutlineEmail />
               </p>
               <p>nurmuhammad2003o@gmail.com</p>
             </div>
-            <div>
+            <div data-aos="fade-left">
               <p>
                 <IoLocationOutline />
               </p>
@@ -68,16 +70,20 @@ const Contact = () => {
             </div>
           </div>
           <div className="contact-page__inputs">
-            <h1>Fill in form</h1>
+            <h1 data-aos="fade-up">Fill in form</h1>
             <div>
-              <input type="text" placeholder="Name" />
-              <input type="text" placeholder="Email" />
-              <textarea rows="3" placeholder="Message"></textarea>
-              <button>send</button>
+              <input data-aos="fade-right" type="text" placeholder="Name" />
+              <input data-aos="fade-left" type="text" placeholder="Email" />
+              <textarea
+                data-aos="fade-right"
+                rows="3"
+                placeholder="Message"
+              ></textarea>
+              <button data-aos="fade-down">send</button>
             </div>
           </div>
         </div>
-        <div className="contact-page__map-wrapper">
+        <div data-aos="zoom-in" className="contact-page__map-wrapper">
           <CustomMap />
         </div>
       </div>

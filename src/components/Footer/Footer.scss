@@ -59,6 +59,10 @@
       margin: 2rem 3rem;
     }
 
+    .social_icons {
+      font-size: 3rem;
+    }
+
     h6 {
       font-family: "NextArt-semibold", sans-serif;
       color: $white;
@@ -133,7 +137,7 @@
     align-items: center;
     a {
       display: block;
-      width: 4rem;
+      width: 2rem;
       margin-right: 3rem;
 
       @include phones {

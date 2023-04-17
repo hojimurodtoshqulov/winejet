@@ -6,14 +6,12 @@ import Switch from "../../layouts/switch/Switch";
 import Uploader from "../../layouts/uploader/Uploader";
 
 export default function TeacherCreate() {
-  const [categoryId, setCategoryId] = useState(0);
+  const [categoryId, setCategoryId] = useState(2);
   const [lang, setLang] = useState([]);
   const [data, setData] = useState({
-    name_ru: "",
-    name_uz: "",
-    short_content_ru: "",
-    short_content_uz: "",
-    status: false,
+    fullName: "",
+    infoUz: "",
+    infoRu: "",
   });
 
   const navigation = useNavigate();
@@ -29,40 +27,43 @@ export default function TeacherCreate() {
     // axios.get(`${process.env.REACT_APP_API_URL}lang/get`).then((res) => {
     //   setLang(res.data.data.result);
     // });
-
     // axios
     //   .get(`${process.env.REACT_APP_API_URL}courses_category/get-main`)
     //   .then((res) => {
     //     setCoursesCategory(res.data.data.result);
     //   });
-
     // data.created_on = Math.floor(data.crea ted_on.getTime() / 1000);
-    axios
-      .post(`${process.env.REACT_APP_API_URL}teachers/create`, data)
-      .then((res) => {
-        if (res.status === 200) {
-          setCategoryId(res.data.id);
-        }
-      });
+    // axios
+    //   .post(`${process.env.REACT_APP_API_URL}teachers/create`, data)
+    //   .then((res) => {
+    //     if (res.status === 200) {
+    //       setCategoryId(res.data.id);
+    //     }
+    //   });
     // data.created_on = new Date();
   }, [0]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URL}teachers/update/${categoryId}`,
-        data
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          // setCategoryId(res.data.id);
-          navigation("/admin/teacher", { replace: true });
-        }
-      })
-      .catch((err) => {
-        NotificationManager.error("Error create user", "Error!");
-      });
+    axios.post(`${process.env.REACT_APP_API_URL}teachers`, data).then((res) => {
+      if (res.status === 200) {
+        setCategoryId(res.data.id);
+      }
+    });
+    // axios
+    //   .put(
+    //     `${process.env.REACT_APP_API_URL}teachers/update/${categoryId}`,
+    //     data
+    //   )
+    //   .then((res) => {
+    //     if (res.status === 200) {
+    //       // setCategoryId(res.data.id);
+    //       navigation("/admin/teacher", { replace: true });
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     NotificationManager.error("Error create user", "Error!");
+    //   });
   };
 
   return (
@@ -76,26 +77,11 @@ export default function TeacherCreate() {
                 <div className="col-md-6">
                   <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">
-                      Name : ru
+                      Fullname
                     </label>
                     <input
                       type="text"
-                      name="name_ru"
-                      onChange={handleChange}
-                      className="form-control"
-                      id="exampleInputEmail1"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">
-                      Name : uz
-                    </label>
-                    <input
-                      type="text"
-                      name="name_uz"
+                      name="fullname"
                       onChange={handleChange}
                       className="form-control"
                       id="exampleInputEmail1"
@@ -110,7 +96,7 @@ export default function TeacherCreate() {
                     </label>
                     <input
                       type="text"
-                      name="short_content_ru"
+                      name="infoRu"
                       onChange={handleChange}
                       className="form-control"
                       id="exampleInputEmail1"
@@ -125,7 +111,7 @@ export default function TeacherCreate() {
                     </label>
                     <input
                       type="text"
-                      name="short_content_uz"
+                      name="infoUz"
                       onChange={handleChange}
                       className="form-control"
                       id="exampleInputEmail1"
@@ -175,9 +161,9 @@ export default function TeacherCreate() {
                   </select>
                 </div> */}
 
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                   <Switch setData={setData} value={data.status} />
-                </div>
+                </div> */}
                 <div className="col-12 pb-3 mb-3 border-bottom">
                   <button
                     type="button"

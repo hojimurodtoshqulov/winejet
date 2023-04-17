@@ -67,7 +67,7 @@ function LeftMenu() {
             to="/admin/courses-category"
             className={`${s.nav_link} nav-item nav-link`}
           >
-            <i className="fa fa-solid fa-th me-2"></i>Courses Category
+            <i className="fa fa-solid fa-th me-2"></i> Category
           </NavLink>
 
           {/* <div className="nav-item dropdown">

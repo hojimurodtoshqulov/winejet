@@ -4,8 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Uploader from "../../layouts/uploader/Uploader";
 import Switch from "../../layouts/switch/Switch";
+import { useTranslation } from "react-i18next";
 
 export default function TeacherView() {
+  const { i18n } = useTranslation();
   const [data, setData] = useState({
     name_ru: "",
     name_uz: "",
@@ -13,6 +15,8 @@ export default function TeacherView() {
     short_content_uz: "",
     status: true,
   });
+
+  console.log(i18n.language);
 
   const [password, setPassword] = useState(".");
   const params = useParams();

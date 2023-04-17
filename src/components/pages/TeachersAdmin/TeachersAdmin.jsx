@@ -3,8 +3,11 @@ import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
+import { changeFormType } from "../../../redux/admin/adminSlice";
+import { constatns } from "../../../redux/constants";
 
 function TeachersAdmin({ usersState, updateUsers }) {
+  const dispatch = useDispatch();
   const navigation = useNavigate();
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
@@ -20,10 +23,12 @@ function TeachersAdmin({ usersState, updateUsers }) {
   };
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}teachers/get`).then((res) => {
-      setData(res.data.data?.result);
+    axios.get(`${process.env.REACT_APP_API_URL}/teachers`).then((res) => {
+      setData(res.data);
     });
   }, [count]);
+
+  console.log(data);
 
   return (
     <div className="container-fluid pt-4 px-4">
@@ -32,7 +37,13 @@ function TeachersAdmin({ usersState, updateUsers }) {
           <div className="bg-secondary rounded h-100 p-4">
             <div className="d-flex justify-content-between">
               <h6 className="mb-4">Teachers </h6>
-              <NavLink to="create" className="btn btn-dark rounded-pill ">
+              <NavLink
+                onClick={() => {
+                  dispatch(changeFormType(constatns.form.creating));
+                }}
+                to="create"
+                className="btn btn-dark rounded-pill "
+              >
                 Create
               </NavLink>
             </div>
@@ -48,34 +59,39 @@ function TeachersAdmin({ usersState, updateUsers }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {data
-                    ?.filter((item) => item?.name_ru !== "")
-                    .map(function (item, index) {
-                      return (
-                        <tr key={index}>
-                          <th scope="row">{index + 1}</th>
-                          <td>{item?.name_ru}</td>
-                          <td>
-                            <NavLink
-                              to={`view/${item?.id}`}
-                              className="btn btn-info rounded-pill "
-                            >
-                              View
-                            </NavLink>
-                          </td>
-                          <td>
-                            {" "}
-                            <button
-                              type="button"
-                              className="btn btn-danger rounded-pill "
-                              onClick={() => handleDelete(item?.id)}
-                            >
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                  {data.length ? (
+                    data
+                      ?.filter((item) => item?.name_ru !== "")
+                      .map(function (item, index) {
+                        console.log(item);
+                        return (
+                          <tr key={index}>
+                            <th scope="row">{index + 1}</th>
+                            <td>{item?.fullName}</td>
+                            <td>
+                              <NavLink
+                                to={`view/${item?.id}`}
+                                className="btn btn-info rounded-pill "
+                              >
+                                View
+                              </NavLink>
+                            </td>
+                            <td>
+                              {" "}
+                              <button
+                                type="button"
+                                className="btn btn-danger rounded-pill "
+                                onClick={() => handleDelete(item?.id)}
+                              >
+                                Delete
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })
+                  ) : (
+                    <h4>Loading</h4>
+                  )}
                 </tbody>
               </table>
             </div>

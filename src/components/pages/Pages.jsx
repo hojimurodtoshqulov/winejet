@@ -16,7 +16,7 @@ function Pages() {
     const sessionToken = sessionStorage.getItem("token");
     if (sessionToken) {
       const tokenData = jwt(sessionToken);
-      if (tokenData.role != "admin") {
+      if (tokenData.sub !== "admin") {
         navigate("/login", { replace: true });
       } else {
         setToken(tokenData);
@@ -28,9 +28,9 @@ function Pages() {
 
   return (
     <div>
-      <LeftMenu />
       <div className="content">
         <Header token={token} />
+        <LeftMenu />
         <Outlet />
       </div>
 

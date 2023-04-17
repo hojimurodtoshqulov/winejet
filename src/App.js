@@ -4,7 +4,7 @@ import "react-notifications/lib/notifications.css";
 import { Routes, Route } from "react-router-dom";
 import Auth from "./components/auth/Auth";
 import Pages from "./components/pages/Pages";
- import Users from "./components/pages/users/Users";
+import Users from "./components/pages/users/Users";
 import UserCreate from "./components/pages/users/userCreate/UserCreate";
 import UserView from "./components/pages/users/userView/UserView";
 import Menu from "./components/pages/menu/Menu";
@@ -35,17 +35,28 @@ import {
 import $ from "jquery";
 import { NotificationContainer } from "react-notifications";
 
- import {   ScrollTop } from "./components";
+import { ScrollTop } from "./components";
 import TeachersAdmin from "./components/pages/TeachersAdmin/TeachersAdmin";
-import TeacherCreate from "./components/pages/TeachersAdmin/TeacherCreate";
-import TeacherView from "./components/pages/TeachersAdmin/TeacherView";
- 
+import TeacherCreate from "./components/pages/TeachersAdmin/TeacherCreateNew";
+import TeacherView from "./components/pages/TeachersAdmin/TeacherViewNew";
+import { useEffect } from "react";
+
+import "aos/dist/aos.css";
+import AOS from "aos";
+
 function App() {
-   setTimeout(function () {
+  setTimeout(function () {
     if ($("#spinner").length > 0) {
       $("#spinner").removeClass("show");
     }
   }, 1);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // animation duration
+      easing: "ease-in-out", // animation timing function
+      once: true, // animation only happens once
+    });
+  }, []);
 
   return (
     <div className="wrapper">
