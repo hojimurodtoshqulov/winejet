@@ -4,7 +4,7 @@ import L from "leaflet";
 
 const CustomMap = () => {
   useEffect(() => {
-    const myMap = L.map("mapid").setView([50.7940939, 41.1352718], 3);
+    const myMap = L.map("mapid").setView([50.64544985, 49.78305845], 3);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
@@ -34,8 +34,8 @@ const CustomMap = () => {
   }, []);
 
   return (
-    <div>
-      <div id="mapid" style={{ height: "500px" }} />
+    <div style={{ height: "100%" }}>
+      <div id="mapid" style={{ height: "100%" }} />
     </div>
   );
 };

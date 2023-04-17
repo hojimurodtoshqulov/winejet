@@ -39,6 +39,10 @@ import { ScrollTop } from "./components";
 import TeachersAdmin from "./components/pages/TeachersAdmin/TeachersAdmin";
 import TeacherCreate from "./components/pages/TeachersAdmin/TeacherCreateNew";
 import TeacherView from "./components/pages/TeachersAdmin/TeacherViewNew";
+import { useEffect } from "react";
+
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 function App() {
   setTimeout(function () {
@@ -46,6 +50,13 @@ function App() {
       $("#spinner").removeClass("show");
     }
   }, 1);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // animation duration
+      easing: "ease-in-out", // animation timing function
+      once: true, // animation only happens once
+    });
+  }, []);
 
   return (
     <div className="wrapper">
