@@ -15,8 +15,8 @@ import LangSettingCreate from "./components/pages/langSetting/langSettingCreate/
 import LangSettingView from "./components/pages/langSetting/langSettingView/LangSettingView";
 import News from "./components/pages/news/News";
 import AdminCourses from "./components/pages/adminCourses/AdminCourses";
-import AdminCoursesCreate from "./components/pages/adminCourses/adminCoursesCreate/AdminCoursesCreate";
-import AdminCoursesView from "./components/pages/adminCourses/adminCoursesView/AdminCoursesView";
+import AdminCoursesCreate from "./components/pages/adminCourses/adminCoursesCreate/CourseCreate";
+import AdminCoursesView from "./components/pages/adminCourses/adminCoursesView/courseViewNew";
 import Site from "./components/site/Site";
 import NewsCreate from "./components/pages/news/newsCreate/NewsCreate";
 import NewsView from "./components/pages/news/newsView/NewsView";

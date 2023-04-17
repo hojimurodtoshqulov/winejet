@@ -4,6 +4,7 @@ import { constatns } from "../constants";
 const initialState = {
   formType: constatns.form.creating,
   teacher: null,
+  course: null,
 };
 
 export const adminSlice = createSlice({
@@ -16,10 +17,13 @@ export const adminSlice = createSlice({
     setTeacher: (state, action) => {
       state.teacher = action.payload;
     },
+    setCource: (state, action) => {
+      state.course = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { changeFormType, setTeacher } = adminSlice.actions;
+export const { changeFormType, setTeacher, setCource } = adminSlice.actions;
 
 export default adminSlice.reducer;
