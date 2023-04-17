@@ -64,7 +64,6 @@ const TeacherViewNew = () => {
         const base64Data = imageAttachment.data;
         const imageUrl = `data:image/png;base64,${base64Data}`;
         setImage(imageUrl);
-
         setData({
           titleUz: res.data.titleUz,
           titleRu: res.data.titleRu,
@@ -118,6 +117,7 @@ const TeacherViewNew = () => {
               >
                 <Button
                   onClick={() => {
+                    console.log(data);
                     dispatch(changeFormType(constatns.form.updating));
                     dispatch(setCource(data));
                     navigation("/admin/courses/create", { replace: true });

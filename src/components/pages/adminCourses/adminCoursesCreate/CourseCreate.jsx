@@ -153,6 +153,14 @@ const MyForm = () => {
       //   infoRu: descriptionRU || teacher.infoRu,
       //   attachmentId: teacher.attachmentId,
       //   id: teacher.id,
+      titleUz: titleUz || course.titleUz,
+      titleRu: titleRu || course.titleRu,
+      descriptionUz: descriptionUz || course.descriptionUz,
+      descriptionRu: descriptionRu || course.descriptionRu,
+      date: date || course.date,
+      price: price || course.price,
+      attachmentId: course.attachmentId,
+      id: course.id,
     };
 
     try {
@@ -177,7 +185,7 @@ const MyForm = () => {
       }
       console.log(updatedData);
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/teachers`,
+        `${process.env.REACT_APP_API_URL}/courses`,
         updatedData,
         {
           headers: {
@@ -209,7 +217,7 @@ const MyForm = () => {
       >
         <div className={style.formWrap}>
           <Typography variant="h5" color="textPrimary" sx={{ marginBottom: 2 }}>
-            {/* {formType === constatns.form.creating ? "Add a new" : "Update the "} */}
+            {formType === constatns.form.creating ? "Add a new" : "Update the "}
             Course
           </Typography>
           <div className={style.courceFormWrap}>
