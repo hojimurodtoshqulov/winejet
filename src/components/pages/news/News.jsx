@@ -1,26 +1,38 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function News() {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
 
+  const { i18n } = useTranslation();
+
   const handleDelete = (id) => {
-    axios
-      .delete(`${process.env.REACT_APP_API_URL}news/delete/${id}`)
-      .then((res) => {
-        if (res.status == 200) {
-          setCount(count + 1);
-        }
-      });
+    axios.delete(`${process.env.REACT_APP_API_URL}/news/${id}`).then((res) => {
+      if (res.status == 200) {
+        getItems();
+        setCount(count + 1);
+      }
+    });
+  };
+
+  const descLan = i18n.language === "uz" ? "textUz" : "textRu";
+
+  const getItems = () => {
+    axios.get(`${process.env.REACT_APP_API_URL}/news`).then((res) => {
+      setData(res.data);
+    });
   };
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}news/get`).then((res) => {
-      setData(res.data.data.result);
-    });
+    getItems();
   }, [count]);
+
+  useEffect(() => {
+    getItems();
+  }, []);
 
   return (
     <div className="container-fluid pt-4 px-4">
@@ -29,9 +41,11 @@ export default function News() {
           <div className="bg-secondary rounded h-100 p-4">
             <div className="d-flex justify-content-between">
               <h6 className="mb-4">News </h6>
-              <NavLink to="create" className="btn btn-dark rounded-pill ">
-                Create
-              </NavLink>
+              <div onClick={() => {}}>
+                <NavLink to="create" className="btn btn-dark rounded-pill ">
+                  Create
+                </NavLink>
+              </div>
             </div>
 
             <div className="table-responsive">
@@ -50,8 +64,11 @@ export default function News() {
                     data.map(function (item, index) {
                       return (
                         <tr key={index}>
-                          <th scope="row">{item.id}</th>
-                          <td>{item.title_ru}</td>
+                          <th scope="row">{index + 1}</th>
+                          <td>
+                            {item[descLan].slice(0, 70)}{" "}
+                            {item[descLan].length > 70 && "..."}{" "}
+                          </td>
                           <td>
                             <NavLink
                               to={`view/${item.id}`}

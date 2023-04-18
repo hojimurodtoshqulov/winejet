@@ -46,6 +46,8 @@ const MyForm = () => {
   const [price, setPrice] = React.useState("");
   const [image, setImage] = React.useState(null);
 
+  const [loading, setLoading] = useState(false);
+
   const { formType } = useSelector((state) => state.admin);
   const { course } = useSelector((state) => state.admin);
 
@@ -64,6 +66,7 @@ const MyForm = () => {
   };
 
   useEffect(() => {
+    setLoading(false);
     if (formType === constatns.form.updating) {
       setTitleUz(course.titleUz);
       setTitleRu(course.titleRu);
@@ -86,6 +89,7 @@ const MyForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("submit");
+    setLoading(true);
 
     // Image validation
     if (!image) return alert("Insert image");
@@ -109,7 +113,7 @@ const MyForm = () => {
           descriptionUz,
           descriptionRu,
           date,
-          price,
+          price: +price,
           attachmentId: imgId,
         };
 
@@ -135,7 +139,8 @@ const MyForm = () => {
       .catch((err) => {
         NotificationManager.error("Something went wrong", "Error!");
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(false));
 
     /*   axios.post(`${process.env.REACT_APP_API_URL}teachers`, data).then((res) => {
         if (res.status === 200) {   
@@ -146,6 +151,7 @@ const MyForm = () => {
 
   const handleEdit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     const updatedData = {
       //   fullName: fullName || teacher.fullName,
@@ -158,7 +164,7 @@ const MyForm = () => {
       descriptionUz: descriptionUz || course.descriptionUz,
       descriptionRu: descriptionRu || course.descriptionRu,
       date: date || course.date,
-      price: price || course.price,
+      price: +price || +course.price,
       attachmentId: course.attachmentId,
       id: course.id,
     };
@@ -202,6 +208,8 @@ const MyForm = () => {
     } catch (error) {
       NotificationManager.error("Something went wrong", "Error!");
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -289,7 +297,7 @@ const MyForm = () => {
                 fullWidth
                 value={price}
                 onChange={(e) => {
-                  setPrice(+e.target.value);
+                  setPrice(e.target.value);
                 }}
                 required
                 color="secondary"
@@ -323,8 +331,13 @@ const MyForm = () => {
               justifyContent: "space-between",
             }}
           >
-            <Button variant="contained" type="submit" color="secondary">
-              Submit
+            <Button
+              disabled={loading}
+              variant="contained"
+              type="submit"
+              color="secondary"
+            >
+              {loading ? "Loading" : "Submit"}
             </Button>
             <Button
               onClick={() => {

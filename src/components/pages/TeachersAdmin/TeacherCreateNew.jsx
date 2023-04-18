@@ -37,6 +37,7 @@ const MyForm = () => {
   const [descriptionUZ, setDescriptionUZ] = React.useState("");
   const [descriptionRU, setDescriptionRU] = React.useState("");
   const [image, setImage] = React.useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { formType } = useSelector((state) => state.admin);
   const { teacher } = useSelector((state) => state.admin);
@@ -65,6 +66,7 @@ const MyForm = () => {
   };
 
   useEffect(() => {
+    setLoading(false);
     if (formType === constatns.form.updating) {
       setFullName(teacher.fullName);
       setDescriptionUZ(teacher.infoUz);
@@ -83,6 +85,7 @@ const MyForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
 
     // Image validation
     if (!image) return alert("Insert image");
@@ -121,10 +124,12 @@ const MyForm = () => {
       .then((data) => {
         NotificationManager.success("Teacher succussfully created", "Success!");
         clearValues();
+        setLoading(false);
         navigation("/admin/teacher", { replace: true });
       })
       .catch((err) => {
         NotificationManager.error("Something went wrong", "Error!");
+        setLoading(false);
         console.log(err);
       });
 
@@ -137,6 +142,8 @@ const MyForm = () => {
 
   const handleEdit = async (event) => {
     event.preventDefault();
+
+    setLoading(true);
 
     const updatedData = {
       fullName: fullName || teacher.fullName,
@@ -181,10 +188,11 @@ const MyForm = () => {
       clearValues();
       navigation("/admin/teacher", { replace: true });
       NotificationManager.success("Teacher succussfully created", "Success!");
-      clearValues();
+      setLoading(false);
     } catch (error) {
       NotificationManager.error("Something went wrong", "Error!");
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -264,8 +272,13 @@ const MyForm = () => {
               justifyContent: "space-between",
             }}
           >
-            <Button variant="contained" type="submit" color="secondary">
-              Submit
+            <Button
+              disabled={loading}
+              variant="contained"
+              type="submit"
+              color="secondary"
+            >
+              {loading ? "Loading" : "Submit"}
             </Button>
             <Button
               onClick={() => {

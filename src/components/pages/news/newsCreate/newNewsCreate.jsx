@@ -37,9 +37,10 @@ const darkTheme = createTheme({
 });
 
 const MyForm = () => {
-  const [textUz, setTextUz] = React.useState("");
-  const [textRu, setTextRu] = React.useState("");
+  const [textUz, setTextUz] = useState("");
+  const [textRu, setTextRu] = useState("");
 
+  const [loading, setLoading] = useState(false);
   const { formType } = useSelector((state) => state.admin);
   const { news } = useSelector((state) => state.admin);
 
@@ -53,6 +54,7 @@ const MyForm = () => {
   };
 
   useEffect(() => {
+    setLoading(false);
     if (formType === constatns.form.updating) {
       setTextRu(news.textUz);
       setTextUz(news.textRu);
@@ -62,12 +64,15 @@ const MyForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("submit");
+    setLoading(true);
 
     const newsData = {
       textUz,
       textRu,
     };
 
+    // http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api
+    console.log(newsData);
     axios
       .post(`${process.env.REACT_APP_API_URL}/news`, newsData, {
         headers: {
@@ -84,7 +89,8 @@ const MyForm = () => {
       .catch((err) => {
         NotificationManager.error("Something went wrong", "Error!");
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(false));
 
     /*   axios.post(`${process.env.REACT_APP_API_URL}teachers`, data).then((res) => {
         if (res.status === 200) {   
@@ -95,6 +101,7 @@ const MyForm = () => {
 
   const handleEdit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     const updatedData = {
       //   fullName: fullName || teacher.fullName,
@@ -124,6 +131,8 @@ const MyForm = () => {
     } catch (error) {
       NotificationManager.error("Something went wrong", "Error!");
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -139,16 +148,16 @@ const MyForm = () => {
       >
         <div className={style.formWrap}>
           <Typography variant="h5" color="textPrimary" sx={{ marginBottom: 2 }}>
-            {formType === constatns.form.creating ? "Add a new" : "Update the "}
+            {formType === constatns.form.creating ? "Add a " : "Update the "}
             News
           </Typography>
           <div className={style.courceFormWrap}>
             <Box sx={{ marginBottom: 2 }}>
               <TextField
-                label="Description in Uzbek"
-                // value={descriptionUz}
+                label="Text in Uzbek"
+                value={textUz}
                 onChange={(e) => {
-                  // setDescriptionUz(e.target.value);
+                  setTextUz(e.target.value);
                 }}
                 multiline
                 rows={4}
@@ -159,10 +168,10 @@ const MyForm = () => {
             </Box>
             <Box sx={{ marginBottom: 2 }}>
               <TextField
-                label="Description in Russian"
-                // value={descriptionRu}
+                label="Text in Russian"
+                value={textRu}
                 onChange={(e) => {
-                  // setDescriptionRu(e.target.value);
+                  setTextRu(e.target.value);
                 }}
                 multiline
                 rows={4}
@@ -181,13 +190,18 @@ const MyForm = () => {
               justifyContent: "space-between",
             }}
           >
-            <Button variant="contained" type="submit" color="secondary">
-              Submit
+            <Button
+              disabled={loading}
+              variant="contained"
+              type="submit"
+              color="secondary"
+            >
+              {loading ? "Loading" : "Submit"}
             </Button>
             <Button
               onClick={() => {
                 clearValues();
-                navigation("/admin/courses", { replace: true });
+                navigation("/admin/news", { replace: true });
               }}
               variant="contained"
               type="button"
