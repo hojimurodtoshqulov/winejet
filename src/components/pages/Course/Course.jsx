@@ -40,15 +40,32 @@ const Course = () => {
   const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState(staticData.data);
   const params = useParams();
-  const alias = params.slug;
+  const id = params.slug;
 
   useEffect(() => {
-    return;
-    axios
-      .get(`${process.env.REACT_APP_API_URL}courses/get-alias/${alias}`)
-      .then((res) => {
-        setData(res.data.data);
+    axios.get(`${process.env.REACT_APP_API_URL}/courses/${id}`).then((res) => {
+      const item = res.data;
+      // data: {
+      //   img: "/images/grape1.png",
+      //   title_ru: "Porem ipsum dolor ",
+      //   title_uz: "Porem ipsum dolor",
+      //   link: "",
+      //   created_on: Date.now(),
+      //   short_content_ru: "Morem ipsum dolor sit amet, consectetur",
+      //   short_content_uz: "Morem ipsum dolor sit amet, consectetur",
+      //   price: "200.000",
+      // }
+      setData({
+        img: `data:image/png;base64,${item.attachmentContent.data}`,
+        title_ru: item.titleRu,
+        title_uz: item.titleUz,
+        link: item.id,
+        created_on: item.date,
+        short_content_ru: item.descriptionRu,
+        short_content_uz: item.descriptionUz,
+        price: item.price,
       });
+    });
   }, []);
   let date = new Date(data.created_on);
 

@@ -75,7 +75,7 @@ export default function AdminCourses() {
                       .map(function (item, index) {
                         return (
                           <tr key={index}>
-                            <th scope="row">{item.id}</th>
+                            <th scope="row">{index + 1}</th>
                             <td>{item.titleRu}</td>
                             <td>
                               <NavLink

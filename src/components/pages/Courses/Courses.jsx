@@ -68,22 +68,28 @@ const staticData = {
 const Courses = () => {
   const [current, setCurrent] = useState(0);
   const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState(staticData.data);
+  const [filteredData, setFilteredData] = useState([]);
   const [tab, setTab] = useState(["tab1", "tab2", "tab3", "tab4"]);
 
   useEffect(() => {
-    return;
-    axios
-      .get(`${process.env.REACT_APP_API_URL}courses/get-main`)
-      .then((res) => {
-        setFilteredData(res.data.data.result);
-        setData(res.data.data.result);
-      });
-    axios
-      .get(`${process.env.REACT_APP_API_URL}courses_category/get-main`)
-      .then((res) => {
-        setTab(res.data.data.result);
-      });
+    axios.get(`${process.env.REACT_APP_API_URL}/courses`).then((res) => {
+      console.log(res);
+      setFilteredData(
+        res.data.map((item) => {
+          return {
+            img: `data:image/png;base64,${item.attachmentContent.data}`,
+            title_ru: item.titleRu,
+            title_uz: item.titleUz,
+            link: item.id,
+            created_on: item.date,
+            short_content_ru: item.descriptionRu,
+            short_content_uz: item.descriptionUz,
+          };
+        })
+      );
+      setFilteredData(res.data.data.result);
+      setData(res.data.data.result);
+    });
   }, []);
 
   const handleTabClick = (index) => {

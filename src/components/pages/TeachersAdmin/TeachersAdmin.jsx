@@ -96,7 +96,7 @@ function TeachersAdmin({ usersState, updateUsers }) {
                         );
                       })
                   ) : (
-                    <h4>Loading</h4>
+                    <h4>No data</h4>
                   )}
                 </tbody>
               </table>
