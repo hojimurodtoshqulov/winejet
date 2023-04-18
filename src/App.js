@@ -84,7 +84,6 @@ function App() {
           <Route path="calendar" element={<CalendarPage />} />
         </Route>
         <Route path="/login" element={<Auth />} />
-
         <Route path="/admin/" element={<Pages />}>
           {/* <Route index element={<Home />} /> */}
 
