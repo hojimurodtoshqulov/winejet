@@ -18,7 +18,7 @@ import AdminCourses from "./components/pages/adminCourses/AdminCourses";
 import AdminCoursesCreate from "./components/pages/adminCourses/adminCoursesCreate/CourseCreate";
 import AdminCoursesView from "./components/pages/adminCourses/adminCoursesView/courseViewNew";
 import Site from "./components/site/Site";
-import NewsCreate from "./components/pages/news/newsCreate/NewsCreate";
+import NewsCreate from "./components/pages/news/newsCreate/newNewsCreate";
 import NewsView from "./components/pages/news/newsView/NewsView";
 import CoursesCategoryView from "./components/pages/coursesCategory/coursesCategoryView/CoursesCategoryView";
 import CoursesCategory from "./components/pages/coursesCategory/CoursesCategory";

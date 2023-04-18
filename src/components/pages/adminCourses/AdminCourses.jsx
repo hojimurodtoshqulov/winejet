@@ -1,18 +1,32 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { constatns } from "../../../redux/constants";
+import { changeFormType } from "../../../redux/admin/adminSlice";
+import { useDispatch } from "react-redux";
+import { NotificationManager } from "react-notifications";
 
 export default function AdminCourses() {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
 
+  const dispatch = useDispatch();
+
   const handleDelete = (id) => {
     axios
-      .delete(`${process.env.REACT_APP_API_URL}courses/delete/${id}`)
+      .delete(`${process.env.REACT_APP_API_URL}/courses/${id}`)
       .then((res) => {
         if (res.status == 200) {
           setCount(count + 1);
+          NotificationManager.success(
+            "Course succussfully deleted",
+            "Success!"
+          );
         }
+      })
+      .catch((err) => {
+        console.log(err);
+        NotificationManager.error("Something went wrong", "Error!");
       });
   };
 
@@ -32,9 +46,15 @@ export default function AdminCourses() {
           <div className="bg-secondary rounded h-100 p-4">
             <div className="d-flex justify-content-between">
               <h6 className="mb-4">Coureses </h6>
-              <NavLink to="create" className="btn btn-dark rounded-pill ">
-                Create
-              </NavLink>
+              <div
+                onClick={() => {
+                  dispatch(changeFormType(constatns.form.creating));
+                }}
+              >
+                <NavLink to="create" className="btn btn-dark rounded-pill ">
+                  Create
+                </NavLink>
+              </div>
             </div>
 
             <div className="table-responsive">
