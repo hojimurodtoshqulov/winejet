@@ -163,7 +163,7 @@ const Courses = () => {
                       img={item.img}
                       title_ru={item.title_ru}
                       title_uz={item.title_uz}
-                      link={item.alias}
+                      link={item.link}
                       date={item.created_on}
                       short_content_ru={item.short_content_ru}
                       short_content_uz={item.short_content_uz}
