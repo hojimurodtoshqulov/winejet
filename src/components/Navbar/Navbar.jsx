@@ -23,7 +23,7 @@ const Navbar = () => {
 	};
 
 	useEffect(() => {
-		axios.get(`${process.env.REACT_APP_API_URL}menu/get`).then((res) => {
+		axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apimenu/get`).then((res) => {
 			setData(res?.data?.data?.result);
 		});
 		if (pathname === "/") {

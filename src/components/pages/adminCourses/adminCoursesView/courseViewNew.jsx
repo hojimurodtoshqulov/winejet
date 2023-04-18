@@ -57,7 +57,7 @@ const TeacherViewNew = () => {
 
   React.useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/courses/${id}`)
+      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/courses/${id}`)
       .then((res) => {
         console.log(res);
         const imageAttachment = res.data.attachmentContent;

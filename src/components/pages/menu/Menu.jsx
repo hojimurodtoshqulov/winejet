@@ -9,7 +9,7 @@ export default function Menu() {
   const [data, setData] = useState([])
   const [count, setCount] = useState(1)
   const handleDelete = (id)=>{
-      axios.delete(`${process.env.REACT_APP_API_URL}menu/delete/${id}`)
+      axios.delete(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apimenu/delete/${id}`)
       .then(res=>{
           if (res.status == 200) {
               setCount(count + 1)
@@ -19,7 +19,7 @@ export default function Menu() {
 
 }
   useEffect(()=>{
-      axios.get(`${process.env.REACT_APP_API_URL}menu/get`)
+      axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apimenu/get`)
       .then(res =>{
           setData(res.data.data.result)
           

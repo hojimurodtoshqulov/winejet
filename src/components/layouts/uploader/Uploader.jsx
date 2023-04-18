@@ -18,7 +18,7 @@ export default function Uploader(props) {
     data.append("category_id", props.category_id);
     data.append("category", props.category);
     axios
-      .post(`${process.env.REACT_APP_API_URL}files/create`, data, {
+      .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apifiles/create`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -40,7 +40,7 @@ export default function Uploader(props) {
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_API_URL}files/get/${props.category_id}/${props.category}`
+        `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apifiles/get/${props.category_id}/${props.category}`
       )
       .then((res) => {
         if (res.status == 200) {
@@ -59,7 +59,7 @@ export default function Uploader(props) {
   }, [progress]);
   const handleFileDelete = (id) => {
     axios
-      .delete(`${process.env.REACT_APP_API_URL}files/delete/${id}`)
+      .delete(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apifiles/delete/${id}`)
       .then((res) => {
         if (res.status == 200) {
           setCount(count + 1);
@@ -70,7 +70,7 @@ export default function Uploader(props) {
   const handleFileMain = (id) => {
     axios
       .put(
-        `${process.env.REACT_APP_API_URL}files/main/${props.category}/${props.category_id}/${id}`
+        `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apifiles/main/${props.category}/${props.category_id}/${id}`
       )
       .then((res) => {
         if (res.status == 200) {
@@ -81,7 +81,7 @@ export default function Uploader(props) {
   const handleDeleteAll = () => {
     axios
       .delete(
-        `${process.env.REACT_APP_API_URL}files/delete-all/${props.category_id}/${props.category}`
+        `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apifiles/delete-all/${props.category_id}/${props.category}`
       )
       .then((res) => {
         if (res.status == 200) {

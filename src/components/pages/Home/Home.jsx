@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { Card, Landing, Section3, Section5, Section6, Teachers } from "../../";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useMediaQuery } from "@mui/material";
+import { Box, Skeleton, useMediaQuery } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import SectionMap from "../../SectionMap/SectionMap";
@@ -47,7 +47,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/courses`)
+      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/courses`)
       .then((res) => {
         setData(
           res.data.map((item) => {
@@ -71,13 +71,13 @@ const Home = () => {
     y: inView ? 0 : 50,
   };
 
-  // useEffect(() => {
-  // 	axios
-  // 		.get(`${process.env.REACT_APP_API_URL}courses/get-main`)
-  // 		.then((res) => {
-  // 			setData(res?.data?.data?.result);
-  // 		});
-  // }, []);
+  useEffect(() => {
+  	axios
+  		.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses/get-main`)
+  		.then((res) => {
+  			setData(res?.data?.data?.result);
+  		});
+  }, []);
 
   return (
     <div
@@ -96,42 +96,65 @@ const Home = () => {
           <h1>{t("courses.title")}</h1>
         </div>
         <div className="course-card-wrapper" ref={ref}>
-          {data
-            ? data
-                ?.filter((item, i) => i < 3)
-                .map((item, i) => {
-                  return isDesktop ? (
-                    <motion.div
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={animateCard}
-                      transition={{ type: "tween", duration: 0.5 }}
-                      key={i}
-                    >
-                      <Card
-                        img={item.img}
-                        title_ru={item.title_ru}
-                        title_uz={item.title_uz}
-                        link={item.link}
-                        date={item.created_on}
-                        short_content_ru={item.short_content_ru}
-                        short_content_uz={item.short_content_uz}
-                      />
-                    </motion.div>
-                  ) : (
-                    <div key={i}>
-                      <Card
-                        img={item.img}
-                        title_ru={item.title_ru}
-                        title_uz={item.title_uz}
-                        link={item.id}
-                        date={item.created_on}
-                        short_content_ru={item.short_content_ru}
-                        short_content_uz={item.short_content_uz}
-                      />
-                    </div>
-                  );
-                })
-            : ""}
+          {data.length ? (
+            data
+              ?.filter((item, i) => i < 3)
+              .map((item, i) => {
+                return isDesktop ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={animateCard}
+                    transition={{ type: "tween", duration: 0.5 }}
+                    key={i}
+                  >
+                    <Card
+                      img={item.img}
+                      title_ru={item.title_ru}
+                      title_uz={item.title_uz}
+                      link={item.link}
+                      date={item.created_on}
+                      short_content_ru={item.short_content_ru}
+                      short_content_uz={item.short_content_uz}
+                    />
+                  </motion.div>
+                ) : (
+                  <div key={i}>
+                    <Card
+                      img={item.img}
+                      title_ru={item.title_ru}
+                      title_uz={item.title_uz}
+                      link={item.id}
+                      date={item.created_on}
+                      short_content_ru={item.short_content_ru}
+                      short_content_uz={item.short_content_uz}
+                    />
+                  </div>
+                );
+              })
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "3rem",
+                flexWrap: "wrap",
+              }}
+            >
+              <Box>
+                <Skeleton sx={{ height: "300px", width: "200px" }} />
+                <Skeleton width="60%" />
+              </Box>
+              <Box>
+                <Skeleton sx={{ height: "300px", width: "200px" }} />
+                <Skeleton width="60%" />
+              </Box>
+              <Box>
+                <Skeleton sx={{ height: "300px", width: "200px" }} />
+                <Skeleton width="60%" />
+              </Box>
+            </div>
+          )}
         </div>
         <div className="course__btn">
           <Link to="/courses">{t("courses.button")}</Link>

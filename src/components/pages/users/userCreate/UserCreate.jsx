@@ -22,7 +22,7 @@ export default function UserCreate() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_API_URL}user/create`, data)
+      .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiuser/create`, data)
       .then((res) => {
         if (res.status == 200) {
           navigation("/admin/users", { replace: true });

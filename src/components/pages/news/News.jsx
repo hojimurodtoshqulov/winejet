@@ -10,7 +10,7 @@ export default function News() {
   const { i18n } = useTranslation();
 
   const handleDelete = (id) => {
-    axios.delete(`${process.env.REACT_APP_API_URL}/news/${id}`).then((res) => {
+    axios.delete(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/news/${id}`).then((res) => {
       if (res.status == 200) {
         getItems();
         setCount(count + 1);
@@ -21,7 +21,7 @@ export default function News() {
   const descLan = i18n.language === "uz" ? "textUz" : "textRu";
 
   const getItems = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/news`).then((res) => {
+    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/news`).then((res) => {
       setData(res.data);
     });
   };
@@ -60,7 +60,7 @@ export default function News() {
                 </thead>
 
                 <tbody>
-                  {data ? (
+                  {data.length ? (
                     data.map(function (item, index) {
                       return (
                         <tr key={index}>
@@ -92,7 +92,7 @@ export default function News() {
                     })
                   ) : (
                     <tr>
-                      <td>Not found</td>
+                      <td>No data ...</td>
                     </tr>
                   )}
                 </tbody>

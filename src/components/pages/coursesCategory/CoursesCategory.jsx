@@ -8,7 +8,7 @@ export default function CoursesCategory() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`${process.env.REACT_APP_API_URL}courses_category/delete/${id}`)
+      .delete(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses_category/delete/${id}`)
       .then((res) => {
         if (res.status == 200) {
           setCount(count + 1);
@@ -18,7 +18,7 @@ export default function CoursesCategory() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}courses_category/get`)
+      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses_category/get`)
       .then((res) => {
         setData(res.data.data.result);
       });

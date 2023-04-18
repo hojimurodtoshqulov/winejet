@@ -33,24 +33,24 @@ function LeftMenu() {
         </NavLink>
 
         <div className={`${s.navbar_nav} navbar-nav w-100`}>
-          <NavLink
+          {/* <NavLink
             to="/admin/users"
             className={`${s.nav_link} nav-item nav-link`}
           >
             <i className="fa fa-solid fa-user me-2"></i>Users
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/admin/teacher"
             className={`${s.nav_link} nav-item nav-link`}
           >
             <i className="fa fa-solid fa-user me-2"></i>Teachers
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/admin/menu"
             className={`${s.nav_link} nav-item nav-link`}
           >
             <i className="fa fa-solid fa-bars me-2"></i>Menu
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/admin/news"
             className={`${s.nav_link} nav-item nav-link`}
@@ -63,12 +63,12 @@ function LeftMenu() {
           >
             <i className="fa fa-solid fa-th me-2"></i>Courses
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/admin/courses-category"
             className={`${s.nav_link} nav-item nav-link`}
           >
             <i className="fa fa-solid fa-th me-2"></i> Category
-          </NavLink>
+          </NavLink> */}
 
           {/* <div className="nav-item dropdown">
                     <a href="#" className={`${s.nav_link} nav-link ${s.dropdown_toggle} dropdown-toggle`} data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Elements</a>

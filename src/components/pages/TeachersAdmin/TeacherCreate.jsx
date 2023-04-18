@@ -24,17 +24,17 @@ export default function TeacherCreate() {
   };
 
   useEffect(() => {
-    // axios.get(`${process.env.REACT_APP_API_URL}lang/get`).then((res) => {
+    // axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apilang/get`).then((res) => {
     //   setLang(res.data.data.result);
     // });
     // axios
-    //   .get(`${process.env.REACT_APP_API_URL}courses_category/get-main`)
+    //   .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses_category/get-main`)
     //   .then((res) => {
     //     setCoursesCategory(res.data.data.result);
     //   });
     // data.created_on = Math.floor(data.crea ted_on.getTime() / 1000);
     // axios
-    //   .post(`${process.env.REACT_APP_API_URL}teachers/create`, data)
+    //   .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiteachers/create`, data)
     //   .then((res) => {
     //     if (res.status === 200) {
     //       setCategoryId(res.data.id);
@@ -45,14 +45,14 @@ export default function TeacherCreate() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post(`${process.env.REACT_APP_API_URL}teachers`, data).then((res) => {
+    axios.post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiteachers`, data).then((res) => {
       if (res.status === 200) {
         setCategoryId(res.data.id);
       }
     });
     // axios
     //   .put(
-    //     `${process.env.REACT_APP_API_URL}teachers/update/${categoryId}`,
+    //     `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiteachers/update/${categoryId}`,
     //     data
     //   )
     //   .then((res) => {

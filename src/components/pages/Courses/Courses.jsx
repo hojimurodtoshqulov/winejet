@@ -72,7 +72,7 @@ const Courses = () => {
   const [tab, setTab] = useState(["tab1", "tab2", "tab3", "tab4"]);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/courses`).then((res) => {
+    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/courses`).then((res) => {
       console.log(res);
       setFilteredData(
         res.data.map((item) => {

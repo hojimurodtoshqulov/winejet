@@ -24,19 +24,19 @@ export default function AdminCoursesCreate() {
   const [coursesCategory, setCoursesCategory] = useState([]);
   const navigation = useNavigate();
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}lang/get`).then((res) => {
+    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apilang/get`).then((res) => {
       setLang(res.data.data.result);
     });
 
     axios
-      .get(`${process.env.REACT_APP_API_URL}courses_category/get-main`)
+      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses_category/get-main`)
       .then((res) => {
         setCoursesCategory(res.data.data.result);
       });
 
     data.created_on = Math.floor(data.created_on.getTime() / 1000);
     axios
-      .post(`${process.env.REACT_APP_API_URL}courses/create`, data)
+      .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses/create`, data)
       .then((res) => {
         if (res.status == 200) {
           setCategoryId(res.data.id);
@@ -70,7 +70,7 @@ export default function AdminCoursesCreate() {
       data.category_id = parseInt(data.category_id);
       axios
         .put(
-          `${process.env.REACT_APP_API_URL}courses/update/${categoryId}`,
+          `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses/update/${categoryId}`,
           data
         )
         .then((res) => {

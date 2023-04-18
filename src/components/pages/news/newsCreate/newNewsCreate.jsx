@@ -74,7 +74,7 @@ const MyForm = () => {
     // http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api
     console.log(newsData);
     axios
-      .post(`${process.env.REACT_APP_API_URL}/news`, newsData, {
+      .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/news`, newsData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -92,7 +92,7 @@ const MyForm = () => {
       })
       .finally(() => setLoading(false));
 
-    /*   axios.post(`${process.env.REACT_APP_API_URL}teachers`, data).then((res) => {
+    /*   axios.post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiteachers`, data).then((res) => {
         if (res.status === 200) {   
           setCategoryId(res.data.id);
         }
@@ -117,7 +117,7 @@ const MyForm = () => {
     try {
       // Image validation
       console.log(updatedData);
-      await axios.post(`${process.env.REACT_APP_API_URL}/news`, updatedData, {
+      await axios.post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/news`, updatedData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,

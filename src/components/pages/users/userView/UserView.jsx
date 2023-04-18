@@ -29,7 +29,7 @@ export default function UserView() {
         setPassword(inputValue)
     }
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_API_URL}user/get/${user_id}`)
+        axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiuser/get/${user_id}`)
         .then(res =>{
             if(res.status == 200){
                 setData(res.data.data)
@@ -46,7 +46,7 @@ export default function UserView() {
         }else{
             delete data["password"]
         }
-        axios.put(`${process.env.REACT_APP_API_URL}user/update/${user_id}`, data)
+        axios.put(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiuser/update/${user_id}`, data)
         .then(res=>{
             if (res.status == 200){
                 navigation("/admin/users", {replace: true})

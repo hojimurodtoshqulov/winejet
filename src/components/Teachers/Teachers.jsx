@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
 import "./Teachers.scss";
-import { useMediaQuery } from "@mui/material";
+import { Box, Skeleton, useMediaQuery } from "@mui/material";
 import Slider from "react-slick";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
@@ -91,7 +91,7 @@ function CustomRightArrow({ className, style, onClick }) {
   );
 }
 const Teachers = () => {
-  const [data, setData] = useState([images]);
+  const [data, setData] = useState([]);
   //   const [teachersData, setTeachersData] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const { ref, inView } = useInView({
@@ -173,14 +173,14 @@ const Teachers = () => {
     handleAnimation();
   }, [inView]);
   // useEffect(() => {
-  // 	axios.get(`${process.env.REACT_APP_API_URL}/teachers`).then((res) => {
+  // 	axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/teachers`).then((res) => {
   // 		setData1(res.data);
   // 	});
   // }, [count]);
   useEffect(() => {
-    console.log(`${process.env.REACT_APP_API_URL}/teachers`);
+    console.log(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/teachers`);
     axios
-      .get(`${process.env.REACT_APP_API_URL}/teachers`)
+      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/teachers`)
       .then((res) => {
         console.log("res >>> ", res);
         setData(
@@ -217,24 +217,50 @@ const Teachers = () => {
         <h1 className="teachers__title">{t("teacher.header")}</h1>
       </div>
       <div className="teachers__img-wrapper">
-        {data.map((img, i) =>
-          isDesktop ? (
-            <motion.div
-              initial={{ y: 50, opacity: 0 }}
-              animate={controls1}
-              transition={{ duration: 0.5, type: "tween" }}
-              className="teachers__img"
-              key={i}
-            >
-              <img src={img.src} alt="teachers" />
-              <p>{img.fullname}</p>
-            </motion.div>
-          ) : (
-            <div className="teachers__img" key={i}>
-              <img src={img.src} alt="teachers" />
-              <p>{img.fullname}</p>
-            </div>
+        {data.length ? (
+          data.map((img, i) =>
+            isDesktop ? (
+              <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={controls1}
+                transition={{ duration: 0.5, type: "tween" }}
+                className="teachers__img"
+                key={i}
+              >
+                <img src={img.src} alt="teachers" />
+                <p>{img.fullname}</p>
+              </motion.div>
+            ) : (
+              <div className="teachers__img" key={i}>
+                <img src={img.src} alt="teachers" />
+                <p>{img.fullname}</p>
+              </div>
+            )
           )
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "3rem",
+              flexWrap: "wrap",
+              width: "100%",
+            }}
+          >
+            <Box>
+              <Skeleton sx={{ height: "300px", width: "200px" }} />
+              <Skeleton width="60%" />
+            </Box>
+            <Box>
+              <Skeleton sx={{ height: "300px", width: "200px" }} />
+              <Skeleton width="60%" />
+            </Box>
+            <Box>
+              <Skeleton sx={{ height: "300px", width: "200px" }} />
+              <Skeleton width="60%" />
+            </Box>
+          </div>
         )}
       </div>
       {/* <div className="slider-container">

@@ -29,11 +29,11 @@ export default function MenuView() {
   const navigation = useNavigate();
   const [lang, setLang] = useState([]);
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}menu/get/${id}`).then((res) => {
+    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apimenu/get/${id}`).then((res) => {
       setData(res.data.data);
     });
 
-    axios.get(`${process.env.REACT_APP_API_URL}lang/get`).then((res) => {
+    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apilang/get`).then((res) => {
       setLang(res.data.data.result);
     });
   }, []);
@@ -60,7 +60,7 @@ export default function MenuView() {
       data.created_on = Math.floor(new Date(data.created_on).getTime() / 1000);
 
       axios
-        .put(`${process.env.REACT_APP_API_URL}menu/update/${id}`, data)
+        .put(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apimenu/update/${id}`, data)
         .then((res) => {
           if (res.status == 200) {
             navigation("/admin/menu", { replace: true });
