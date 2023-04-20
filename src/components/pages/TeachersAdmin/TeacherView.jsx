@@ -37,7 +37,7 @@ export default function TeacherView() {
   // };
   useEffect(() => {
     axios
-      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiteachers/get/${id}`)
+      .get(`https://winejet-uz.herokuapp.com/apiteachers/get/${id}`)
       .then((res) => {
         if (res.status == 200) {
           setData(res.data.data);
@@ -53,7 +53,7 @@ export default function TeacherView() {
       delete data["password"];
     }
     axios
-      .put(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiteachers/update/${id}`, data)
+      .put(`https://winejet-uz.herokuapp.com/apiteachers/update/${id}`, data)
       .then((res) => {
         if (res.status == 200) {
           navigation("/admin/teacher", { replace: true });

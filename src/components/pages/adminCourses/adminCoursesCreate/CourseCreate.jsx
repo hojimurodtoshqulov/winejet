@@ -97,12 +97,16 @@ const MyForm = () => {
     formdata.append("file", image);
 
     axios
-      .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/files`, formdata, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-      })
+      .post(
+        `https://winejet-uz.herokuapp.com/api/files`,
+        formdata,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((res) => {
         return res.data.message;
       })
@@ -120,7 +124,7 @@ const MyForm = () => {
         console.log(courceData);
 
         return axios.post(
-          `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/courses`,
+          `https://winejet-uz.herokuapp.com/api/courses`,
           courceData,
           {
             headers: {
@@ -142,7 +146,7 @@ const MyForm = () => {
       })
       .finally(() => setLoading(false));
 
-    /*   axios.post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiteachers`, data).then((res) => {
+    /*   axios.post(`https://winejet-uz.herokuapp.com/apiteachers`, data).then((res) => {
         if (res.status === 200) {   
           setCategoryId(res.data.id);
         }
@@ -179,19 +183,23 @@ const MyForm = () => {
         formdata.append("file", image);
 
         updatedData.attachmentId = await axios
-          .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/files`, formdata, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-            },
-          })
+          .post(
+            `https://winejet-uz.herokuapp.com/api/files`,
+            formdata,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+              },
+            }
+          )
           .then((res) => {
             return res.data.message;
           });
       }
       console.log(updatedData);
       await axios.post(
-        `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/courses`,
+        `https://winejet-uz.herokuapp.com/api/courses`,
         updatedData,
         {
           headers: {

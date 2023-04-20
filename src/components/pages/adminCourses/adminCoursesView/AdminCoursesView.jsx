@@ -27,18 +27,18 @@ export default function AdminCoursesView() {
   const [coursesCategory, setCoursesCategory] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses/get/${id}`)
+      .get(`https://winejet-uz.herokuapp.com/apicourses/get/${id}`)
       .then((res) => {
         setData(res.data.data);
       });
 
     axios
-      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses_category/get-main`)
+      .get(`https://winejet-uz.herokuapp.com/apicourses_category/get-main`)
       .then((res) => {
         setCoursesCategory(res.data.data.result);
       });
 
-    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apilang/get`).then((res) => {
+    axios.get(`https://winejet-uz.herokuapp.com/apilang/get`).then((res) => {
       setLang(res.data.data.result);
     });
   }, []);
@@ -66,7 +66,7 @@ export default function AdminCoursesView() {
       data.price = parseInt(data.price);
       data.category_id = parseInt(data.category_id);
       axios
-        .put(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses/update/${id}`, data)
+        .put(`https://winejet-uz.herokuapp.com/apicourses/update/${id}`, data)
         .then((res) => {
           if (res.status == 200) {
             navigation("/admin/courses", { replace: true });

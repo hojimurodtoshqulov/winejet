@@ -23,7 +23,7 @@ const Navbar = () => {
 	};
 
 	useEffect(() => {
-		axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apimenu/get`).then((res) => {
+		axios.get(`https://winejet-uz.herokuapp.com/apimenu/get`).then((res) => {
 			setData(res?.data?.data?.result);
 		});
 		if (pathname === "/") {

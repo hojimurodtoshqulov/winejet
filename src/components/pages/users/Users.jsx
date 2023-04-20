@@ -10,7 +10,7 @@ function Users({ usersState, updateUsers }) {
   const [count, setCount] = useState(1);
   const handleDelete = (user_id) => {
     axios
-      .delete(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiuser/delete/${user_id}`)
+      .delete(`https://winejet-uz.herokuapp.com/apiuser/delete/${user_id}`)
       .then((res) => {
         if (res.status == 200) {
           setCount(count + 1);
@@ -20,7 +20,7 @@ function Users({ usersState, updateUsers }) {
   };
 
   useEffect(() => {
-    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiuser/get`).then((res) => {
+    axios.get(`https://winejet-uz.herokuapp.com/apiuser/get`).then((res) => {
       setData(res.data.data.result);
     });
   }, [count]);

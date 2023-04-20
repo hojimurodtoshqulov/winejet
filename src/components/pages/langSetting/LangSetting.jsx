@@ -7,7 +7,7 @@ export default function LangSetting() {
     const [data, setData] = useState([])
     const [count, setCount] = useState(1)
     const handleDelete = (id)=>{
-        axios.delete(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apilang/delete/${id}`)
+        axios.delete(`https://winejet-uz.herokuapp.com/apilang/delete/${id}`)
         .then(res=>{
             if (res.status == 200) {
                 setCount(count + 1)
@@ -18,7 +18,7 @@ export default function LangSetting() {
 
  }
     useEffect(()=>{
-        axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apilang/get`)
+        axios.get(`https://winejet-uz.herokuapp.com/apilang/get`)
         .then(res =>{
             setData(res.data.data.result)
       

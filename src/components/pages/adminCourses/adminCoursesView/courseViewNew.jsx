@@ -39,6 +39,10 @@ const TeacherViewNew = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
   const { i18n } = useTranslation();
+  const formatter = new Intl.NumberFormat("ru-RU", {
+    style: "currency",
+    currency: "UZS",
+  });
 
   const imgRef = React.useRef(null);
 
@@ -53,11 +57,15 @@ const TeacherViewNew = () => {
       ? { title: "titleUz", desc: "descriptionUz" }
       : { title: "titleRu", desc: "descriptionRu" };
 
+  const isUzbek = i18n.language === "uz";
+
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     axios
-      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/courses/${id}`)
+      .get(
+        `https://winejet-uz.herokuapp.com/api/courses/${id}`
+      )
       .then((res) => {
         console.log(res);
         const imageAttachment = res.data.attachmentContent;
@@ -77,8 +85,6 @@ const TeacherViewNew = () => {
       })
       .then((data) => setLoading(false));
   }, []);
-
-  console.log(data);
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -102,8 +108,14 @@ const TeacherViewNew = () => {
                 <div className={style.teacherNew}>
                   <h2 className={style.teacherName}>{data[descLan.title]}s</h2>
                   <p>{data[descLan.desc]}s</p>
-                  <p>Date: {moment(data.date).format("DD.MM.YYYY, HH:mm")}</p>
-                  <p>Price: {data.price}$</p>
+                  <p>
+                    {isUzbek ? "Sana" : "Дата"}:{" "}
+                    {moment(data.date).format("DD.MM.YYYY, HH:mm")}
+                  </p>
+                  <p>
+                    {isUzbek ? "Narxi" : "Цена"} :{" "}
+                    {formatter.format(data.price)}
+                  </p>
                 </div>
               </Box>
               <Box

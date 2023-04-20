@@ -173,14 +173,14 @@ const Teachers = () => {
     handleAnimation();
   }, [inView]);
   // useEffect(() => {
-  // 	axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/teachers`).then((res) => {
+  // 	axios.get(`https://winejet-uz.herokuapp.com/api/teachers`).then((res) => {
   // 		setData1(res.data);
   // 	});
   // }, [count]);
   useEffect(() => {
-    console.log(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/teachers`);
+    console.log(`https://winejet-uz.herokuapp.com/api/teachers`);
     axios
-      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/teachers`)
+      .get(`https://winejet-uz.herokuapp.com/api/teachers`)
       .then((res) => {
         console.log("res >>> ", res);
         setData(

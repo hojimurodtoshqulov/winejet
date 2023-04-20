@@ -14,7 +14,7 @@ export default function CoursesCategoryCreate() {
   const [lang, setLang] = useState([]);
   const navigation = useNavigate();
   useEffect(() => {
-    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apilang/get`).then((res) => {
+    axios.get(`https://winejet-uz.herokuapp.com/apilang/get`).then((res) => {
       setLang(res.data.data.result);
     });
   }, [0]);
@@ -35,7 +35,7 @@ export default function CoursesCategoryCreate() {
     event.preventDefault();
     if (data.title_ru.length > 0) {
       axios
-        .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses_category/create`, data)
+        .post(`https://winejet-uz.herokuapp.com/apicourses_category/create`, data)
         .then((res) => {
           if (res.status == 200) {
             navigation("/admin/courses-category", { replace: true });

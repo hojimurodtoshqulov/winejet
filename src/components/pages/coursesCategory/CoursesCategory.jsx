@@ -8,7 +8,7 @@ export default function CoursesCategory() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses_category/delete/${id}`)
+      .delete(`https://winejet-uz.herokuapp.com/apicourses_category/delete/${id}`)
       .then((res) => {
         if (res.status == 200) {
           setCount(count + 1);
@@ -18,7 +18,7 @@ export default function CoursesCategory() {
 
   useEffect(() => {
     axios
-      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apicourses_category/get`)
+      .get(`https://winejet-uz.herokuapp.com/apicourses_category/get`)
       .then((res) => {
         setData(res.data.data.result);
       });

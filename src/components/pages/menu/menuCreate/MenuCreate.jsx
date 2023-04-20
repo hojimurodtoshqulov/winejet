@@ -28,13 +28,13 @@ export default function MenuCreate() {
   const [lang, setLang] = useState([]);
   const navigation = useNavigate();
   useEffect(() => {
-    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apilang/get`).then((res) => {
+    axios.get(`https://winejet-uz.herokuapp.com/apilang/get`).then((res) => {
       setLang(res.data.data.result);
     });
 
     data.created_on = Math.floor(data.created_on.getTime() / 1000);
     axios
-      .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apimenu/create`, data)
+      .post(`https://winejet-uz.herokuapp.com/apimenu/create`, data)
       .then((res) => {
         if (res.status == 200) {
           setCategoryId(res.data.id);
@@ -67,7 +67,7 @@ export default function MenuCreate() {
       data.created_on = Math.floor(data.created_on.getTime() / 1000);
 
       axios
-        .put(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apimenu/update/${categoryId}`, data)
+        .put(`https://winejet-uz.herokuapp.com/apimenu/update/${categoryId}`, data)
         .then((res) => {
           if (res.status == 200) {
             navigation("/admin/menu", { replace: true });

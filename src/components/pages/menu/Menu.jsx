@@ -9,7 +9,7 @@ export default function Menu() {
   const [data, setData] = useState([])
   const [count, setCount] = useState(1)
   const handleDelete = (id)=>{
-      axios.delete(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apimenu/delete/${id}`)
+      axios.delete(`https://winejet-uz.herokuapp.com/apimenu/delete/${id}`)
       .then(res=>{
           if (res.status == 200) {
               setCount(count + 1)
@@ -19,7 +19,7 @@ export default function Menu() {
 
 }
   useEffect(()=>{
-      axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apimenu/get`)
+      axios.get(`https://winejet-uz.herokuapp.com/apimenu/get`)
       .then(res =>{
           setData(res.data.data.result)
           

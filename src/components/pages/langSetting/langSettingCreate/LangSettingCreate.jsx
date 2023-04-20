@@ -23,7 +23,7 @@ const handleChange = (event) =>{
 
 const handleSubmit = (event)=>{
     event.preventDefault();
-    axios.post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apilang/create`, data)
+    axios.post(`https://winejet-uz.herokuapp.com/apilang/create`, data)
     .then(res=>{
         if (res.status == 200){
             navigation("/admin/setting", {replace: true})

@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import "./About.scss";
 
 const About = () => {
+  const { t } = useTranslation();
   return (
     <section className="about-page">
       <div className="about-page__container">
@@ -11,14 +13,9 @@ const About = () => {
           <div className="about-page__right">
             <div className="about-wrapper">
               <div className="about-card">
-                <h1 data-aos="fade-up">Учебный центр Виноградства</h1>
+                <h1 data-aos="fade-up">{t("aboutus.title")}</h1>
                 <p data-aos="fade-right" className="about-page__desc">
-                  Это уникальный образовательный проект, созданный для тех, кто
-                  хочет построить серьезную карьеру в винной индустрии, повысить
-                  свою квалификацию или просто получить базовые знания о вине,
-                  чтобы испытывать еще больше удовольствия от благородного
-                  напитка и самостоятельно выбирать хорошее в ресторане или
-                  супермаркете.
+                  {t("aboutus.info")}
                 </p>
               </div>
             </div>

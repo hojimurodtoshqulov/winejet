@@ -25,7 +25,7 @@ const handleChange = (event) =>{
 
 
 useEffect(()=>{
-    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apilang/get/${id}`)
+    axios.get(`https://winejet-uz.herokuapp.com/apilang/get/${id}`)
     .then(res =>{
         if(res.status == 200){
             setData(res.data.data)
@@ -37,7 +37,7 @@ useEffect(()=>{
 const handleSubmit = (event)=>{
     event.preventDefault();
    
-    axios.put(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apilang/update/${id}`, data)
+    axios.put(`https://winejet-uz.herokuapp.com/apilang/update/${id}`, data)
     .then(res=>{
         if (res.status == 200){
             navigation("/admin/setting", {replace: true})

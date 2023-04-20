@@ -18,7 +18,7 @@ export default function Uploader(props) {
     data.append("category_id", props.category_id);
     data.append("category", props.category);
     axios
-      .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apifiles/create`, data, {
+      .post(`https://winejet-uz.herokuapp.com/apifiles/create`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -40,7 +40,7 @@ export default function Uploader(props) {
   useEffect(() => {
     axios
       .get(
-        `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apifiles/get/${props.category_id}/${props.category}`
+        `https://winejet-uz.herokuapp.com/apifiles/get/${props.category_id}/${props.category}`
       )
       .then((res) => {
         if (res.status == 200) {
@@ -59,7 +59,7 @@ export default function Uploader(props) {
   }, [progress]);
   const handleFileDelete = (id) => {
     axios
-      .delete(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apifiles/delete/${id}`)
+      .delete(`https://winejet-uz.herokuapp.com/apifiles/delete/${id}`)
       .then((res) => {
         if (res.status == 200) {
           setCount(count + 1);
@@ -70,7 +70,7 @@ export default function Uploader(props) {
   const handleFileMain = (id) => {
     axios
       .put(
-        `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apifiles/main/${props.category}/${props.category_id}/${id}`
+        `https://winejet-uz.herokuapp.com/apifiles/main/${props.category}/${props.category_id}/${id}`
       )
       .then((res) => {
         if (res.status == 200) {
@@ -81,7 +81,7 @@ export default function Uploader(props) {
   const handleDeleteAll = () => {
     axios
       .delete(
-        `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apifiles/delete-all/${props.category_id}/${props.category}`
+        `https://winejet-uz.herokuapp.com/apifiles/delete-all/${props.category_id}/${props.category}`
       )
       .then((res) => {
         if (res.status == 200) {

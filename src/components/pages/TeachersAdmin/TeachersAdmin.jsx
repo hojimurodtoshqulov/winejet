@@ -15,7 +15,7 @@ function TeachersAdmin({ usersState, updateUsers }) {
   const [count, setCount] = useState(1);
   const handleDelete = (id) => {
     axios
-      .delete(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/teachers/${id}`)
+      .delete(`https://winejet-uz.herokuapp.com/api/teachers/${id}`)
       .then((res) => {
         if (res.status == 200) {
           setCount(count + 1);
@@ -30,7 +30,7 @@ function TeachersAdmin({ usersState, updateUsers }) {
   };
 
   useEffect(() => {
-    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/teachers`).then((res) => {
+    axios.get(`https://winejet-uz.herokuapp.com/api/teachers`).then((res) => {
       setData(res.data);
     });
   }, [count]);

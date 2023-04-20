@@ -17,10 +17,10 @@ export default function Auth() {
     event.preventDefault();
 
     console.log(
-      `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/auth/login?password=${data.password}&username=${data.username}`
+      `https://winejet-uz.herokuapp.com/api/auth/login?password=${data.password}&username=${data.username}`
     );
 
-    const url = `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/auth/login?password=${data.password}&username=${data.username}`;
+    const url = `https://winejet-uz.herokuapp.com/api/auth/login?password=${data.password}&username=${data.username}`;
 
     console.log();
 

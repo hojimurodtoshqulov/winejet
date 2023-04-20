@@ -52,7 +52,7 @@ const TeacherViewNew = () => {
 
   React.useEffect(() => {
     axios
-      .get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/teachers/${id}`)
+      .get(`https://winejet-uz.herokuapp.com/api/teachers/${id}`)
       .then((res) => {
         console.log(res);
         const imageAttachment = res.data.attachmentContent;

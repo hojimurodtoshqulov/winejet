@@ -15,14 +15,14 @@ export default function AdminCourses() {
   const handleDelete = (id) => {
     axios
       .delete(
-        `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/courses/${id}`
+        `https://winejet-uz.herokuapp.com/api/courses/${id}`
       )
       .then((res) => {
         if (res.status === 200) {
           setCount(count + 1);
           axios
             .get(
-              `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/courses`
+              `https://winejet-uz.herokuapp.com/api/courses`
             )
             .then((res) => {
               console.log(res);
@@ -45,7 +45,7 @@ export default function AdminCourses() {
   useEffect(() => {
     axios
       .get(
-        `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/courses`
+        `https://winejet-uz.herokuapp.com/api/courses`
       )
       .then((res) => {
         console.log(res);

@@ -10,7 +10,7 @@ export default function News() {
   const { i18n } = useTranslation();
 
   const handleDelete = (id) => {
-    axios.delete(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/news/${id}`).then((res) => {
+    axios.delete(`https://winejet-uz.herokuapp.com/api/news/${id}`).then((res) => {
       if (res.status == 200) {
         getItems();
         setCount(count + 1);
@@ -21,7 +21,7 @@ export default function News() {
   const descLan = i18n.language === "uz" ? "textUz" : "textRu";
 
   const getItems = () => {
-    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/news`).then((res) => {
+    axios.get(`https://winejet-uz.herokuapp.com/api/news`).then((res) => {
       setData(res.data);
     });
   };

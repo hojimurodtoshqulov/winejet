@@ -35,8 +35,8 @@ const Section6 = () => {
   console.log("newsData>>>>>>>>>", newsData);
 
   useEffect(() => {
-    console.log(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/news`);
-    axios.get(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/news`).then((res) => {
+    console.log(`https://winejet-uz.herokuapp.com/api/news`);
+    axios.get(`https://winejet-uz.herokuapp.com/api/news`).then((res) => {
       setNewsData(res.data);
     });
     handleAnimation();

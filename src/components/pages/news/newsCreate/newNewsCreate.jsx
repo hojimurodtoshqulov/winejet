@@ -71,10 +71,10 @@ const MyForm = () => {
       textRu,
     };
 
-    // http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api
+    // https://winejet-uz.herokuapp.com/api
     console.log(newsData);
     axios
-      .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/news`, newsData, {
+      .post(`https://winejet-uz.herokuapp.com/api/news`, newsData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -92,7 +92,7 @@ const MyForm = () => {
       })
       .finally(() => setLoading(false));
 
-    /*   axios.post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiteachers`, data).then((res) => {
+    /*   axios.post(`https://winejet-uz.herokuapp.com/apiteachers`, data).then((res) => {
         if (res.status === 200) {   
           setCategoryId(res.data.id);
         }
@@ -117,7 +117,7 @@ const MyForm = () => {
     try {
       // Image validation
       console.log(updatedData);
-      await axios.post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/news`, updatedData, {
+      await axios.post(`https://winejet-uz.herokuapp.com/api/news`, updatedData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,

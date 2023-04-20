@@ -93,7 +93,7 @@ const MyForm = () => {
     formdata.append("file", image);
 
     axios
-      .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/files`, formdata, {
+      .post(`https://winejet-uz.herokuapp.com/api/files`, formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -111,7 +111,7 @@ const MyForm = () => {
         };
 
         return axios.post(
-          `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/teachers`,
+          `https://winejet-uz.herokuapp.com/api/teachers`,
           teacherData,
           {
             headers: {
@@ -133,7 +133,7 @@ const MyForm = () => {
         console.log(err);
       });
 
-    /*   axios.post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/apiteachers`, data).then((res) => {
+    /*   axios.post(`https://winejet-uz.herokuapp.com/apiteachers`, data).then((res) => {
         if (res.status === 200) {
           setCategoryId(res.data.id);
         }
@@ -163,7 +163,7 @@ const MyForm = () => {
         formdata.append("file", image);
 
         updatedData.attachmentId = await axios
-          .post(`http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/files`, formdata, {
+          .post(`https://winejet-uz.herokuapp.com/api/files`, formdata, {
             headers: {
               "Content-Type": "multipart/form-data",
               Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -175,7 +175,7 @@ const MyForm = () => {
       }
       console.log(updatedData);
       await axios.post(
-        `http://Sampleapp-env.eba-ywjefhpf.eu-west-2.elasticbeanstalk.com:8080/api/teachers`,
+        `https://winejet-uz.herokuapp.com/api/teachers`,
         updatedData,
         {
           headers: {
