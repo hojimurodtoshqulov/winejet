@@ -60,7 +60,6 @@ function App() {
 
   return (
     <div className="wrapper">
-      
       <ScrollTop />
 
       <Routes>
@@ -100,15 +99,9 @@ function App() {
           <Route path="courses/create" element={<AdminCoursesCreate />} />
           <Route path="courses/view/:id" element={<AdminCoursesView />} />
 
-          <Route path="courses-category" element={<CoursesCategory />} />
-          <Route
-            path="courses-category/create"
-            element={<CoursesCategoryCreate />}
-          />
-          <Route
-            path="courses-category/view/:id"
-            element={<CoursesCategoryView />}
-          />
+          <Route path="about" element={<CoursesCategory />} />
+          <Route path="about/create" element={<CoursesCategoryCreate />} />
+          <Route path="about/view/:id" element={<CoursesCategoryView />} />
         </Route>
       </Routes>
 

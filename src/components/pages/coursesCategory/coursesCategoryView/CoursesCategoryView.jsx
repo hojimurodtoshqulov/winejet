@@ -1,163 +1,330 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import Switch from "../../../layouts/switch/Switch";
-import axios from "axios";
+import * as React from "react";
+import {
+  Box,
+  TextField,
+  Typography,
+  Button,
+  createTheme,
+  ThemeProvider,
+} from "@mui/material";
+import DatePicker from "react-datepicker";
+
 import { NotificationManager } from "react-notifications";
 
-export default function CoursesCategoryView() {
-  const [data, setData] = useState({
-    title_ru: "",
-    title_uz: "",
-    status: false,
-  });
-  const params = useParams();
-  const id = params.id;
-  const navigation = useNavigate();
-  const [lang, setLang] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`https://winejet-uz.herokuapp.com/apicourses_category/get/${id}`)
-      .then((res) => {
-        setData(res.data.data);
-      });
+import style from "../style.module.scss";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { constatns } from "../../../../redux/constants";
+import { useEffect } from "react";
+// import { LocalizationProvider } from "@mui/x-date-pickers";
 
-    // axios.get(`https://winejet-uz.herokuapp.com/apilang/get`).then((res) => {
-    //   setLang(res.data.data.result);
-    // });
-  }, []);
-  const handleChange = (event) => {
-    const inputName = event.target.name;
-    const inputValue = event.target.value;
-    const lang = event.target.lang;
-    // if (lang) {
-    //   let nameIn = inputName + "_" + lang;
-    //   setData((oldValue) => ({ ...oldValue, [nameIn]: inputValue }));
-    // } else {
-    // }
-    setData((oldValue) => ({ ...oldValue, [inputName]: inputValue }));
+// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import moment from "moment";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    background: {
+      default: "#1f1f1f",
+      paper: "#333333",
+    },
+    text: {
+      primary: "#ffffff",
+      secondary: "#b3b3b3",
+    },
+  },
+});
+
+const MyForm = () => {
+  const [titleUz, setTitleUz] = React.useState("");
+  const [titleRu, setTitleRu] = React.useState("");
+  const [descriptionUz, setDescriptionUz] = React.useState("");
+  const [descriptionRu, setDescriptionRu] = React.useState("");
+  const [image, setImage] = React.useState(null);
+
+  const [loading, setLoading] = useState(false);
+
+  const { formType } = useSelector((state) => state.admin);
+  const { about } = useSelector((state) => state.admin);
+
+  console.log(formType);
+
+  const navigation = useNavigate();
+
+  const clearValues = () => {
+    setTitleUz("");
+    setTitleRu("");
+    setDescriptionUz("");
+    setDescriptionRu("");
+    setImage(null);
   };
+
+  useEffect(() => {
+    setLoading(false);
+    if (formType === constatns.form.updating) {
+      setTitleUz(about.titleUz);
+      setTitleRu(about.titleRu);
+      setDescriptionUz(about.descriptionUz);
+      setDescriptionRu(about.descriptionRu);
+    }
+  }, []);
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    const allowedFormats = ["image/png", "image/jpeg", "image/jpg"];
+    if (file && allowedFormats.includes(file.type)) {
+      setImage(file);
+    } else {
+      alert("Please upload a file in PNG, JPG, or JPEG format.");
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (data.title_ru.length > 0) {
-      axios
-        .put(
-          `https://winejet-uz.herokuapp.com/apicourses_category/update/${id}`,
-          data
-        )
-        .then((res) => {
-          if (res.status === 200) {
-            navigation("/admin/courses-category", { replace: true });
+    /*  console.log("submit");
+    setLoading(true);
+
+    // Image validation
+    if (!image) return alert("Insert image");
+    const formdata = new FormData();
+    formdata.append("file", image);
+
+    axios
+      .post(`https://winejet-uz.herokuapp.com/api/files`, formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        return res.data.message;
+      })
+      .then((imgId) => {
+        const dataToSubmit = {
+          titleUz,
+          titleRu,
+          descriptionUz,
+          descriptionRu,
+          attachmentContentId: imgId,
+        };
+
+        console.log(dataToSubmit);
+
+        return axios.post(
+          `https://winejet-uz.herokuapp.com/api/about-us`,
+          dataToSubmit,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
           }
-        });
-    } else {
-      NotificationManager.warning(
-        "Please fill in the fields",
-        "Form validation",
-        3000
+        );
+      })
+      .then((data) => {
+        console.log(data);
+        NotificationManager.success("About text created", "Success!");
+        clearValues();
+        navigation("/admin/about", { replace: true });
+      })
+      .catch((err) => {
+        NotificationManager.error("Something went wrong", "Error!");
+        console.log(err);
+      })
+      .finally(() => setLoading(false)); */
+
+    /*   axios.post(`https://winejet-uz.herokuapp.com/apiteachers`, data).then((res) => {
+        if (res.status === 200) {   
+          setCategoryId(res.data.id);
+        }
+      }); */
+  };
+
+  const handleEdit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    const updatedData = {
+      //   fullName: fullName || teacher.fullName,
+      //   infoUz: descriptionUZ || teacher.infoUz,
+      //   infoRu: descriptionRU || teacher.infoRu,
+      //   attachmentId: teacher.attachmentId,
+      //   id: teacher.id,
+      titleUz: titleUz || about.titleUz,
+      titleRu: titleRu || about.titleRu,
+      descriptionUz: descriptionUz || about.descriptionUz,
+      descriptionRu: descriptionRu || about.descriptionRu,
+      attachmentContentId: about?.attachmentContent?.id,
+      id: about.id,
+    };
+
+    console.log(about);
+
+    try {
+      // Image validation
+
+      console.log(image);
+      if (image) {
+        console.log(image);
+        const formdata = new FormData();
+        formdata.append("file", image);
+
+        updatedData.attachmentId = await axios
+          .post(`https://winejet-uz.herokuapp.com/api/files`, formdata, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+          })
+          .then((res) => {
+            return res.data.message;
+          });
+      }
+      console.log(updatedData);
+      await axios.post(
+        `https://winejet-uz.herokuapp.com/api/about-us`,
+        updatedData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        }
       );
+
+      clearValues();
+      navigation("/admin/about", { replace: true });
+      NotificationManager.success("About text updated", "Success!");
+      clearValues();
+    } catch (error) {
+      NotificationManager.error("Something went wrong", "Error!");
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="container-fluid pt-4 px-4">
-      <div className="row vh-100  rounded  justify-content-center mx-0">
-        <div className="col-12">
-          <div className="bg-secondary rounded h-100 p-4">
-            <h6 className="mb-4">Menu create form</h6>
-            {/* <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-              {lang.map((item, index) => {
-                index++;
-                return (
-                  <li className="nav-item" role="presentation" key={index}>
-                    <button
-                      className={`nav-link ${index == 1 ? "active" : ""}  me-3`}
-                      id={`pills-lang-${index}`}
-                      data-bs-toggle="pill"
-                      data-bs-target={`#pills-lang${index}`}
-                      type="button"
-                      role="tab"
-                      aria-controls={`#pills-lang${index}`}
-                      aria-selected="true"
-                    >
-                      {item.title}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul> */}
-            <div className="tab-content" id="pills-tabContent">
-              {/* {lang.map((item, index) => {
-                index++;
-                return (
-                  <div
-                    key={index}
-                    className={`tab-pane fade ${
-                      index == 1 ? "show active" : ""
-                    }`}
-                    id={`pills-lang${index}`}
-                    role="tabpanel"
-                    aria-labelledby={`pills-lang-${index}`}
-                  > */}
-              <form onSubmit={handleSubmit}>
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label htmlFor="title" className="form-label">
-                        Title : ru
-                      </label>
-                      <input
-                        type="text"
-                        name="title_ru"
-                        onChange={handleChange}
-                        value={data.title_ru || ""}
-                        className="form-control"
-                        id="title"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label htmlFor="title2" className="form-label">
-                        Title : uz
-                      </label>
-                      <input
-                        type="text"
-                        name="title_uz"
-                        onChange={handleChange}
-                        value={data.title_uz || ""}
-                        className="form-control"
-                        id="title2"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-6">
-                    <Switch setData={setData} value={data.status} />
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    navigation("/admin/courses-category");
-                  }}
-                  className="btn btn-warning me-3"
-                >
-                  Back
-                </button>
-
-                <button type="submit" className="btn btn-primary">
-                  Update
-                </button>
-              </form>
-              {/* </div>
-                );
-              })} */}
-            </div>
+    <ThemeProvider theme={darkTheme}>
+      <Box
+        component="form"
+        onSubmit={(e) => {
+          formType === constatns.form.creating
+            ? handleSubmit(e)
+            : handleEdit(e);
+        }}
+      >
+        <div className={style.formWrap}>
+          <Typography variant="h5" color="textPrimary" sx={{ marginBottom: 2 }}>
+            {formType === constatns.form.creating ? "Add a new" : "Update the "}
+            About us
+          </Typography>
+          <div className={style.courceFormWrap}>
+            <Box sx={{ marginBottom: 2 }}>
+              <TextField
+                label="Title in Uzbek"
+                value={titleUz}
+                onChange={(e) => {
+                  setTitleUz(e.target.value);
+                }}
+                fullWidth
+                required
+                color="secondary"
+              />
+            </Box>
+            <Box sx={{ marginBottom: 2 }}>
+              <TextField
+                label="Title in Russian"
+                value={titleRu}
+                onChange={(e) => {
+                  setTitleRu(e.target.value);
+                }}
+                fullWidth
+                required
+                color="secondary"
+              />
+            </Box>
+            <Box sx={{ marginBottom: 2 }}>
+              <TextField
+                label="Description in Uzbek"
+                value={descriptionUz}
+                onChange={(e) => {
+                  setDescriptionUz(e.target.value);
+                }}
+                multiline
+                rows={4}
+                fullWidth
+                required
+                color="secondary"
+              />
+            </Box>
+            <Box sx={{ marginBottom: 2 }}>
+              <TextField
+                label="Description in Russian"
+                value={descriptionRu}
+                onChange={(e) => {
+                  setDescriptionRu(e.target.value);
+                }}
+                multiline
+                rows={4}
+                fullWidth
+                required
+                color="secondary"
+              />
+            </Box>
           </div>
+          <Box sx={{ marginBottom: 2 }}>
+            <input
+              accept="image/*"
+              id="image-upload"
+              type="file"
+              onChange={handleImageChange}
+              style={{ display: "none" }}
+            />
+            <label htmlFor="image-upload">
+              <Button variant="contained" component="span" color="secondary">
+                Upload Image
+              </Button>
+            </label>
+          </Box>
+          {image && (
+            <Typography color="textPrimary" sx={{ marginBottom: 2 }}>
+              Image uploaded: {image.name}
+            </Typography>
+          )}
+          <Box
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Button
+              disabled={loading}
+              variant="contained"
+              type="submit"
+              color="secondary"
+            >
+              {loading ? "Loading" : "Submit"}
+            </Button>
+            <Button
+              onClick={() => {
+                clearValues();
+                navigation("/admin/about", { replace: true });
+              }}
+              variant="contained"
+              type="button"
+              color="secondary"
+            >
+              Back
+            </Button>
+          </Box>
         </div>
-      </div>
-    </div>
+      </Box>
+    </ThemeProvider>
   );
-}
+};
+
+export default MyForm;

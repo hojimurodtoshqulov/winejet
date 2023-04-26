@@ -64,12 +64,12 @@ function LeftMenu() {
           >
             <i className="fa fa-solid fa-bars me-2"></i>Pages
           </NavLink>
-          {/* <NavLink
-            to="/admin/courses-category"
+          <NavLink
+            to="/admin/about"
             className={`${s.nav_link} nav-item nav-link`}
           >
-            <i className="fa fa-solid fa-th me-2"></i> Category
-          </NavLink> */}
+            <i className="fa fa-solid fa-th me-2"></i> About
+          </NavLink>
 
           {/* <div className="nav-item dropdown">
                     <a href="#" className={`${s.nav_link} nav-link ${s.dropdown_toggle} dropdown-toggle`} data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Elements</a>

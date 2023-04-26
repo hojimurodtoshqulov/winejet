@@ -1,27 +1,42 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import useJwtApi from "../../../utils/jwtApi";
+import { useDispatch } from "react-redux";
+import { constatns } from "../../../redux/constants";
+import { changeFormType, setAbout } from "../../../redux/admin/adminSlice";
 
 export default function CoursesCategory() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [count, setCount] = useState(1);
 
+  const dispatch = useDispatch();
+
+  const { jwtApi } = useJwtApi();
+
   const handleDelete = (id) => {
-    axios
-      .delete(`https://winejet-uz.herokuapp.com/apicourses_category/delete/${id}`)
-      .then((res) => {
-        if (res.status == 200) {
-          setCount(count + 1);
-        }
-      });
+    jwtApi.delete(`/about-us/${id}`).then((res) => {
+      console.log(res);
+      if (res.status == 200) {
+        setCount(count + 1);
+      }
+    });
   };
 
+  const getItems = async () => {
+    try {
+      const res = await axios
+        .get(`https://winejet-uz.herokuapp.com/api/about-us`)
+        .then((res) => {
+          setData(res.data);
+        });
+    } catch (error) {}
+  };
+
+  console.log(data);
+
   useEffect(() => {
-    axios
-      .get(`https://winejet-uz.herokuapp.com/apicourses_category/get`)
-      .then((res) => {
-        setData(res.data.data.result);
-      });
+    getItems();
   }, [count]);
 
   return (
@@ -30,10 +45,16 @@ export default function CoursesCategory() {
         <div className="col-12">
           <div className="bg-secondary rounded h-100 p-4">
             <div className="d-flex justify-content-between">
-              <h6 className="mb-4">Courses Category </h6>
-              <NavLink to="create" className="btn btn-dark rounded-pill ">
-                Create
-              </NavLink>
+              <h6 className="mb-4">About us</h6>
+              <div
+                onClick={() => {
+                  dispatch(changeFormType(constatns.form.creating));
+                }}
+              >
+                <NavLink to="create" className="btn btn-dark rounded-pill ">
+                  Create
+                </NavLink>
+              </div>
             </div>
 
             <div className="table-responsive">
@@ -43,41 +64,30 @@ export default function CoursesCategory() {
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col"></th>
-                    <th scope="col"></th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  {data ? (
-                    data.map(function (item, index) {
-                      return (
-                        <tr key={index}>
-                          <th scope="row">{item.id}</th>
-                          <td>{item.title_ru}</td>
-                          <td>
-                            <NavLink
-                              to={`view/${item.id}`}
-                              className="btn btn-info rounded-pill "
-                            >
-                              View
-                            </NavLink>
-                          </td>
-                          <td>
-                            {" "}
-                            <button
-                              type="button"
-                              className="btn btn-danger rounded-pill "
-                              onClick={() => handleDelete(item.id)}
-                            >
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  ) : (
+                  {data && (
                     <tr>
-                      <td>Not found</td>
+                      <th scope="row">{1}</th>
+                      <td>{data?.titleUz}</td>
+                      <td>
+                        {" "}
+                        <div
+                          onClick={() => {
+                            dispatch(setAbout(data));
+                            dispatch(changeFormType(constatns.form.updating));
+                          }}
+                        >
+                          <NavLink
+                            to={`view/${data.id}`}
+                            className="btn btn-info rounded-pill "
+                          >
+                            View
+                          </NavLink>
+                        </div>
+                      </td>
                     </tr>
                   )}
                 </tbody>
