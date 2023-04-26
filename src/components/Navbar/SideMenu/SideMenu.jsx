@@ -24,6 +24,7 @@ const SideMenu = ({ isActive, setIsActive }) => {
 		}
 	}, [isActive]);
 
+
 	return (
 		<aside
 			className={`app__side-container ${isActive ? "app__side-active" : ""}`}

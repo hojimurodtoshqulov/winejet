@@ -21,11 +21,32 @@ const Navbar = () => {
 	const handleChange = (panel) => (_, isExpanded) => {
 		setExpanded(isExpanded ? panel : false);
 	};
+	useEffect(() => {
+		axios
+			.get(`${process.env.REACT_APP_API_URL}/pages`)
+			.then((res) => {
+				setData(
+					res.data
+					// res.data.map((item) => {
+					// 	return {
+					// 		img: `data:image/png;base64,${item.attachmentContent.data}`,
+					// 		title_ru: item.titleRu,
+					// 		title_uz: item.titleUz,
+					// 		link: item.id,
+					// 		created_on: item.date,
+					// 		short_content_ru: item.descriptionRu,
+					// 		short_content_uz: item.descriptionUz,
+					// 	};
+					// })
+				);
+			})
+			.catch((err) => console.log("Error >>>> ", err));
+	}, []);
 
 	useEffect(() => {
-		axios.get(`${process.env.REACT_APP_API_URL}menu/get`).then((res) => {
-			setData(res?.data?.data?.result);
-		});
+		// axios.get(`${process.env.REACT_APP_API_URL}menu/get`).then((res) => {
+		// 	setData(res?.data?.data?.result);
+		// });
 		if (pathname === "/") {
 			setIsScrolled(false);
 			const handleScroll = () => {
@@ -60,11 +81,11 @@ const Navbar = () => {
 						</Link>
 					</div>
 					<ul className="navbar__links-wrapper">
-						<li>
+						{/* <li>
 							<span className="navbar__search-icon">
 								<FiSearch />
 							</span>
-						</li>
+						</li> */}
 						{links.map((item, i) => {
 							return (
 								<li key={i}>
@@ -86,15 +107,15 @@ const Navbar = () => {
 											""
 										)
 									) : ( */}
-										<NavLink
-											className={getLinkClassName(pathname, item.link)}
-											to={item.link}
-										>
-											{getContent(
-												translations["ru"][item.link],
-												translations["uz"][item.link]
-											)}
-										</NavLink>
+									<NavLink
+										className={getLinkClassName(pathname, item.link)}
+										to={item.link}
+									>
+										{getContent(
+											translations["ru"][item.link],
+											translations["uz"][item.link]
+										)}
+									</NavLink>
 									{/* )} */}
 								</li>
 							);
