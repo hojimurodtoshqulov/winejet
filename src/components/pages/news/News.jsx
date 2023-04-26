@@ -9,13 +9,17 @@ export default function News() {
 
   const { i18n } = useTranslation();
 
+  console.log(data);
+
   const handleDelete = (id) => {
-    axios.delete(`https://winejet-uz.herokuapp.com/api/news/${id}`).then((res) => {
-      if (res.status == 200) {
-        getItems();
-        setCount(count + 1);
-      }
-    });
+    axios
+      .delete(`https://winejet-uz.herokuapp.com/api/news/${id}`)
+      .then((res) => {
+        if (res.status == 200) {
+          getItems();
+          setCount(count + 1);
+        }
+      });
   };
 
   const descLan = i18n.language === "uz" ? "textUz" : "textRu";
@@ -66,8 +70,8 @@ export default function News() {
                         <tr key={index}>
                           <th scope="row">{index + 1}</th>
                           <td>
-                            {item[descLan].slice(0, 70)}{" "}
-                            {item[descLan].length > 70 && "..."}{" "}
+                            {item[descLan]?.slice(0, 70)}{" "}
+                            {item[descLan]?.length > 70 && "..."}{" "}
                           </td>
                           <td>
                             <NavLink
