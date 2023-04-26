@@ -45,12 +45,7 @@ function LeftMenu() {
           >
             <i className="fa fa-solid fa-user me-2"></i>Teachers
           </NavLink>
-          {/* <NavLink
-            to="/admin/menu"
-            className={`${s.nav_link} nav-item nav-link`}
-          >
-            <i className="fa fa-solid fa-bars me-2"></i>Menu
-          </NavLink> */}
+
           <NavLink
             to="/admin/news"
             className={`${s.nav_link} nav-item nav-link`}
@@ -62,6 +57,12 @@ function LeftMenu() {
             className={`${s.nav_link} nav-item nav-link`}
           >
             <i className="fa fa-solid fa-th me-2"></i>Courses
+          </NavLink>
+          <NavLink
+            to="/admin/pages"
+            className={`${s.nav_link} nav-item nav-link`}
+          >
+            <i className="fa fa-solid fa-bars me-2"></i>Pages
           </NavLink>
           {/* <NavLink
             to="/admin/courses-category"

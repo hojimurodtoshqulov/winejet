@@ -60,18 +60,7 @@ function App() {
 
   return (
     <div className="wrapper">
-      <div
-        id="spinner"
-        className="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
-      >
-        <div
-          className="spinner-border text-primary"
-          style={{ width: "3rem", height: "3rem" }}
-          role="status"
-        >
-          <span className="sr-only">Loading...</span>
-        </div>
-      </div>
+      
       <ScrollTop />
 
       <Routes>
@@ -91,9 +80,9 @@ function App() {
           <Route path="users/create" element={<UserCreate />} />
           <Route path="users/view/:id" element={<UserView />} />
 
-          <Route path="menu" element={<Menu />} />
-          <Route path="menu/create" element={<MenuCreate />} />
-          <Route path="menu/view/:id" element={<MenuView />} />
+          <Route path="pages" element={<Menu />} />
+          <Route path="pages/create" element={<MenuCreate />} />
+          <Route path="pages/view/:id" element={<MenuView />} />
 
           <Route path="teacher" element={<TeachersAdmin />} />
           <Route path="teacher/create" element={<TeacherCreate />} />

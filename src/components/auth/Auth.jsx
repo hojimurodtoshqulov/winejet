@@ -3,6 +3,8 @@ import axios from "axios";
 import jwt from "jwt-decode";
 import s from "./Auth.module.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setJwtApi, setToken } from "../../redux/admin/adminSlice";
 
 export default function Auth() {
   const htmlElement = document.querySelector("html");
@@ -12,13 +14,11 @@ export default function Auth() {
     password: "",
   });
 
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    console.log(
-      `https://winejet-uz.herokuapp.com/api/auth/login?password=${data.password}&username=${data.username}`
-    );
 
     const url = `https://winejet-uz.herokuapp.com/api/auth/login?password=${data.password}&username=${data.username}`;
 
@@ -32,6 +32,7 @@ export default function Auth() {
           const token = res.data.message;
           const tokenData = jwt(token);
           if (tokenData.sub === "admin") {
+            dispatch(setToken(token));
             sessionStorage.setItem("token", token);
             navigate("/admin", { replace: true });
           } else {
