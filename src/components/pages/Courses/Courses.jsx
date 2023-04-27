@@ -107,7 +107,6 @@ const Courses = () => {
 			setFilteredData(data);
 		} else {
 			const filtered = data.filter((item) => item.category_id === index);
-
 			setFilteredData(filtered);
 		}
 	};
@@ -127,7 +126,6 @@ const Courses = () => {
 					</div>
 				</div>
 			</section>
-
 			<section className="courses-items">
 				<div className="courses-items__container">
 					<div>

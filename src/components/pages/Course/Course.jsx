@@ -15,7 +15,6 @@ const img = [
   { img: "/images/grape3.png" },
   { img: "/images/grape4.png" },
 ];
-
 const staticData = {
   data: {
     img: "/images/grape1.png",
@@ -28,19 +27,16 @@ const staticData = {
     price: "200.000",
   },
 };
-
 const data1 = [
   "Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac ",
   "Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac ",
   "Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac ",
   "Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac ",
 ];
-
 const formatter = new Intl.NumberFormat("ru-RU", {
   style: "currency",
   currency: "UZS",
 });
-
 const Course = () => {
   const currentLanguage = i18next.language;
   const [openModal, setOpenModal] = useState(false);
@@ -81,7 +77,6 @@ const Course = () => {
       });
   }, []);
   let date = new Date(data.created_on);
-
   return (
     <>
       <section
