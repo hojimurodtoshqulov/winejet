@@ -1,12 +1,12 @@
 import "./Navbar.scss";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { FiSearch } from "react-icons/fi";
 import { HiOutlineCalendar } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import SelectComponent from "./SelectComponent/SelectComponent";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import SideMenu from "./SideMenu/SideMenu";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { getContent } from "../../utils/changeLang";
 import { Link as Scroll } from "react-scroll";
@@ -16,33 +16,10 @@ const Navbar = () => {
 	const [isActive, setIsActive] = useState(false);
 	const { pathname } = useLocation();
 	const [expanded, setExpanded] = useState(false);
-
-	const [data, setData] = useState([]);
 	const handleChange = (panel) => (_, isExpanded) => {
 		setExpanded(isExpanded ? panel : false);
 	};
-	// useEffect(() => {
-	// 	axios
-	// 		.get(`${process.env.REACT_APP_API_URL}/pages`)
-	// 		.then((res) => {
-	// 			setData(
-	// 				res.data
-	// 				// res.data.map((item) => {
-	// 				// 	return {
-	// 				// 		img: `data:image/png;base64,${item.attachmentContent.data}`,
-	// 				// 		title_ru: item.titleRu,
-	// 				// 		title_uz: item.titleUz,
-	// 				// 		link: item.id,
-	// 				// 		created_on: item.date,
-	// 				// 		short_content_ru: item.descriptionRu,
-	// 				// 		short_content_uz: item.descriptionUz,
-	// 				// 	};
-	// 				// })
-	// 			);
-	// 		})
-	// 		.catch((err) => console.log("Error >>>> ", err));
-	// }, []);
-
+	const [data, setData] = useState([]);
 	useEffect(() => {
 		axios.get(`https://winejet-uz.herokuapp.com/api/pages`).then((res) => {
 			setData(res.data);
