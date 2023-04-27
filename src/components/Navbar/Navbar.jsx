@@ -92,6 +92,11 @@ const Navbar = () => {
                     className={getLinkClassName(pathname, item.link)}
                     to={item.link}
                   >
+                    {/* ========================
+                     * getContent: shu funksiyaga textlarni 1-parametriga ruschasini, 2-parametria o'zbekchasini berib chaqirilsa, uzi aktiv tilga qarab bittasini qaytaradi
+                     *
+                     */}
+
                     {getContent(item.nameRu, item.nameUz)}
                   </NavLink>
                 </li>

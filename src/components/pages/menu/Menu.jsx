@@ -77,7 +77,7 @@ export default function Pages() {
                     data.map(function (item, index) {
                       return (
                         <tr key={index}>
-                          <th scope="row">{item.id}</th>
+                          <th scope="row">{index + 1}</th>
                           <td>{item[translatedName]}</td>
                           <td>{item.link}</td>
                           <td>

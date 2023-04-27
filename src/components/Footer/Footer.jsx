@@ -5,16 +5,30 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { BsInstagram } from "react-icons/bs";
 import { FiFacebook } from "react-icons/fi";
 import { RxTwitterLogo } from "react-icons/rx";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
-import { HiOutlineCalendar } from "react-icons/hi";
 import { getContent } from "../../utils/changeLang";
+import { useTranslation } from "react-i18next";
+import { HiOutlineCalendar } from "react-icons/hi";
 function Footer() {
-	const [data, setData] = useState([]);
+	const [pages, setPages] = useState([]);
+
+	const { i18n } = useTranslation();
+
 	useEffect(() => {
-		axios.get(`https://winejet-uz.herokuapp.com/api/pages`).then((res) => {
-			setData(res.data);
-		});
+		const getPages = async () => {
+			try {
+				const res = await axios.get(
+					`https://winejet-uz.herokuapp.com/api/pages`
+				);
+				setPages(res.data);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		getPages();
 	}, []);
 	return (
 		<footer className="footer">
@@ -24,27 +38,30 @@ function Footer() {
 						<img src="/images/logoGroup.png" alt="" />
 					</Link>
 				</div>
-
 				<div className="footer__wrapper">
 					<div className="column-wrap">
 						<h6>Pages</h6>
-						{data?.map((item, i) => (
-							<Link key={item?.id} to={item?.link}>
-								{getContent(item?.nameRu, item?.nameUz)}
+						{pages.map((item) => (
+							<Link key={item.link} to={item.link}>
+								{getContent(item.nameRu, item.nameUz)}
 							</Link>
 						))}
 						<Link to="/calendar">
 							<HiOutlineCalendar />
 						</Link>
+						{/*  <Link to="">ipsum</Link>
+            <Link to="">dolor sit</Link>
+            <Link to="">amet</Link>
+            <Link to="">consectetur</Link> */}
 					</div>
-					<div className="column-wrap">
-						<h6>Jorem</h6>
-						<Link to="">Porem</Link>
-						<Link to="">ipsum</Link>
-						<Link to="">dolor sit</Link>
-						<Link to="">amet</Link>
-						<Link to="">consectetur</Link>
-					</div>
+					{/*  <div className="column-wrap">
+            <h6>Jorem</h6>
+            <Link to="">Porem</Link>
+            <Link to="">ipsum</Link>
+            <Link to="">dolor sit</Link>
+            <Link to="">amet</Link>
+            <Link to="">consectetur</Link>
+          </div> */}
 					<div className="column-wrap">
 						<h6>Jorem</h6>
 						<div className="footer__contact-info">
