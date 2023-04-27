@@ -16,7 +16,7 @@ export default function Showcase() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`https://winejet-uz.herokuapp.com/api/news/${id}`)
+      .delete(`https://winejet-uz.herokuapp.com/api/show-keys/${id}`)
       .then((res) => {
         if (res.status == 200) {
           getItems();
@@ -25,10 +25,10 @@ export default function Showcase() {
       });
   };
 
-  const descLan = i18n.language === "uz" ? "textUz" : "textRu";
+  const descLan = i18n.language === "uz" ? "titleUz" : "titleRu";
 
   const getItems = () => {
-    axios.get(`https://winejet-uz.herokuapp.com/api/news`).then((res) => {
+    axios.get(`https://winejet-uz.herokuapp.com/api/show-keys`).then((res) => {
       setData(res.data);
     });
   };
@@ -76,10 +76,7 @@ export default function Showcase() {
                       return (
                         <tr key={index}>
                           <th scope="row">{index + 1}</th>
-                          <td>
-                            {item[descLan]?.slice(0, 70)}{" "}
-                            {item[descLan]?.length > 70 && "..."}{" "}
-                          </td>
+                          <td>{item[descLan]}</td>
                           <td>
                             <NavLink
                               to={`view/${item.id}`}

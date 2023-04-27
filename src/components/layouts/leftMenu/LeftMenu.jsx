@@ -27,7 +27,7 @@ function LeftMenu() {
         </div>
         <NavLink to="/" className="navbar-brand mx-4 mb-3">
           <h3 className="text-primary h5">
-            <i className="fa fa-user-edit me-2"></i>Winjet
+            <i className="fa fa-user-edit me-2"></i>Winejet
           </h3>
         </NavLink>
 

@@ -195,8 +195,11 @@ const MyForm = () => {
       );
 
       clearValues();
-      navigation("/admin/teacher", { replace: true });
-      NotificationManager.success("Teacher succussfully created", "Success!");
+      navigation("/admin/showcase", { replace: true });
+      NotificationManager.success(
+        "Showcase item succussfully created",
+        "Success!"
+      );
       //   setLoading(false);
     } catch (error) {
       NotificationManager.error("Something went wrong", "Error!");

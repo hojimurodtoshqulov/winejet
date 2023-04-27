@@ -13,12 +13,14 @@ import { NotificationManager } from "react-notifications";
 import style from "./style.module.scss";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { constatns } from "../../../redux/constants";
 import { useEffect } from "react";
 import useJwtApi from "../../../utils/jwtApi";
 import { useRef } from "react";
+import Spinner from "../../spinner";
+import moment from "moment";
 
 const darkTheme = createTheme({
   palette: {
@@ -46,6 +48,8 @@ const MyForm = () => {
       price,
       dateTime,
       location,
+      attachmentContent,
+      id,
     },
     setState,
   ] = useState({});
@@ -54,9 +58,12 @@ const MyForm = () => {
 
   const [image, setImage] = useState();
   const [loading, setLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(false);
 
   const { formType } = useSelector((state) => state.admin);
   //   const { teacher } = useSelector((state) => state.admin);
+
+  const { id: slug } = useParams();
 
   const { jwtApi } = useJwtApi();
 
@@ -71,22 +78,48 @@ const MyForm = () => {
     setState((prev) => ({ ...prev, [name]: value }));
   };
 
+  const fetchItem = async () => {
+    setPageLoading(true);
+    try {
+      const res = await axios
+        .get(`https://winejet-uz.herokuapp.com/api/show-keys/${slug}`)
+        .then((res) => {
+          setState({
+            ...res.data,
+            dateTime: moment(res.data.dateTime).format("YYYY-MM-DDTHH:mm"),
+          });
+        });
+    } catch (error) {
+    } finally {
+      setPageLoading(false);
+    }
+  };
+
   const clearValues = () => {
     setState({});
   };
 
   useEffect(() => {
-    // setLoading(false);
-    if (formType === constatns.form.updating) {
-      //   setFullName(teacher.fullName);
-      //   setDescriptionUZ(teacher.infoUz);
-      //   setDescriptionRU(teacher.infoRu);
-    }
+    fetchItem();
   }, []);
+
+  console.log({
+    titleUz,
+    titleRu,
+    descriptionUz,
+    descriptionRu,
+    buttonTextUz,
+    buttonTextRu,
+    price,
+    dateTime,
+    location,
+    attachmentContent,
+  });
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     const allowedFormats = ["image/png", "image/jpeg", "image/jpg"];
     if (file && allowedFormats.includes(file.type)) {
+      imageChanged.current = true;
       setImage(file);
     } else {
       alert("Please upload a file in PNG, JPG, or JPEG format.");
@@ -113,10 +146,18 @@ const MyForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const attachmentContentId = await submitImage();
+    let imageId = attachmentContent.id;
+
     try {
       setLoading(true);
+
+      console.log(imageChanged);
+      if (imageChanged.current) {
+        imageId = await submitImage();
+      }
+
       const dataToSubmit = {
+        id,
         titleUz,
         titleRu,
         descriptionUz,
@@ -126,11 +167,11 @@ const MyForm = () => {
         price: +price,
         dateTime,
         location,
-        attachmentContentId: +attachmentContentId,
+        attachmentContentId: +imageId,
       };
       const res = await jwtApi.post("/show-keys", dataToSubmit);
       console.log(res);
-      NotificationManager.success("Shocase item created", "Success");
+      NotificationManager.success("Showcase item created", "Success");
       navigation("/admin/showcase", { replace: true });
     } catch (error) {
       console.log(error);
@@ -198,8 +239,11 @@ const MyForm = () => {
       );
 
       clearValues();
-      navigation("/admin/teacher", { replace: true });
-      NotificationManager.success("Teacher succussfully created", "Success!");
+      navigation("/admin/showcase", { replace: true });
+      NotificationManager.success(
+        "Showcase item succussfully created",
+        "Success!"
+      );
       //   setLoading(false);
     } catch (error) {
       NotificationManager.error("Something went wrong", "Error!");
@@ -208,7 +252,9 @@ const MyForm = () => {
     }
   };
 
-  return (
+  return pageLoading ? (
+    <Spinner />
+  ) : (
     <ThemeProvider theme={darkTheme}>
       <Box
         component="form"
