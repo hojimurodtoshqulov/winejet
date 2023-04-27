@@ -209,7 +209,7 @@ const Teachers = () => {
 	}, []);
 	// console.log("data >>> ", data);
 
-	console.log("image>>", image);
+	// console.log("image>>", image);
 	return (
 		<section className="teachers" ref={ref}>
 			<div className="teachers__container">

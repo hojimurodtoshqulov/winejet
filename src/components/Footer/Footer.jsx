@@ -13,9 +13,7 @@ import { useTranslation } from "react-i18next";
 import { HiOutlineCalendar } from "react-icons/hi";
 function Footer() {
 	const [pages, setPages] = useState([]);
-
 	const { i18n } = useTranslation();
-
 	useEffect(() => {
 		const getPages = async () => {
 			try {
@@ -40,8 +38,8 @@ function Footer() {
 				</div>
 				<div className="footer__wrapper">
 					<div className="column-wrap">
-						<h6>Pages</h6>
-						{pages.map((item) => (
+						<h6>Страницы</h6>
+						{pages?.map((item) => (
 							<Link key={item.link} to={item.link}>
 								{getContent(item.nameRu, item.nameUz)}
 							</Link>
@@ -54,16 +52,8 @@ function Footer() {
             <Link to="">amet</Link>
             <Link to="">consectetur</Link> */}
 					</div>
-					{/*  <div className="column-wrap">
-            <h6>Jorem</h6>
-            <Link to="">Porem</Link>
-            <Link to="">ipsum</Link>
-            <Link to="">dolor sit</Link>
-            <Link to="">amet</Link>
-            <Link to="">consectetur</Link>
-          </div> */}
 					<div className="column-wrap">
-						<h6>Jorem</h6>
+						<h6>Контакт</h6>
 						<div className="footer__contact-info">
 							<p>
 								<BsTelephone />
@@ -89,7 +79,7 @@ function Footer() {
 								margin: "2.8rem 0",
 							}}
 						>
-							Join us
+							Присоединяйтесь к нам
 						</h6>
 						<div className="footer__social-wrapper">
 							<a className="social_icons" href="">

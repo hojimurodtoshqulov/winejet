@@ -27,7 +27,7 @@ const Section3 = () => {
 			<div className="section3-page__container">
 				<div className="section3-page__wrapper">
 					<div className="section3-page__right">
-						{console.log("about-us >->-> ", data?.attachmentContent?.data)}
+						{/* {console.log("about-us >->-> ", data?.attachmentContent?.data)} */}
 						{isDesktop ? (
 							<motion.div
 								initial={{ x: -50, opacity: 0 }}
