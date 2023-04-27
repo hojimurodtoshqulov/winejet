@@ -92,6 +92,7 @@ const MyForm = () => {
 
   const submitImage = async () => {
     try {
+      console.log(image);
       if (!image) throw new Error("Uplad an image");
       const formData = new FormData();
       formData.append("file", image);
@@ -110,9 +111,9 @@ const MyForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const attachmentContentId = await submitImage();
     try {
       setLoading(true);
+      const attachmentContentId = await submitImage();
       const dataToSubmit = {
         titleUz,
         titleRu,
