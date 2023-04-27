@@ -26,9 +26,8 @@ function LeftMenu() {
           <i className="fa fa-regular fa-chevron-left"></i>
         </div>
         <NavLink to="/" className="navbar-brand mx-4 mb-3">
-          {" "}
-          <h3 className="text-primary">
-            <i className="fa fa-user-edit me-2"></i>DarkPan
+          <h3 className="text-primary h5">
+            <i className="fa fa-user-edit me-2"></i>Winjet
           </h3>
         </NavLink>
 
@@ -45,6 +44,12 @@ function LeftMenu() {
           >
             <i className="fa fa-solid fa-user me-2"></i>Teachers
           </NavLink>
+          {/* <NavLink
+            to="/admin/order"
+            className={`${s.nav_link} nav-item nav-link`}
+          >
+            <i className="fa fa-solid fa-th me-2"></i> Order
+          </NavLink> */}
 
           <NavLink
             to="/admin/news"
@@ -69,6 +74,12 @@ function LeftMenu() {
             className={`${s.nav_link} nav-item nav-link`}
           >
             <i className="fa fa-solid fa-th me-2"></i> About
+          </NavLink>
+          <NavLink
+            to="/admin/showcase"
+            className={`${s.nav_link} nav-item nav-link`}
+          >
+            <i className="fa fa-solid fa-th me-2"></i> Showcase
           </NavLink>
 
           {/* <div className="nav-item dropdown">

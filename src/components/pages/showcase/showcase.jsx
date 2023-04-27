@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { constatns } from "../../../redux/constants";
 import { changeFormType } from "../../../redux/admin/adminSlice";
-export default function News() {
+export default function Showcase() {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
 
@@ -37,13 +37,17 @@ export default function News() {
     getItems();
   }, [count]);
 
+  useEffect(() => {
+    getItems();
+  }, []);
+
   return (
     <div className="container-fluid pt-4 px-4">
       <div className="row vh-100  rounded  justify-content-center mx-0">
         <div className="col-12">
           <div className="bg-secondary rounded h-100 p-4">
             <div className="d-flex justify-content-between">
-              <h6 className="mb-4">News </h6>
+              <h6 className="mb-4">Showcase</h6>
               <div
                 onClick={() => {
                   dipatch(changeFormType(constatns.form.creating));

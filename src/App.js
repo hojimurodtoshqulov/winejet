@@ -43,6 +43,11 @@ import { useEffect } from "react";
 
 import "aos/dist/aos.css";
 import AOS from "aos";
+import Showcase from "./components/pages/showcase/showcase";
+import ShowcaseCreate from "./components/pages/showcase/showcaseCreate";
+import ShowcaseView from "./components/pages/showcase/showcaseView";
+import Order from "./components/pages/order/order";
+import OrderView from "./components/pages/order/orderView";
 
 function App() {
   setTimeout(function () {
@@ -102,6 +107,13 @@ function App() {
           <Route path="about" element={<CoursesCategory />} />
           <Route path="about/create" element={<CoursesCategoryCreate />} />
           <Route path="about/view/:id" element={<CoursesCategoryView />} />
+
+          <Route path="showcase" element={<Showcase />} />
+          <Route path="showcase/create" element={<ShowcaseCreate />} />
+          <Route path="showcase/view/:id" element={<ShowcaseView />} />
+
+          <Route path="order" element={<Order />} />
+          <Route path="order/view/:id" element={<OrderView />} />
         </Route>
       </Routes>
 
