@@ -1,16 +1,14 @@
 import "./Navbar.scss";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { FiSearch } from "react-icons/fi";
 import { HiOutlineCalendar } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import SelectComponent from "./SelectComponent/SelectComponent";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import SideMenu from "./SideMenu/SideMenu";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
-
 import { getContent } from "../../utils/changeLang";
-
 import { Link as Scroll } from "react-scroll";
 import { links, translations } from "./links";
 const Navbar = () => {
@@ -18,7 +16,6 @@ const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
   const { pathname } = useLocation();
   const [expanded, setExpanded] = useState(false);
-
   const [data, setData] = useState([]);
   const handleChange = (panel) => (_, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -91,24 +88,6 @@ const Navbar = () => {
             {data.map((item, i) => {
               return (
                 <li key={item.id}>
-                  {/* {item.scroll ? (
-										pathname === "/" ? (
-											<Scroll
-												className={""}
-												activeClass={"active-link"}
-												to={"section3-page"}
-												spy={true}
-												offset={-150}
-											>
-												{getContent(
-													translations["ru"][item.link],
-													translations["uz"][item.link]
-												)}
-											</Scroll>
-										) : (
-											""
-										)
-									) : ( */}
                   <NavLink
                     className={getLinkClassName(pathname, item.link)}
                     to={item.link}
@@ -119,13 +98,7 @@ const Navbar = () => {
                      */}
 
                     {getContent(item.nameRu, item.nameUz)}
-                    {/* {item.nameRu} */}
-                    {/* {getContent(
-											translations["ru"][item.nameRu],
-											translations["uz"][item.nameUz]
-										)} */}
                   </NavLink>
-                  {/* )} */}
                 </li>
               );
             })}
