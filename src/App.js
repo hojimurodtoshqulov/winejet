@@ -48,6 +48,8 @@ import ShowcaseCreate from "./components/pages/showcase/showcaseCreate";
 import ShowcaseView from "./components/pages/showcase/showcaseView";
 import Order from "./components/pages/order/order";
 import OrderView from "./components/pages/order/orderView";
+import CoursesShowcase from "./components/pages/coursesShowcase/coursesShowcase";
+import CoursesShowcaseView from "./components/pages/coursesShowcase/coursesShowcaseView";
 
 function App() {
   setTimeout(function () {
@@ -114,6 +116,12 @@ function App() {
 
           <Route path="order" element={<Order />} />
           <Route path="order/view/:id" element={<OrderView />} />
+
+          <Route path="courses-showcase" element={<CoursesShowcase />} />
+          <Route
+            path="courses-showcase/view/:id"
+            element={<CoursesShowcaseView />}
+          />
         </Route>
       </Routes>
 
