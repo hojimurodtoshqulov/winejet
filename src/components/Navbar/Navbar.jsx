@@ -21,32 +21,32 @@ const Navbar = () => {
 	const handleChange = (panel) => (_, isExpanded) => {
 		setExpanded(isExpanded ? panel : false);
 	};
-	useEffect(() => {
-		axios
-			.get(`${process.env.REACT_APP_API_URL}/pages`)
-			.then((res) => {
-				setData(
-					res.data
-					// res.data.map((item) => {
-					// 	return {
-					// 		img: `data:image/png;base64,${item.attachmentContent.data}`,
-					// 		title_ru: item.titleRu,
-					// 		title_uz: item.titleUz,
-					// 		link: item.id,
-					// 		created_on: item.date,
-					// 		short_content_ru: item.descriptionRu,
-					// 		short_content_uz: item.descriptionUz,
-					// 	};
-					// })
-				);
-			})
-			.catch((err) => console.log("Error >>>> ", err));
-	}, []);
+	// useEffect(() => {
+	// 	axios
+	// 		.get(`${process.env.REACT_APP_API_URL}/pages`)
+	// 		.then((res) => {
+	// 			setData(
+	// 				res.data
+	// 				// res.data.map((item) => {
+	// 				// 	return {
+	// 				// 		img: `data:image/png;base64,${item.attachmentContent.data}`,
+	// 				// 		title_ru: item.titleRu,
+	// 				// 		title_uz: item.titleUz,
+	// 				// 		link: item.id,
+	// 				// 		created_on: item.date,
+	// 				// 		short_content_ru: item.descriptionRu,
+	// 				// 		short_content_uz: item.descriptionUz,
+	// 				// 	};
+	// 				// })
+	// 			);
+	// 		})
+	// 		.catch((err) => console.log("Error >>>> ", err));
+	// }, []);
 
 	useEffect(() => {
-		// axios.get(`${process.env.REACT_APP_API_URL}menu/get`).then((res) => {
-		// 	setData(res?.data?.data?.result);
-		// });
+		axios.get(`https://winejet-uz.herokuapp.com/api/pages`).then((res) => {
+			setData(res.data);
+		});
 		if (pathname === "/") {
 			setIsScrolled(false);
 			const handleScroll = () => {
@@ -64,7 +64,7 @@ const Navbar = () => {
 			setIsScrolled(true);
 		}
 	}, [pathname]);
-
+	console.log("data pages >>> ", data);
 	const getLinkClassName = (pathname, link) =>
 		pathname.split("/")[1] === link ? "active-link" : "";
 	const { t, i18n } = useTranslation();
@@ -76,7 +76,7 @@ const Navbar = () => {
 			<nav className={`navbar ${isScrolled ? "navbar-active" : ""}`}>
 				<div className="navbar__wrapper">
 					<div className="navbar__logo-wrapper">
-						<Link to={""}>
+						<Link to={"/"}>
 							<img className="logo-group" src="/images/logoGroup.png" alt="" />
 						</Link>
 					</div>
@@ -86,9 +86,9 @@ const Navbar = () => {
 								<FiSearch />
 							</span>
 						</li> */}
-						{links.map((item, i) => {
+						{data.map((item, i) => {
 							return (
-								<li key={i}>
+								<li key={item.id}>
 									{/* {item.scroll ? (
 										pathname === "/" ? (
 											<Scroll
@@ -111,10 +111,11 @@ const Navbar = () => {
 										className={getLinkClassName(pathname, item.link)}
 										to={item.link}
 									>
-										{getContent(
-											translations["ru"][item.link],
-											translations["uz"][item.link]
-										)}
+										{item.nameRu}
+										{/* {getContent(
+											translations["ru"][item.nameRu],
+											translations["uz"][item.nameUz]
+										)} */}
 									</NavLink>
 									{/* )} */}
 								</li>

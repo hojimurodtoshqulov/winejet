@@ -9,19 +9,23 @@ export default function News() {
 
   const { i18n } = useTranslation();
 
+  console.log(data);
+
   const handleDelete = (id) => {
-    axios.delete(`${process.env.REACT_APP_API_URL}/news/${id}`).then((res) => {
-      if (res.status == 200) {
-        getItems();
-        setCount(count + 1);
-      }
-    });
+    axios
+      .delete(`https://winejet-uz.herokuapp.com/api/news/${id}`)
+      .then((res) => {
+        if (res.status == 200) {
+          getItems();
+          setCount(count + 1);
+        }
+      });
   };
 
   const descLan = i18n.language === "uz" ? "textUz" : "textRu";
 
   const getItems = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/news`).then((res) => {
+    axios.get(`https://winejet-uz.herokuapp.com/api/news`).then((res) => {
       setData(res.data);
     });
   };
@@ -60,14 +64,14 @@ export default function News() {
                 </thead>
 
                 <tbody>
-                  {data ? (
+                  {data.length ? (
                     data.map(function (item, index) {
                       return (
                         <tr key={index}>
                           <th scope="row">{index + 1}</th>
                           <td>
-                            {item[descLan].slice(0, 70)}{" "}
-                            {item[descLan].length > 70 && "..."}{" "}
+                            {item[descLan]?.slice(0, 70)}{" "}
+                            {item[descLan]?.length > 70 && "..."}{" "}
                           </td>
                           <td>
                             <NavLink
@@ -92,7 +96,7 @@ export default function News() {
                     })
                   ) : (
                     <tr>
-                      <td>Not found</td>
+                      <td>No data ...</td>
                     </tr>
                   )}
                 </tbody>

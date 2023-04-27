@@ -1,0 +1,85 @@
+.formWrap {
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: #191c24;
+  }
+  
+  .courceFormWrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .teacherView {
+    gap: 1rem;
+    .imgBox {
+      height: 300px;
+      min-width: 250px;
+      width: 250px;
+      // background-color: red;
+      border: 1px solid #6c7293;
+      img {   
+        display: block;
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+  
+      @media (max-width: 600px) {
+        width: 100%;
+      }
+    }
+  
+    .teacherName {
+      font-size: 1.5rem;
+      color: #6c7293;
+    }
+  }
+  
+  /* Set the width of the input */
+  .my-date-time-picker {
+    width: 200px;
+  }
+  
+  /* Remove the default appearance */
+  .my-date-time-picker::-webkit-datetime-edit {
+    padding: 0;
+    margin: 0;
+    color: #333;
+  }
+  
+  /* Style the date and time fields */
+  .my-date-time-picker::-webkit-datetime-edit-date-field {
+    font-size: 16px;
+    padding: 4px;
+    border: 1px solid red;
+    border-radius: 4px;
+  }
+  
+  .my-date-time-picker::-webkit-datetime-edit-time-field {
+    font-size: 16px;
+    padding: 4px;
+    border: 1px solid red;
+    border-radius: 4px;
+  }
+  
+  /* Style the up and down arrows */
+  .my-date-time-picker::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  
+  .my-date-time-picker::-webkit-calendar-picker-indicator {
+    color: #333;
+    font-size: 16px;
+    padding: 4px;
+    border: 1px solid red;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  /* Set the text color on hover */
+  .my-date-time-picker:hover {
+    color: #333;
+  }
+  

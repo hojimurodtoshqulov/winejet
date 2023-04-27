@@ -23,7 +23,7 @@ const handleChange = (event) =>{
 
 const handleSubmit = (event)=>{
     event.preventDefault();
-    axios.post(`${process.env.REACT_APP_API_URL}lang/create`, data)
+    axios.post(`https://winejet-uz.herokuapp.com/apilang/create`, data)
     .then(res=>{
         if (res.status == 200){
             navigation("/admin/setting", {replace: true})

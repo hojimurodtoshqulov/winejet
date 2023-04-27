@@ -27,13 +27,13 @@ export default function NewsCreate() {
   const [lang, setLang] = useState([]);
   const navigation = useNavigate();
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}lang/get`).then((res) => {
+    axios.get(`https://winejet-uz.herokuapp.com/apilang/get`).then((res) => {
       setLang(res.data.data.result);
     });
 
     data.created_on = Math.floor(data.created_on.getTime() / 1000);
     axios
-      .post(`${process.env.REACT_APP_API_URL}news/create`, data)
+      .post(`https://winejet-uz.herokuapp.com/apinews/create`, data)
       .then((res) => {
         if (res.status == 200) {
           setCategoryId(res.data.id);
@@ -63,7 +63,7 @@ export default function NewsCreate() {
     if (data.title_ru.length > 0) {
       data.created_on = Math.floor(data.created_on.getTime() / 1000);
       axios
-        .put(`${process.env.REACT_APP_API_URL}news/update/${categoryId}`, data)
+        .put(`https://winejet-uz.herokuapp.com/apinews/update/${categoryId}`, data)
         .then((res) => {
           if (res.status == 200) {
             navigation("/admin/news", { replace: true });

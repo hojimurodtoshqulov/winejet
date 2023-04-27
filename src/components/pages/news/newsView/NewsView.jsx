@@ -53,7 +53,7 @@ const TeacherViewNew = () => {
 
   React.useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/news/${id}`)
+      .get(`https://winejet-uz.herokuapp.com/api/news/${id}`)
       .then((res) => {
         setData({
           textUz: res.data.textUz,

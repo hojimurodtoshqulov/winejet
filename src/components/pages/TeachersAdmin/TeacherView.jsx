@@ -37,7 +37,7 @@ export default function TeacherView() {
   // };
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}teachers/get/${id}`)
+      .get(`https://winejet-uz.herokuapp.com/apiteachers/get/${id}`)
       .then((res) => {
         if (res.status == 200) {
           setData(res.data.data);
@@ -53,7 +53,7 @@ export default function TeacherView() {
       delete data["password"];
     }
     axios
-      .put(`${process.env.REACT_APP_API_URL}teachers/update/${id}`, data)
+      .put(`https://winejet-uz.herokuapp.com/apiteachers/update/${id}`, data)
       .then((res) => {
         if (res.status == 200) {
           navigation("/admin/teacher", { replace: true });

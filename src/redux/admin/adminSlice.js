@@ -6,6 +6,8 @@ const initialState = {
   teacher: null,
   course: null,
   news: null,
+  about: null,
+  token: null,
 };
 
 export const adminSlice = createSlice({
@@ -24,11 +26,23 @@ export const adminSlice = createSlice({
     setNews: (state, action) => {
       state.news = action.payload;
     },
+    setToken: (state, action) => {
+      state.token = action.payload;
+    },
+    setAbout: (state, action) => {
+      state.about = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { changeFormType, setTeacher, setCource, setNews } =
-  adminSlice.actions;
+export const {
+  changeFormType,
+  setTeacher,
+  setCource,
+  setNews,
+  setToken,
+  setAbout,
+} = adminSlice.actions;
 
 export default adminSlice.reducer;

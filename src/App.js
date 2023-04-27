@@ -60,18 +60,6 @@ function App() {
 
   return (
     <div className="wrapper">
-      <div
-        id="spinner"
-        className="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
-      >
-        <div
-          className="spinner-border text-primary"
-          style={{ width: "3rem", height: "3rem" }}
-          role="status"
-        >
-          <span className="sr-only">Loading...</span>
-        </div>
-      </div>
       <ScrollTop />
 
       <Routes>
@@ -91,9 +79,9 @@ function App() {
           <Route path="users/create" element={<UserCreate />} />
           <Route path="users/view/:id" element={<UserView />} />
 
-          <Route path="menu" element={<Menu />} />
-          <Route path="menu/create" element={<MenuCreate />} />
-          <Route path="menu/view/:id" element={<MenuView />} />
+          <Route path="pages" element={<Menu />} />
+          <Route path="pages/create" element={<MenuCreate />} />
+          <Route path="pages/view/:id" element={<MenuView />} />
 
           <Route path="teacher" element={<TeachersAdmin />} />
           <Route path="teacher/create" element={<TeacherCreate />} />
@@ -111,15 +99,9 @@ function App() {
           <Route path="courses/create" element={<AdminCoursesCreate />} />
           <Route path="courses/view/:id" element={<AdminCoursesView />} />
 
-          <Route path="courses-category" element={<CoursesCategory />} />
-          <Route
-            path="courses-category/create"
-            element={<CoursesCategoryCreate />}
-          />
-          <Route
-            path="courses-category/view/:id"
-            element={<CoursesCategoryView />}
-          />
+          <Route path="about" element={<CoursesCategory />} />
+          <Route path="about/create" element={<CoursesCategoryCreate />} />
+          <Route path="about/view/:id" element={<CoursesCategoryView />} />
         </Route>
       </Routes>
 

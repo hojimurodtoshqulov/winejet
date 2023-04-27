@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeFormType } from "../../../redux/admin/adminSlice";
 import { constatns } from "../../../redux/constants";
 import { NotificationManager } from "react-notifications";
+import { Skeleton } from "@mui/material";
 
 function TeachersAdmin({ usersState, updateUsers }) {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function TeachersAdmin({ usersState, updateUsers }) {
   const [count, setCount] = useState(1);
   const handleDelete = (id) => {
     axios
-      .delete(`${process.env.REACT_APP_API_URL}/teachers/${id}`)
+      .delete(`https://winejet-uz.herokuapp.com/api/teachers/${id}`)
       .then((res) => {
         if (res.status == 200) {
           setCount(count + 1);
@@ -29,7 +30,7 @@ function TeachersAdmin({ usersState, updateUsers }) {
   };
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/teachers`).then((res) => {
+    axios.get(`https://winejet-uz.herokuapp.com/api/teachers`).then((res) => {
       setData(res.data);
     });
   }, [count]);
@@ -96,7 +97,9 @@ function TeachersAdmin({ usersState, updateUsers }) {
                         );
                       })
                   ) : (
-                    <h4>No data</h4>
+                    <tr>
+                      <td>No data ...</td>
+                    </tr>
                   )}
                 </tbody>
               </table>

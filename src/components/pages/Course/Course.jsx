@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import i18next from "i18next";
 import { months } from "../../../utils/customLang";
 import { getContent } from "../../../utils/changeLang";
+import { useTranslation } from "react-i18next";
 
 const img = [
   { img: "/images/grape1.png" },
@@ -35,37 +36,49 @@ const data1 = [
   "Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac ",
 ];
 
+const formatter = new Intl.NumberFormat("ru-RU", {
+  style: "currency",
+  currency: "UZS",
+});
+
 const Course = () => {
   const currentLanguage = i18next.language;
   const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState(staticData.data);
   const params = useParams();
+  const { i18n } = useTranslation();
   const id = params.slug;
 
+  const desc = i18n.language === "uz" ? "short_content_uz" : "short_content_ru";
+
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/courses/${id}`).then((res) => {
-      const item = res.data;
-      // data: {
-      //   img: "/images/grape1.png",
-      //   title_ru: "Porem ipsum dolor ",
-      //   title_uz: "Porem ipsum dolor",
-      //   link: "",
-      //   created_on: Date.now(),
-      //   short_content_ru: "Morem ipsum dolor sit amet, consectetur",
-      //   short_content_uz: "Morem ipsum dolor sit amet, consectetur",
-      //   price: "200.000",
-      // }
-      setData({
-        img: `data:image/png;base64,${item.attachmentContent.data}`,
-        title_ru: item.titleRu,
-        title_uz: item.titleUz,
-        link: item.id,
-        created_on: item.date,
-        short_content_ru: item.descriptionRu,
-        short_content_uz: item.descriptionUz,
-        price: item.price,
+    axios
+      .get(
+        `https://winejet-uz.herokuapp.com/api/courses/${id}`
+      )
+      .then((res) => {
+        const item = res.data;
+        // data: {
+        //   img: "/images/grape1.png",
+        //   title_ru: "Porem ipsum dolor ",
+        //   title_uz: "Porem ipsum dolor",
+        //   link: "",
+        //   created_on: Date.now(),
+        //   short_content_ru: "Morem ipsum dolor sit amet, consectetur",
+        //   short_content_uz: "Morem ipsum dolor sit amet, consectetur",
+        //   price: "200.000",
+        // }
+        setData({
+          img: `data:image/png;base64,${item.attachmentContent.data}`,
+          title_ru: item.titleRu,
+          title_uz: item.titleUz,
+          link: item.id,
+          created_on: item.date,
+          short_content_ru: item.descriptionRu,
+          short_content_uz: item.descriptionUz,
+          price: item.price,
+        });
       });
-    });
   }, []);
   let date = new Date(data.created_on);
 
@@ -93,11 +106,10 @@ const Course = () => {
                     ]
                   )}
                 </p>
-                <p className="course-page__desc">
-                  {getContent(data.short_content_ru, data.short_content_uz)}{" "}
-                </p>
+                <p className="course-page__desc">{data[desc]} </p>
                 <p className="course-page__desc-price">
-                  {data.price} {getContent("сум", "so'm")}
+                  {formatter.format(data.price)}
+                  {/* {getContent("сум", "so'm")} */}
                 </p>
                 <button onClick={() => setOpenModal(true)}>Купить</button>
               </div>

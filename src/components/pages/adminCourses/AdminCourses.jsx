@@ -14,10 +14,20 @@ export default function AdminCourses() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`${process.env.REACT_APP_API_URL}/courses/${id}`)
+      .delete(
+        `https://winejet-uz.herokuapp.com/api/courses/${id}`
+      )
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           setCount(count + 1);
+          axios
+            .get(
+              `https://winejet-uz.herokuapp.com/api/courses`
+            )
+            .then((res) => {
+              console.log(res);
+              setData(res.data);
+            });
           NotificationManager.success(
             "Course succussfully deleted",
             "Success!"
@@ -33,10 +43,14 @@ export default function AdminCourses() {
   console.log(data);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/courses`).then((res) => {
-      console.log(res);
-      setData(res.data);
-    });
+    axios
+      .get(
+        `https://winejet-uz.herokuapp.com/api/courses`
+      )
+      .then((res) => {
+        console.log(res);
+        setData(res.data);
+      });
   }, [count]);
 
   return (
@@ -69,7 +83,7 @@ export default function AdminCourses() {
                 </thead>
 
                 <tbody>
-                  {data ? (
+                  {data.length ? (
                     data
                       ?.filter((item) => item?.title_ru !== "")
                       .map(function (item, index) {
@@ -100,7 +114,7 @@ export default function AdminCourses() {
                       })
                   ) : (
                     <tr>
-                      <td>Not found</td>
+                      <td>No data ...</td>
                     </tr>
                   )}
                 </tbody>

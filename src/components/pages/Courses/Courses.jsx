@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { Card } from "../../";
 import { getContent } from "../../../utils/changeLang";
+import { Box, Skeleton } from "@mui/material";
 
 const staticData = {
   data: [
@@ -72,24 +73,28 @@ const Courses = () => {
   const [tab, setTab] = useState(["tab1", "tab2", "tab3", "tab4"]);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/courses`).then((res) => {
-      console.log(res);
-      setFilteredData(
-        res.data.map((item) => {
-          return {
-            img: `data:image/png;base64,${item.attachmentContent.data}`,
-            title_ru: item.titleRu,
-            title_uz: item.titleUz,
-            link: item.id,
-            created_on: item.date,
-            short_content_ru: item.descriptionRu,
-            short_content_uz: item.descriptionUz,
-          };
-        })
-      );
-      setFilteredData(res.data.data.result);
-      setData(res.data.data.result);
-    });
+    axios
+      .get(
+        `https://winejet-uz.herokuapp.com/api/courses`
+      )
+      .then((res) => {
+        console.log(res);
+        setFilteredData(
+          res.data.map((item) => {
+            return {
+              img: `data:image/png;base64,${item.attachmentContent.data}`,
+              title_ru: item.titleRu,
+              title_uz: item.titleUz,
+              link: item.id,
+              created_on: item.date,
+              short_content_ru: item.descriptionRu,
+              short_content_uz: item.descriptionUz,
+            };
+          })
+        );
+        setFilteredData(res.data.data.result);
+        setData(res.data.data.result);
+      });
   }, []);
 
   const handleTabClick = (index) => {
@@ -150,26 +155,52 @@ const Courses = () => {
 
             <div className="card-wrapper">
               <AnimatePresence>
-                {filteredData.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -50 }}
-                    transition={{ type: "tween" }}
-                    data-aos="flip-left"
+                {filteredData.length ? (
+                  filteredData.map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -50 }}
+                      transition={{ type: "tween" }}
+                      data-aos="flip-left"
+                    >
+                      <Card
+                        img={item.img}
+                        title_ru={item.title_ru}
+                        title_uz={item.title_uz}
+                        link={item.link}
+                        date={item.created_on}
+                        short_content_ru={item.short_content_ru}
+                        short_content_uz={item.short_content_uz}
+                      />
+                    </motion.div>
+                  ))
+                ) : (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "3rem",
+                      flexWrap: "wrap",
+                      width: "100%",
+                    }}
                   >
-                    <Card
-                      img={item.img}
-                      title_ru={item.title_ru}
-                      title_uz={item.title_uz}
-                      link={item.link}
-                      date={item.created_on}
-                      short_content_ru={item.short_content_ru}
-                      short_content_uz={item.short_content_uz}
-                    />
-                  </motion.div>
-                ))}
+                    <Box>
+                      <Skeleton sx={{ height: "300px", width: "200px" }} />
+                      <Skeleton width="60%" />
+                    </Box>
+                    <Box>
+                      <Skeleton sx={{ height: "300px", width: "200px" }} />
+                      <Skeleton width="60%" />
+                    </Box>
+                    <Box>
+                      <Skeleton sx={{ height: "300px", width: "200px" }} />
+                      <Skeleton width="60%" />
+                    </Box>
+                  </div>
+                )}
               </AnimatePresence>
             </div>
           </div>

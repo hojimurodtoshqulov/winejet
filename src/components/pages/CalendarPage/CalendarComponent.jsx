@@ -17,7 +17,7 @@ function CalendarComponent({ setFilteredData }) {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}courses/get-main`)
+      .get(`https://winejet-uz.herokuapp.com/apicourses/get-main`)
       .then((res) => {
         // setFilteredData(res.data.data.result);
         setData(res.data.data.result);

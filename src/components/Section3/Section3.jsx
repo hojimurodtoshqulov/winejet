@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./Section3.scss";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -9,19 +11,23 @@ const Section3 = () => {
 	const { ref, inView } = useInView({
 		threshold: 0.4,
 	});
-
 	const { t } = useTranslation();
-
 	const animate1 = {
 		opacity: inView ? 1 : 0,
 		x: inView ? 50 : -100,
 	};
-
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		axios.get(`https://winejet-uz.herokuapp.com/api/about-us`).then((res) => {
+			setData(res.data);
+		});
+	}, []);
 	return (
 		<section className="section3-page" ref={ref} id="section3-page">
 			<div className="section3-page__container">
 				<div className="section3-page__wrapper">
 					<div className="section3-page__right">
+						{console.log("about-us >->-> ", data?.attachmentContent?.data)}
 						{isDesktop ? (
 							<motion.div
 								initial={{ x: -50, opacity: 0 }}
@@ -36,8 +42,10 @@ const Section3 = () => {
 									{t("aboutus.header")}
 								</span>
 								<div className="section3-card">
-									<h1>{t("aboutus.title")}</h1>
-									<p className="section3-page__desc">{t("aboutus.info")}</p>
+									<h1>{data.titleRu}</h1>
+									<p className="section3-page__desc">{data.descriptionRu}</p>
+									{/* <h1>{t("aboutus.title")}</h1>
+									<p className="section3-page__desc">{t("aboutus.info")}</p> */}
 								</div>
 							</motion.div>
 						) : (
@@ -46,15 +54,20 @@ const Section3 = () => {
 									{t("aboutus.header")}
 								</span>
 								<div className="section3-card">
-									<h1>{t("aboutus.title")}</h1>
-									<p className="section3-page__desc">{t("aboutus.info")}</p>
+									<h1>{data.titleRu}</h1>
+									<p className="section3-page__desc">{data.descriptionRu}</p>
+									{/* <h1>{t("aboutus.title")}</h1>
+									<p className="section3-page__desc">{t("aboutus.info")}</p> */}
 								</div>
 							</div>
 						)}
 					</div>
 					<div className="section3-page__left">
 						<div className="section3-left-imgWrapper">
-							<img src="/images/w.png" alt="" />
+							<img
+								src={`data:image/png;base64,${data?.attachmentContent?.data}`}
+								alt="about image"
+							/>
 						</div>
 					</div>
 				</div>

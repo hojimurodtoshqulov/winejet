@@ -24,17 +24,17 @@ export default function TeacherCreate() {
   };
 
   useEffect(() => {
-    // axios.get(`${process.env.REACT_APP_API_URL}lang/get`).then((res) => {
+    // axios.get(`https://winejet-uz.herokuapp.com/apilang/get`).then((res) => {
     //   setLang(res.data.data.result);
     // });
     // axios
-    //   .get(`${process.env.REACT_APP_API_URL}courses_category/get-main`)
+    //   .get(`https://winejet-uz.herokuapp.com/apicourses_category/get-main`)
     //   .then((res) => {
     //     setCoursesCategory(res.data.data.result);
     //   });
     // data.created_on = Math.floor(data.crea ted_on.getTime() / 1000);
     // axios
-    //   .post(`${process.env.REACT_APP_API_URL}teachers/create`, data)
+    //   .post(`https://winejet-uz.herokuapp.com/apiteachers/create`, data)
     //   .then((res) => {
     //     if (res.status === 200) {
     //       setCategoryId(res.data.id);
@@ -45,14 +45,14 @@ export default function TeacherCreate() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post(`${process.env.REACT_APP_API_URL}teachers`, data).then((res) => {
+    axios.post(`https://winejet-uz.herokuapp.com/apiteachers`, data).then((res) => {
       if (res.status === 200) {
         setCategoryId(res.data.id);
       }
     });
     // axios
     //   .put(
-    //     `${process.env.REACT_APP_API_URL}teachers/update/${categoryId}`,
+    //     `https://winejet-uz.herokuapp.com/apiteachers/update/${categoryId}`,
     //     data
     //   )
     //   .then((res) => {

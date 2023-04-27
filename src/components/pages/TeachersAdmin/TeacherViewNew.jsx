@@ -52,7 +52,7 @@ const TeacherViewNew = () => {
 
   React.useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/teachers/${id}`)
+      .get(`https://winejet-uz.herokuapp.com/api/teachers/${id}`)
       .then((res) => {
         console.log(res);
         const imageAttachment = res.data.attachmentContent;
