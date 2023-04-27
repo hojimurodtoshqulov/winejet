@@ -63,7 +63,7 @@ const Navbar = () => {
       setIsScrolled(true);
     }
   }, [pathname]);
-  console.log("data pages >>> ", data);
+//   console.log("data pages >>> ", data);
   const getLinkClassName = (pathname, link) =>
     pathname.split("/")[1] === link ? "active-link" : "";
   const { t, i18n } = useTranslation();

@@ -32,7 +32,7 @@ const Section6 = () => {
 
   const activeLang = i18n.language === "uz" ? "textUz" : "textRu";
 
-  console.log("newsData>>>>>>>>>", newsData);
+  // console.log("newsData>>>>>>>>>", newsData);
 
   useEffect(() => {
     console.log(`https://winejet-uz.herokuapp.com/api/news`);
