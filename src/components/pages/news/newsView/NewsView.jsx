@@ -55,10 +55,12 @@ const TeacherViewNew = () => {
     axios
       .get(`https://winejet-uz.herokuapp.com/api/news/${id}`)
       .then((res) => {
+        console.log(res);
         setData({
           textUz: res.data.textUz,
           textRu: res.data.textRu,
           id: res.data.id,
+          attachmentContents: res.data.attachmentContents,
         });
       })
       .then((data) => setLoading(false));
@@ -96,7 +98,7 @@ const TeacherViewNew = () => {
               >
                 <Button
                   onClick={() => {
-                    console.log(data);
+                    console.log("101>=>", data);
                     dispatch(changeFormType(constatns.form.updating));
                     dispatch(setNews(data));
                     navigation("/admin/news/create", { replace: true });

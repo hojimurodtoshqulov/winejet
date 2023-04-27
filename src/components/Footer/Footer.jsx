@@ -8,7 +8,7 @@ import { RxTwitterLogo } from "react-icons/rx";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { HiOutlineCalendar } from "react-icons/hi";
-
+import { getContent } from "../../utils/changeLang";
 function Footer() {
 	const [data, setData] = useState([]);
 	useEffect(() => {
@@ -28,17 +28,13 @@ function Footer() {
 				<div className="footer__wrapper">
 					<div className="column-wrap">
 						<h6>Pages</h6>
-						{data.map((item, i) => (
-							<Link key={item.id} to={item.link}>
-								{item.nameRu}
+						{data?.map((item, i) => (
+							<Link key={item?.id} to={item?.link}>
+								{getContent(item?.nameRu, item?.nameUz)}
 							</Link>
 						))}
-						<Link
-							
-							to="/calendar"
-						>
-								<HiOutlineCalendar />
-							
+						<Link to="/calendar">
+							<HiOutlineCalendar />
 						</Link>
 					</div>
 					<div className="column-wrap">

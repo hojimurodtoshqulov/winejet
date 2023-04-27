@@ -18,9 +18,11 @@ import { useSelector } from "react-redux";
 import { constatns } from "../../../../redux/constants";
 import { useEffect } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
+import useJwtApi from "../../../../utils/jwtApi";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import moment from "moment";
+import UploadComponent from "../../../imageUploader/imageUploader";
 
 const darkTheme = createTheme({
   palette: {
@@ -39,10 +41,21 @@ const darkTheme = createTheme({
 const MyForm = () => {
   const [textUz, setTextUz] = useState("");
   const [textRu, setTextRu] = useState("");
+  const [
+    {
+      defaultImages = [],
+      pictures = [],
+      imgUploadText = "Upload images",
+      isTouched,
+    },
+    setPictureSate,
+  ] = useState({});
 
   const [loading, setLoading] = useState(false);
   const { formType } = useSelector((state) => state.admin);
   const { news } = useSelector((state) => state.admin);
+
+  const { jwtApi } = useJwtApi();
 
   console.log(formType);
 
@@ -53,44 +66,111 @@ const MyForm = () => {
     setTextUz("");
   };
 
+  const handleImageUpload = (pictureFiles, pictureDataURLs) => {
+    console.log(pictureFiles, pictureDataURLs);
+
+    if (formType === constatns.form.updating) {
+      if (!isTouched) {
+        console.log("cleared");
+        setPictureSate((prev) => ({
+          ...prev,
+          defaultImages: [pictureDataURLs[pictureDataURLs.length - 1]],
+          pictures: [...pictureFiles],
+          isTouched: true,
+        }));
+      } else {
+        setPictureSate((prev) => ({
+          ...prev,
+          defaultImages: [...pictureDataURLs],
+          pictures: [...pictureFiles],
+        }));
+      }
+    } else {
+      console.log("submity");
+      setPictureSate((prev) => ({
+        ...prev,
+        defaultImages: [...pictureDataURLs],
+        pictures: [...pictureFiles],
+      }));
+    }
+  };
+
+  console.log(pictures);
+
   useEffect(() => {
     setLoading(false);
     if (formType === constatns.form.updating) {
       setTextRu(news.textUz);
       setTextUz(news.textRu);
+      setPictureSate((prev) => ({ ...prev, imgUploadText: "Update images" }));
+      setPictureSate((prev) => ({
+        ...prev,
+        defaultImages: [
+          ...news.attachmentContents.map(
+            (item) => `data:image/png;base64,${item.data}`
+          ),
+        ],
+      }));
     }
   }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("submit");
-    setLoading(true);
+  const submitImages = async () => {
+    console.log("pics=>", pictures);
+    try {
+      if (pictures.length !== 2) throw new Error("Upload 2 images");
+      const imagesFormData = pictures.map((image) => {
+        const formData = new FormData();
+        formData.append("file", image);
+        return formData;
+      });
+      const promises = imagesFormData.map((formData) =>
+        jwtApi.post("/files", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        })
+      );
 
-    const newsData = {
-      textUz,
-      textRu,
-    };
+      const res = await Promise.all(promises);
+      return res.map((item) => parseInt(item.data.message));
+      // console.log(res);
+      // const res = ;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error.message);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      console.log("submit");
+      setLoading(true);
+
+      const attachmentContentIds = await submitImages();
+      const newsData = {
+        textUz,
+        textRu,
+        attachmentContentIds,
+      };
+
+      const res = await jwtApi.post(
+        `https://winejet-uz.herokuapp.com/api/news`,
+        newsData
+      );
+
+      NotificationManager.success("News succussfully created", "Success!");
+      clearValues();
+      navigation("/admin/news", { replace: true });
+    } catch (error) {
+      NotificationManager.error(error.message, "Error!");
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
 
     // https://winejet-uz.herokuapp.com/api
-    console.log(newsData);
-    axios
-      .post(`https://winejet-uz.herokuapp.com/api/news`, newsData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-      })
-      .then((data) => {
-        console.log(data);
-        NotificationManager.success("News succussfully created", "Success!");
-        clearValues();
-        navigation("/admin/news", { replace: true });
-      })
-      .catch((err) => {
-        NotificationManager.error("Something went wrong", "Error!");
-        console.log(err);
-      })
-      .finally(() => setLoading(false));
 
     /*   axios.post(`https://winejet-uz.herokuapp.com/apiteachers`, data).then((res) => {
         if (res.status === 200) {   
@@ -103,26 +183,35 @@ const MyForm = () => {
     event.preventDefault();
     setLoading(true);
 
+    let attachmentContentIds;
+
+    if (isTouched) {
+      attachmentContentIds = await submitImages();
+    }
+
     const updatedData = {
-      //   fullName: fullName || teacher.fullName,
-      //   infoUz: descriptionUZ || teacher.infoUz,
-      //   infoRu: descriptionRU || teacher.infoRu,
-      //   attachmentId: teacher.attachmentId,
-      //   id: teacher.id,
       textUz: textUz || news.textUz,
       textRu: textRu || news.textRu,
+      attachmentContentIds:
+        attachmentContentIds || news.attachmentContents.map((item) => item.id),
       id: news.id,
     };
+
+    console.log(pictures);
 
     try {
       // Image validation
       console.log(updatedData);
-      await axios.post(`https://winejet-uz.herokuapp.com/api/news`, updatedData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-      });
+      await axios.post(
+        `https://winejet-uz.herokuapp.com/api/news`,
+        updatedData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        }
+      );
 
       clearValues();
       navigation("/admin/news", { replace: true });
@@ -180,6 +269,13 @@ const MyForm = () => {
                 color="secondary"
               />
             </Box>
+          </div>
+          <div className={!isTouched && style.uploadWrapper}>
+            <UploadComponent
+              defaultImages={defaultImages}
+              btnText={imgUploadText}
+              handleChange={handleImageUpload}
+            />
           </div>
 
           <Box
