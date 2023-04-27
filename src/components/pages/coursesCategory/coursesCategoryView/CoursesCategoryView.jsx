@@ -170,7 +170,7 @@ const MyForm = () => {
         const formdata = new FormData();
         formdata.append("file", image);
 
-        updatedData.attachmentId = await axios
+        updatedData.attachmentContentId = await axios
           .post(`https://winejet-uz.herokuapp.com/api/files`, formdata, {
             headers: {
               "Content-Type": "multipart/form-data",
