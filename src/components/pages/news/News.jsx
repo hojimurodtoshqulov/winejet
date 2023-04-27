@@ -2,13 +2,16 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import { useDispatch } from "react-redux";
+import { constatns } from "../../../redux/constants";
+import { changeFormType } from "../../../redux/admin/adminSlice";
 export default function News() {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
 
   const { i18n } = useTranslation();
 
+  const dipatch = useDispatch();
   console.log(data);
 
   const handleDelete = (id) => {
@@ -45,7 +48,11 @@ export default function News() {
           <div className="bg-secondary rounded h-100 p-4">
             <div className="d-flex justify-content-between">
               <h6 className="mb-4">News </h6>
-              <div onClick={() => {}}>
+              <div
+                onClick={() => {
+                  dipatch(changeFormType(constatns.form.creating));
+                }}
+              >
                 <NavLink to="create" className="btn btn-dark rounded-pill ">
                   Create
                 </NavLink>

@@ -42,7 +42,12 @@ const MyForm = () => {
   const [textUz, setTextUz] = useState("");
   const [textRu, setTextRu] = useState("");
   const [
-    { defaultImages = [], pictures = [], imgUploadText = "Upload images" },
+    {
+      defaultImages = [],
+      pictures = [],
+      imgUploadText = "Upload images",
+      isTouched,
+    },
     setPictureSate,
   ] = useState({});
 
@@ -64,11 +69,30 @@ const MyForm = () => {
   const handleImageUpload = (pictureFiles, pictureDataURLs) => {
     console.log(pictureFiles, pictureDataURLs);
 
-    setPictureSate((prev) => ({
-      ...prev,
-      defaultImages: [...pictureDataURLs],
-      pictures: [...pictureFiles],
-    }));
+    if (formType === constatns.form.updating) {
+      if (!isTouched) {
+        console.log("cleared");
+        setPictureSate((prev) => ({
+          ...prev,
+          defaultImages: [pictureDataURLs[pictureDataURLs.length - 1]],
+          pictures: [...pictureFiles],
+          isTouched: true,
+        }));
+      } else {
+        setPictureSate((prev) => ({
+          ...prev,
+          defaultImages: [...pictureDataURLs],
+          pictures: [...pictureFiles],
+        }));
+      }
+    } else {
+      console.log("submity");
+      setPictureSate((prev) => ({
+        ...prev,
+        defaultImages: [...pictureDataURLs],
+        pictures: [...pictureFiles],
+      }));
+    }
   };
 
   console.log(pictures);
@@ -79,13 +103,21 @@ const MyForm = () => {
       setTextRu(news.textUz);
       setTextUz(news.textRu);
       setPictureSate((prev) => ({ ...prev, imgUploadText: "Update images" }));
+      setPictureSate((prev) => ({
+        ...prev,
+        defaultImages: [
+          ...news.attachmentContents.map(
+            (item) => `data:image/png;base64,${item.data}`
+          ),
+        ],
+      }));
     }
   }, []);
 
   const submitImages = async () => {
     console.log("pics=>", pictures);
     try {
-      if (pictures.length !== 2) throw new Error("Upload 4 images");
+      if (pictures.length !== 2) throw new Error("Upload 2 images");
       const imagesFormData = pictures.map((image) => {
         const formData = new FormData();
         formData.append("file", image);
@@ -101,7 +133,7 @@ const MyForm = () => {
       );
 
       const res = await Promise.all(promises);
-      return res.map((item) => item.data.message);
+      return res.map((item) => parseInt(item.data.message));
       // console.log(res);
       // const res = ;
     } catch (error) {
@@ -151,11 +183,21 @@ const MyForm = () => {
     event.preventDefault();
     setLoading(true);
 
+    let attachmentContentIds;
+
+    if (isTouched) {
+      attachmentContentIds = await submitImages();
+    }
+
     const updatedData = {
       textUz: textUz || news.textUz,
       textRu: textRu || news.textRu,
+      attachmentContentIds:
+        attachmentContentIds || news.attachmentContents.map((item) => item.id),
       id: news.id,
     };
+
+    console.log(pictures);
 
     try {
       // Image validation
@@ -228,12 +270,14 @@ const MyForm = () => {
               />
             </Box>
           </div>
+          <div className={!isTouched && style.uploadWrapper}>
+            <UploadComponent
+              defaultImages={defaultImages}
+              btnText={imgUploadText}
+              handleChange={handleImageUpload}
+            />
+          </div>
 
-          <UploadComponent
-            defaultImages={defaultImages}
-            btnText={imgUploadText}
-            handleChange={handleImageUpload}
-          />
           <Box
             sx={{
               marginTop: 2,

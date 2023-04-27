@@ -10,14 +10,12 @@ const UploadComponent = (props) => {
     props.handleChange(pictureFiles, pictureDataURLs);
   };
 
-  const btnText = props.btnType === "edit" ? "Change photos" : "Add photos";
-
   return (
     <ImageUploader
       withIcon={false}
       withLabel={false}
       withPreview={true}
-      buttonText={btnText}
+      buttonText={props.btnText}
       fileSizeError={"File size is too big!"}
       fileTypeError={"Upload png or jpg!"}
       onChange={onDrop}

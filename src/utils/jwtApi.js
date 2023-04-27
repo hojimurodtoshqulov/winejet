@@ -8,7 +8,7 @@ const useJwtApi = () => {
     baseURL: "https://winejet-uz.herokuapp.com/api",
     headers: {
       "Content-Type": "application/json",
-      Authorization: token,
+      Authorization: `Bearer ${token}`,
     },
   });
 

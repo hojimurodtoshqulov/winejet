@@ -5,6 +5,12 @@
   background-color: #191c24;
 }
 
+.uploadWrapper {
+  [class="deleteImage"] {
+    display: none;
+  }
+}
+
 // .courceFormWrap {
 //   display: grid;
 //   grid-template-columns: repeat(2, 1fr);
