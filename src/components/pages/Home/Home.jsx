@@ -12,26 +12,37 @@ import SectionMap from "../../SectionMap/SectionMap";
 const staticData = {
   courses: [
     {
-      img: "/images/course-img1.png",
-      title_ru: "Курсы Официанта",
-      title_uz: "Курсы Официанта",
+      img: "/images/course-img1.jpg",
+      title_ru: "Курс Сомелье. WineJet Diploma",
+      title_uz: "Level 4 WineJet Diploma",
       link: "",
-      created_on: new Date(),
+      created_on: "2023-05-04T00:00:00.000+00:00",
       short_content_ru:
-        "Мы поможем вам получить все  самые важные и необходимые знания в данной сфере деятельности!",
+        "Курс Сомелье -  для начинающих экспертов. Обладателям 3 уровня WineJet. 20 очных занятий по 2,5 часа, 20 видео-уроков.",
       short_content_uz:
-        "Мы поможем вам получить все  самые важные и необходимые знания в данной сфере деятельности!",
+        "Sommelier Course -  expert knowledge for professionals and those who have completed Level 3 WineJet. 20 face-to-face lessons of 2.5 hours each plus 20 video lessons.",
     },
     {
-      img: "/images/course-img2.png",
-      title_ru: "Курсы Официанта",
-      title_uz: "Курсы Официанта",
+      img: "/images/course-img2.jpg",
+      title_ru: "1 уровень WineJet",
+      title_uz: "Level 1 WineJet",
       link: "",
-      created_on: new Date(),
+      created_on: "2023-05-01T00:00:00.000+00:00",
       short_content_ru:
-        "Мы поможем вам получить все  самые важные и необходимые знания в данной сфере деятельности!",
+        "Как стать сомелье - для любителей. 1 занятие, 2,5 часа!",
       short_content_uz:
-        "Мы поможем вам получить все  самые важные и необходимые знания в данной сфере деятельности!",
+        "How To Become a Sommelier - expert knowledge for non professionals and fans. 1 Lesson, 2.5 hours!",
+    },
+    {
+      img: "/images/course-img3.jpg",
+      title_ru: "2 уровень WineJet",
+      title_uz: "Level 2 WineJet",
+      link: "",
+      created_on: "2023-05-02T00:00:00.000+00:00",
+      short_content_ru:
+        "Однодневный винный интенсив - для любителей и профессионалов, 2 занятия по 2,5 часа.",
+      short_content_uz:
+        "One day wine intensive course - expert knowledge for wine lovers and trainees. 2 lessons, 2.5 hours each!",
     },
   ],
 };
@@ -42,7 +53,7 @@ const Home = () => {
   });
 
   const { t } = useTranslation();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(staticData.courses);
   const isDesktop = useMediaQuery("(min-width:900px)");
 
   useEffect(() => {
@@ -72,11 +83,11 @@ const Home = () => {
   };
 
   useEffect(() => {
-  	axios
-  		.get(`https://winejet-uz.herokuapp.com/apicourses/get-main`)
-  		.then((res) => {
-  			setData(res?.data?.data?.result);
-  		});
+    axios
+      .get(`https://winejet-uz.herokuapp.com/apicourses/get-main`)
+      .then((res) => {
+        setData(res?.data?.data?.result);
+      });
   }, []);
 
   return (
