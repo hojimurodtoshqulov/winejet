@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { BsTelephone } from "react-icons/bs";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { BsInstagram } from "react-icons/bs";
+import { TbBrandTelegram } from "react-icons/tb";
 import { FiFacebook } from "react-icons/fi";
 import { RxTwitterLogo } from "react-icons/rx";
+import { FaLinkedinIn } from "react-icons/fa";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
@@ -44,12 +46,63 @@ function Footer() {
 	return (
 		<footer className="footer">
 			<div className="footer__container">
-				<div className="footer__logo-wrapper">
+				{/* <div className="footer__logo-wrapper">
 					<Link to="/">
 						<img src="/images/logoGroup.png" alt="" />
 					</Link>
-				</div>
+				</div> */}
 				<div className="footer__wrapper">
+					<div className="column-wrap">
+						{/* <h6>
+							{getContent(
+								"подпишитесь на новости",
+								"yangiliklarga obuna bo'ling"
+							)}
+						</h6> */}
+
+						{/* <div className="footer__input-wrapper">
+							<input
+								type="text"
+								placeholder={getContent("Ваш email", "Bizning email")}
+							/>
+							<button>{getContent("отправить", "yuborish")}</button>
+						</div> */}
+						<div className="footer__logo-wrapper">
+							<Link to="/">
+								<img src="/images/logoGroup.png" alt="" />
+							</Link>
+						</div>
+						<h6
+							style={{
+								margin: "2.8rem 0",
+							}}
+						>
+							{getContent("Присоединяйтесь к нам", "bizga qo'shiling")}
+						</h6>
+						<div className="footer__social-wrapper">
+							<a
+								className="social_icons"
+								target="_blanck"
+								href={contactData.instagram}
+							>
+								<BsInstagram />
+							</a>
+							<a
+								className="social_icons"
+								target="_blanck"
+								href={contactData.telegram}
+							>
+								<TbBrandTelegram />
+							</a>
+							<a
+								className="social_icons"
+								target="_blanck"
+								href={contactData.facebook}
+							>
+								<FaLinkedinIn />
+							</a>
+						</div>
+					</div>
 					<div className="column-wrap">
 						<h6>{getContent("Страницы", "Ilovalar")}</h6>
 						{pages?.map((item) => (
@@ -69,53 +122,27 @@ function Footer() {
 							<p>
 								<BsTelephone />
 							</p>
-							<p>+{contactData.phoneNumber}</p>
+							<p>
+								<a href={`tel:+${contactData.phoneNumber}`} target="_blanck">
+									+{contactData.phoneNumber}
+								</a>
+							</p>
 						</div>
 						<div className="footer__contact-info">
 							<p>
 								<HiOutlineMail />
 							</p>
-							<p>{contactData.email}</p>
+							<p>
+								<a href={`mailto:${contactData.email}`} target="_blanck">
+									{contactData.email}
+								</a>
+							</p>
 						</div>
 						<div className="footer__contact-info">
 							<p>
 								<HiOutlineLocationMarker />
 							</p>
 							<p>{contactData.address} </p>
-						</div>
-					</div>
-					<div className="column-wrap">
-						<h6>
-							{getContent(
-								"подпишитесь на новости",
-								"yangiliklarga obuna bo'ling"
-							)}
-						</h6>
-
-						<div className="footer__input-wrapper">
-							<input
-								type="text"
-								placeholder={getContent("Ваш email", "Bizning email")}
-							/>
-							<button>{getContent("отправить", "yuborish")}</button>
-						</div>
-						<h6
-							style={{
-								margin: "2.8rem 0",
-							}}
-						>
-							{getContent("Присоединяйтесь к нам", "bizga qo'shiling")}
-						</h6>
-						<div className="footer__social-wrapper">
-							<a className="social_icons" href={contactData.instagram}>
-								<BsInstagram />
-							</a>
-							<a className="social_icons" href={contactData.facebook}>
-								<FiFacebook />
-							</a>
-							<a className="social_icons" href={contactData.twitter}>
-								<RxTwitterLogo />
-							</a>
 						</div>
 					</div>
 				</div>

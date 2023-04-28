@@ -5,8 +5,8 @@ import "./Course.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import i18next from "i18next";
-import { months } from "../../../utils/customLang";
 import { getContent } from "../../../utils/changeLang";
+import { months } from "../../../utils/customLang";
 import { useTranslation } from "react-i18next";
 
 const img = [
@@ -102,7 +102,7 @@ const Course = () => {
                   {formatter.format(data.price)}
                   {/* {getContent("сум", "so'm")} */}
                 </p>
-                <button onClick={() => setOpenModal(true)}>Купить</button>
+                <button onClick={() => setOpenModal(true)}>{getContent("Оставить зявку", "So'rov qoldiring")}</button>
               </div>
             </div>
             <div className="course-page__left">
