@@ -181,7 +181,7 @@ const AsideFilter = ({ isActive, setIsActive }) => {
 											marginLeft: "5rem",
 										}}
 									>
-										Worem ipsum
+										{item.date.slice(0,10)} {getContent("день", "kun")}
 									</p>
 								}
 								sx={{ fontSize: "24rem", color: "white" }}
