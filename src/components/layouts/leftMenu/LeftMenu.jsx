@@ -44,12 +44,12 @@ function LeftMenu() {
           >
             <i className="fa fa-solid fa-user me-2"></i>Teachers
           </NavLink>
-          {/* <NavLink
+          <NavLink
             to="/admin/order"
             className={`${s.nav_link} nav-item nav-link`}
           >
             <i className="fa fa-solid fa-th me-2"></i> Order
-          </NavLink> */}
+          </NavLink>
 
           <NavLink
             to="/admin/news"

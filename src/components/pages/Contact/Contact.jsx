@@ -11,6 +11,7 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import CustomMap from "../../CustomMap/CustomMap";
 import Card from "../../Card/Card";
 import axios from "axios";
+import { NotificationManager } from "react-notifications";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -44,6 +45,11 @@ const MyMap = () => {
 
 const Contact = () => {
   const [data, setData] = useState({});
+  const [formData, setFormData] = useState({});
+
+  const changeHandler = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
   useEffect(() => {
     const getContact = async () => {
       const res = await await axios.get(
@@ -54,6 +60,25 @@ const Contact = () => {
 
     getContact();
   }, []);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const dataToSubmit = {
+        ...formData,
+      };
+
+      const res = await axios.post(
+        "https://winejet-uz.herokuapp.com/api/order/to-email",
+        dataToSubmit
+      );
+      console.log(res);
+      NotificationManager.success("Message sent", "Success");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      NotificationManager.error("Something went wrong", "Error");
+    }
+  };
   return (
     <section className="contact-page">
       <div className="contact-page__container">
@@ -94,18 +119,36 @@ const Contact = () => {
           <div className="contact-page__inputs">
             <h1 data-aos="fade-up">Заполните форму</h1>
             <div>
-              <input data-aos="fade-right" type="text" placeholder="Имя" />
-              <input
-                data-aos="fade-left"
-                type="text"
-                placeholder="Электронная почта"
-              />
-              <textarea
-                data-aos="fade-right"
-                rows="3"
-                placeholder="Сообщение"
-              ></textarea>
-              <button data-aos="fade-down">Oтправить</button>
+              <form onSubmit={submitHandler}>
+                <input
+                  data-aos="fade-right"
+                  type="text"
+                  name="name"
+                  placeholder="Имя"
+                  onChange={changeHandler}
+                  required
+                  value={formData.name}
+                />
+                <input
+                  data-aos="fade-left"
+                  type="email"
+                  placeholder="Электронная почта"
+                  name="email"
+                  onChange={changeHandler}
+                  required
+                  value={formData.email}
+                />
+                <textarea
+                  data-aos="fade-right"
+                  rows="3"
+                  placeholder="Сообщение"
+                  name="message"
+                  onChange={changeHandler}
+                  required
+                  value={formData.message}
+                ></textarea>
+                <button data-aos="fade-down">Oтправить</button>
+              </form>
             </div>
           </div>
         </div>

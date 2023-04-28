@@ -2,9 +2,11 @@ import "./Payment.scss";
 import { GrClose } from "react-icons/gr";
 import { useState } from "react";
 import axios from "axios";
+import { NotificationManager } from "react-notifications";
 
 const Payment = ({ close, courseId }) => {
   const [increment, setIncrement] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const [data, setData] = useState({});
 
@@ -13,6 +15,7 @@ const Payment = ({ close, courseId }) => {
 
   const submitOrder = async () => {
     try {
+      setLoading(true);
       const dataToSubmit = {
         ...data,
         courseId: +courseId,
@@ -24,7 +27,14 @@ const Payment = ({ close, courseId }) => {
         dataToSubmit
       );
       console.log(res);
-    } catch (error) {}
+      NotificationManager.success("Order sent", "Success");
+      close(false);
+    } catch (error) {
+      console.log(error);
+      NotificationManager.error("Something went wrong", "Error");
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <>
@@ -52,19 +62,23 @@ const Payment = ({ close, courseId }) => {
               />
               <input
                 onChange={inputHandler}
-                type="text"
+                type="number"
                 name="phoneNumber"
                 placeholder="Номер телефона"
               />
               <input
                 onChange={inputHandler}
-                type="text"
+                type="email"
                 name="email"
                 placeholder="email"
               />
             </div>
-            <button onClick={submitOrder} className="payment__submit-btn">
-              оплатить
+            <button
+              disabled={loading}
+              onClick={submitOrder}
+              className="payment__submit-btn"
+            >
+              {loading ? "Loding..." : "оплатить"}
             </button>
           </div>
         </div>
