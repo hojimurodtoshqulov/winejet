@@ -156,11 +156,10 @@
   }
 
   &__submit-btn {
-    background-color: $blue;
+    background:linear-gradient(to bottom, #e31f28, #861A20) ;
     font-size: 2.8rem;
     padding: 1.9rem 2.4rem;
     color: $white;
-    border-radius: 1rem;
 
     @include tablet {
       font-size: 1.8rem;
