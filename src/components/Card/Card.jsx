@@ -24,7 +24,7 @@ const Card = ({
 
     return shortenedString;
   }
-  // console.log(`/courses/${link}`);
+  console.log(`/courses/${link}`);
   return (
     <Link to={`/courses/${link}`} className="card-component">
       <div>
