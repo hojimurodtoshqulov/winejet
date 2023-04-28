@@ -50,6 +50,8 @@ import Order from "./components/pages/order/order";
 import OrderView from "./components/pages/order/orderView";
 import CoursesShowcase from "./components/pages/coursesShowcase/coursesShowcase";
 import CoursesShowcaseView from "./components/pages/coursesShowcase/coursesShowcaseView";
+import ContactAdmin from "./components/pages/contactAdmin/contactAdmin";
+import ContactAdminCreate from "./components/pages/contactAdmin/contactAdminCreate";
 
 function App() {
   setTimeout(function () {
@@ -122,6 +124,9 @@ function App() {
             path="courses-showcase/view/:id"
             element={<CoursesShowcaseView />}
           />
+
+          <Route path="contact" element={<ContactAdmin />} />
+          <Route path="contact/create" element={<ContactAdminCreate />} />
         </Route>
       </Routes>
 
