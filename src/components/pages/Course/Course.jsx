@@ -49,9 +49,7 @@ const Course = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://winejet-uz.herokuapp.com/api/courses/${id}`
-      )
+      .get(`https://winejet-uz.herokuapp.com/api/courses/${id}`)
       .then((res) => {
         const item = res.data;
         // data: {
@@ -132,7 +130,7 @@ const Course = () => {
               exit={{ opacity: 0 }}
               transition={{ type: "tween" }}
             >
-              <Payment close={setOpenModal} />
+              <Payment courseId={id} close={setOpenModal} />
             </motion.div>
           )}
         </AnimatePresence>
