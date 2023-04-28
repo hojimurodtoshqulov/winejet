@@ -3,7 +3,8 @@ import { GrClose } from "react-icons/gr";
 import { useState } from "react";
 import axios from "axios";
 import { NotificationManager } from "react-notifications";
-
+import i18next from "i18next";
+import { getContent } from "../../utils/changeLang";
 const Payment = ({ close, courseId }) => {
   const [increment, setIncrement] = useState(1);
   const [loading, setLoading] = useState(false);

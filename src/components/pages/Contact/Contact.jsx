@@ -93,7 +93,7 @@ const Contact = () => {
               </p>
               <p>
                 <a href={`tel:+${data.phoneNumber}`} target="_blanck">
-                  {data.phoneNumber}
+                  +{data.phoneNumber}
                 </a>
               </p>
             </div>
@@ -112,7 +112,7 @@ const Contact = () => {
                 <IoLocationOutline />
               </p>
               <p>
-                <a>{data.address}</a>
+                <a href="">{data.address}</a>
               </p>
             </div>
           </div>
