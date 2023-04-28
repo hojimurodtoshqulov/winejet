@@ -13,7 +13,7 @@ const staticData = {
 			img: "/images/grape1.png",
 			title_ru: "Porem ipsum dolor ",
 			title_uz: "Porem ipsum dolor",
-			link: "",
+			link: "/",
 			created_on: Date.now(),
 			short_content_ru: "Morem ipsum dolor sit amet, consectetur",
 			short_content_uz: "Morem ipsum dolor sit amet, consectetur",
@@ -22,7 +22,7 @@ const staticData = {
 			img: "/images/grape2.png",
 			title_ru: "Porem ipsum dolor ",
 			title_uz: "Porem ipsum dolor",
-			link: "",
+			link: "/",
 			created_on: Date.now(),
 			short_content_ru: "Morem ipsum dolor sit amet, consectetur",
 			short_content_uz: "Morem ipsum dolor sit amet, consectetur",
@@ -31,7 +31,7 @@ const staticData = {
 			img: "/images/grape3.png",
 			title_ru: "Porem ipsum dolor ",
 			title_uz: "Porem ipsum dolor",
-			link: "",
+			link: "/",
 			created_on: Date.now(),
 			short_content_ru: "Morem ipsum dolor sit amet, consectetur",
 			short_content_uz: "Morem ipsum dolor sit amet, consectetur",
@@ -40,7 +40,7 @@ const staticData = {
 			img: "/images/grape4.png",
 			title_ru: "Porem ipsum dolor ",
 			title_uz: "Porem ipsum dolor",
-			link: "",
+			link: "/",
 			created_on: Date.now(),
 			short_content_ru: "Morem ipsum dolor sit amet, consectetur",
 			short_content_uz: "Morem ipsum dolor sit amet, consectetur",
@@ -49,7 +49,7 @@ const staticData = {
 			img: "/images/grape5.png",
 			title_ru: "Porem ipsum dolor ",
 			title_uz: "Porem ipsum dolor",
-			link: "",
+			link: "/",
 			created_on: Date.now(),
 			short_content_ru: "Morem ipsum dolor sit amet, consectetur",
 			short_content_uz: "Morem ipsum dolor sit amet, consectetur",
@@ -58,7 +58,7 @@ const staticData = {
 			img: "/images/grape6.png",
 			title_ru: "Porem ipsum dolor ",
 			title_uz: "Porem ipsum dolor",
-			link: "",
+			link: "/",
 			created_on: Date.now(),
 			short_content_ru: "Morem ipsum dolor sit amet, consectetur",
 			short_content_uz: "Morem ipsum dolor sit amet, consectetur",
@@ -69,8 +69,13 @@ const staticData = {
 const Courses = () => {
 	const [current, setCurrent] = useState(0);
 	const [data, setData] = useState([]);
-	const [showCoursesData, setShowCoursesData] = useState([]);
-	const [filteredData, setFilteredData] = useState([]);
+	const staticShowCoursesData = {
+		titleRu: "все курсы",
+		descriptionRu:
+			"Курс Сомелье - для начинающих экспертов. Обладателям 3 уровня WineJet. 20 очных занятий по 2,5 часа, 20 видео-уроков.",
+	};
+	const [showCoursesData, setShowCoursesData] = useState(staticShowCoursesData);
+	const [filteredData, setFilteredData] = useState(staticData);
 	const [tab, setTab] = useState(["tab1", "tab2", "tab3", "tab4"]);
 
 	useEffect(() => {

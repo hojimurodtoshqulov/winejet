@@ -224,3 +224,23 @@ body {
 	overflow-x: hidden !important;
 	transition: all 0.3s;
 }
+
+::-webkit-scrollbar {
+	color: red;
+	background-color: rgba(255, 255, 255, 0.147);
+	border: 1px solid rgb(255, 255, 255);
+	width: 9px;
+	height: 0px;
+}
+::-webkit-scrollbar-thumb {
+	border: 1px solid white;
+	color: white;
+	background-color: #ff0000;
+	border-radius: 15px;
+}
+::-webkit-scrollbar-button {
+	background-color: #ff0000;
+	color: #ff0000;
+	// border: 1px solid $dark;
+	display: none;
+}
