@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { weekdays } from "../../../utils/customLang";
 import { Link } from "react-router-dom";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
+import axios from "axios";
 export const FilterWrapper = () => {
 	return (
 		<div className="calendar-header-filter">
@@ -47,8 +48,14 @@ const CalendarPage = () => {
 	const [isActive, setIsActive] = useState(false);
 	const [filteredData, setFilteredData] = useState([]);
 	const [uniqueDate, setUniqueDate] = useState([]);
+	const [data, setData] = useState([]);
 	const { t } = useTranslation();
-
+	useEffect(() => {
+		axios.get(`https://winejet-uz.herokuapp.com/api/courses`).then((res) => {
+			setData(res.data);
+		});
+	}, []);
+	console.log("courses data in calendar >>>", data);
 	useEffect(() => {
 		return;
 		const uniqueDates = Array.from(
@@ -99,24 +106,24 @@ const CalendarPage = () => {
 						}}
 					>
 						<div className="calendar__date-wrapper">
-							{console.log(uniqueDate.length)}
+							{/* {console.log(uniqueDate.length)} */}
 							{/* {filteredData?.map((data) => (
               ))} */}
-							{uniqueDate.length ? (
-								uniqueDate?.map((data) => (
+							{data.length ? (
+								data?.map((item) => (
 									<>
 										<div className="calendar__weekDay">
 											{/* <p>{data?.slice(4)}</p> */}
-											<p> {data} </p>
+											<p> {item.titleRu}</p>
 											<span>
 												{getContent(
-													weekdays["ru"][data?.slice(0, 3)],
-													weekdays["uz"][data?.slice(0, 3)]
+													weekdays["ru"][item?.titleRu.slice(0, 3)],
+													weekdays["uz"][item?.titleUz.slice(0, 3)]
 												)}
 											</span>
 										</div>
-
-										{filteredData?.map((item) => (
+										
+										{data?.map((item) => (
 											<Link
 												to={`/courses/${item.alias}`}
 												className="calendar__hour-info"
@@ -124,30 +131,38 @@ const CalendarPage = () => {
 												<p>{moment(item.created_on).format("LT")}</p>
 												<p>{moment(item.created_on).format("LT")}</p>
 												<h3>
-													{shortenString(
-														getContent(item.title_ru, item.title_uz)
-													)}
+													{
+// shortenString(
+														getContent(item.descriptionRu, item.descriptionUz)
+													// )
+}
 												</h3>
 												<h3>
-													{shortenString(
-														getContent(item.title_ru, item.title_uz)
-													)}
+													{
+// shortenString(
+														getContent(item.descriptionRu, item.descriptionUz)
+													// )
+}
 												</h3>
 												<span>
-													{shortenString(
+													{
+// shortenString(
 														getContent(
 															item.short_content_ru,
 															item.short_content_uz
 														)
-													)}
+													// )
+}
 												</span>
 												<span>
-													{shortenString(
+													{
+// shortenString(
 														getContent(
 															item.short_content_ru,
 															item.short_content_uz
 														)
-													)}
+													// )
+}
 												</span>
 											</Link>
 										))}

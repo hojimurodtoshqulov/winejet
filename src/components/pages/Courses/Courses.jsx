@@ -1,5 +1,4 @@
 import "./Courses.scss";
-import i18next from "i18next";
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
@@ -45,22 +44,21 @@ const staticData = {
 		},
 	],
 };
-
+const staticShowCoursesData = {
+	titleRu: "все курсы",
+	titleUz: "Barcha kurslar",
+	descriptionRu:
+		"Курс Сомелье - для начинающих экспертов. Обладателям 3 уровня WineJet. 20 очных занятий по 2,5 часа, 20 видео-уроков.",
+	descriptionUz:
+		"Sommelier kursi - yangi boshlanuvchilar uchun. 3-darajali WineJet egalari. 2,5 soatlik 20 ta yuzma-yuz dars, 20 ta video dars.",
+};
 const Courses = () => {
 	const [current, setCurrent] = useState(0);
 	const [data, setData] = useState([]);
-	const staticShowCoursesData = {
-		titleRu: "все курсы",
-		titleUz: "Barcha kurslar",
-		descriptionRu:
-			"Курс Сомелье - для начинающих экспертов. Обладателям 3 уровня WineJet. 20 очных занятий по 2,5 часа, 20 видео-уроков.",
-		descriptionUz:
-			"Sommelier kursi - yangi boshlanuvchilar uchun. 3-darajali WineJet egalari. 2,5 soatlik 20 ta yuzma-yuz dars, 20 ta video dars.",
-	};
 	const [showCoursesData, setShowCoursesData] = useState(staticShowCoursesData);
 	const [filteredData, setFilteredData] = useState(staticData.courses);
 	const [tab, setTab] = useState(["tab1", "tab2", "tab3", "tab4"]);
-
+	const i18n = useTranslation();
 	useEffect(() => {
 		axios.get(`https://winejet-uz.herokuapp.com/api/courses`).then((res) => {
 			console.log(res);
@@ -86,7 +84,6 @@ const Courses = () => {
 			.get(`https://winejet-uz.herokuapp.com/api/courses-showcase`)
 			.then((res) => {
 				setShowCoursesData(res.data);
-				// console.log("ShowCoursesData >>> ", res.data);
 			});
 	}, []);
 	const handleTabClick = (index) => {

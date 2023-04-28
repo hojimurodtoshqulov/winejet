@@ -155,7 +155,16 @@ const AsideFilter = ({ isActive, setIsActive }) => {
 							/>
 						</FormGroup>
 					))}
-					<DayHour value="22.00" label={getContent("время", "vaqt")} />
+					<p
+						style={{
+							fontSize: "2.8rem",
+							color: "#333333",
+							fontWeight: "bold",
+						}}
+					>
+						{getContent("время", "vaqt")}
+					</p>
+					{/* <DayHour value="22.00" label={} /> */}
 					{filterData?.map((item) => (
 						<FormGroup
 							key={item}
@@ -181,7 +190,7 @@ const AsideFilter = ({ isActive, setIsActive }) => {
 											marginLeft: "5rem",
 										}}
 									>
-										{item.date.slice(0,10)} {getContent("день", "kun")}
+										{item?.date?.slice(0, 10)} {getContent("день", "kun")}
 									</p>
 								}
 								sx={{ fontSize: "24rem", color: "white" }}

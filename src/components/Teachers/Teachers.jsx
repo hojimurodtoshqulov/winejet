@@ -67,7 +67,18 @@ const images = [
 	},
 	// add more image objects as needed
 ];
-
+const staticTecherUnder = {
+	titleRu: "Курс 'Производство столового винограда'",
+	titleUz: "'Stol uzumlarini ishlab chiqarish' kursi",
+	descriptionRu1:
+		"Современная программа обучения и постоянная поддержка экспертов-преподавателей позволит вам продуктивно и быстро освоить данную сферу.",
+	descriptionUz1:
+		"Eng zamonaviy o'quv dasturi va doimiy qo'llab-quvvatlash tajribali o'qituvchilar sizga samarali va tez yordam beradi bu sohani o'zlashtiring.",
+	descriptionRu2:
+		"СОСТАВЛЕНВИНОГРАДАРЯМИ И ВИНОДЕЛАМИ С ОПЫТОМ РАБОТЫ В УЗБЕКИСТАНЕ, РОССИИ И ФРАНЦИИ.",
+	descriptionUz2:
+		"O'ZBEKISTON, ROSSIYA VA FRANSADA TAJRIBASI BO'LGAN UZIMCHILAR VA VINOCHILAR TOMONIDAN TUZILGAN.",
+};
 function CustomLeftArrow({ className, style, onClick }) {
 	return (
 		<IoMdArrowDropleftCircle
@@ -92,6 +103,7 @@ function CustomRightArrow({ className, style, onClick }) {
 }
 const Teachers = () => {
 	const [data, setData] = useState([...images]);
+	const [techerUnderData, setTecherUnderData] = useState(staticTecherUnder);
 	//   const [teachersData, setTeachersData] = useState([]);
 	const [selectedImage, setSelectedImage] = useState(null);
 	const { ref, inView } = useInView({
@@ -207,9 +219,16 @@ const Teachers = () => {
 			})
 			.then((data) => setLoading(false));
 	}, []);
-	// console.log("data >>> ", data);
+	useEffect(() => {
+		axios
+			.get(`https://winejet-uz.herokuapp.com/api/teacher-under-case`)
+			.then((res) => {
+				setTecherUnderData(res.data);
+			})
+			.then((data) => setLoading(false));
+	}, []);
+	console.log("techerUnderData >>> ", techerUnderData);
 
-	// console.log("image>>", image);
 	return (
 		<section className="teachers" ref={ref}>
 			<div className="teachers__container">
@@ -296,10 +315,7 @@ const Teachers = () => {
 					>
 						<div className="teachers__info-left">
 							<h1>
-								{getContent(
-									"Курс 'Производство столового винограда'",
-									"'Stol uzumlarini ishlab chiqarish' kursi"
-								)}
+								{getContent(techerUnderData.titleRu, techerUnderData.titleUz)}
 							</h1>
 							<p className="teachers__info-p">
 								{/* {getContent(
@@ -307,13 +323,18 @@ const Teachers = () => {
 									selectedImage?.short_content_uz
 								)} */}
 								{getContent(
-									"Современная программа обучения и постоянная поддержка экспертов-преподавателей позволит вам продуктивно и быстро освоить данную сферу.",
-									"Eng zamonaviy o'quv dasturi va doimiy qo'llab-quvvatlash tajribali o'qituvchilar sizga samarali va tez yordam beradi bu sohani o'zlashtiring."
+									techerUnderData.descriptionRu1,
+									techerUnderData.descriptionUz1
 								)}
 							</p>
 						</div>
 						<div className="teachers__info-right">
-							<p>{t("teacher.info")}</p>
+							<p>
+								{getContent(
+									techerUnderData.descriptionRu2,
+									techerUnderData.descriptionUz2
+								)}
+							</p>
 						</div>
 					</motion.div>
 				) : (
