@@ -110,9 +110,6 @@ const Navbar = () => {
 							);
 						})}
 						<li>
-							<SelectComponent />
-						</li>
-						<li>
 							<Link
 								className={getLinkClassName(pathname, "calendar")}
 								to="/calendar"
@@ -121,6 +118,9 @@ const Navbar = () => {
 									<HiOutlineCalendar />
 								</span>
 							</Link>
+						</li>
+						<li>
+							<SelectComponent />
 						</li>
 					</ul>
 					<div className="navbar__hamburger">
