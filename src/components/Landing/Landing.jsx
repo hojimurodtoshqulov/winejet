@@ -7,6 +7,8 @@ import { TiLocationOutline } from "react-icons/ti";
 import { useMediaQuery } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import { getContent } from "../../utils/changeLang";
+import { useTranslation } from "react-i18next";
 const leftSideSlider = [
 	{
 		title: "Учебный центр ",
@@ -82,7 +84,7 @@ const Landing = () => {
 			setShowData(res.data);
 		});
 	}, []);
-	console.log("showcase data >>> ", showData);
+	// console.log("showcase data >>> ", showData);
 	function calculateSliderPositions(numSliders, width) {
 		const sliderPositions = [];
 
@@ -162,7 +164,7 @@ const Landing = () => {
 						})}
 					</div>
 					<Link className="buy" to="/courses">
-						Купить
+						{getContent("Купить", "Olish")}
 					</Link>
 				</div>
 				<div className="landing__left">
