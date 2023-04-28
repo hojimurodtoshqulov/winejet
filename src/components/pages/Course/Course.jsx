@@ -30,8 +30,6 @@ const staticData = {
 const data1 = [
   "Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac ",
   "Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac ",
-  "Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac ",
-  "Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac ",
 ];
 const formatter = new Intl.NumberFormat("ru-RU", {
   style: "currency",
@@ -138,7 +136,7 @@ const Course = () => {
       {/* <Payment close={setOpenModal} /> */}
       <section className="course-page__section-2">
         <div className="course-page__sectoin-2-container">
-          <h1>Vorem ipsum dolor </h1>
+          {/* <h1>Vorem ipsum dolor </h1> */}
           <div className="course-page__sectoin-2-wrapper">
             {data1.map((item, i) => (
               <div data-aos="fade-up" key={i} className="course-page__cards">
