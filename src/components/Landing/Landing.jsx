@@ -46,7 +46,32 @@ const rightSideSlider = [
 ];
 
 const Landing = () => {
-	const [showData, setShowData] = useState([]);
+	const fakeData = [
+		{
+			// titleRu: "Учебный центр ",
+			descriptionRu: "Виноградарства!",
+			dateTime: "2023-05-29T20:47:00.000+00:00",
+			location: "Taшкент, ...",
+			price: "700.000",
+		},
+
+		{
+			// titleRu: "Учебный центр ",
+			descriptionRu: "Виноградарства!",
+			dateTime: "2023-06-29T20:47:00.000+00:00",
+			location: "Taшкент, ...",
+			price: "300.000",
+		},
+
+		{
+			// titleRu: "Учебный центр ",
+			descriptionRu: "Виноградарства!",
+			dateTime: "2023-07-29T20:47:00.000+00:00",
+			location: "Taшкент, ...",
+			price: "500.000",
+		},
+	];
+	const [showData, setShowData] = useState(fakeData);
 	const [width, setWidth] = useState(0);
 	const [sliderPosition, setSliderPosition] = useState(0);
 	const [activeDot, setActiveDot] = useState(0);
@@ -105,7 +130,7 @@ const Landing = () => {
 		// Clean up the interval when the component unmounts or when the active slider changes
 		return () => clearInterval(intervalId);
 	}, [activeDot, numberOfSlides, sliderPositions]);
-
+	console.log(showData);
 	return (
 		<section
 			className="landing"
@@ -157,13 +182,13 @@ const Landing = () => {
 										<span>
 											<HiOutlineCalendar />
 										</span>
-										<p>{item.dateTime.slice(0, item.dateTime.length-19)}</p>
+										<p>{item.dateTime.slice(0, item.dateTime.length - 19)}</p>
 									</li>
 									<li>
 										<span>
 											<AiOutlineClockCircle />
 										</span>
-										<p>{item.dateTime.slice(11, item.dateTime.length-13)}</p>
+										<p>{item.dateTime.slice(11, item.dateTime.length - 13)}</p>
 									</li>
 									<li>
 										<span>

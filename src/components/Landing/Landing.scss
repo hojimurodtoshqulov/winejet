@@ -6,6 +6,8 @@
 	background-size: cover !important;
 	background-repeat: no-repeat !important;
 	background-position: center !important;
+	height: 110vh;
+	overflow: hidden;
 	&:after {
 		content: "";
 		display: inline-block;
@@ -19,6 +21,7 @@
 	}
 	@include tablet {
 		padding: 8rem 0 5rem 0;
+		height: 110vh;
 	}
 	&__wrapper {
 		position: relative;
@@ -173,10 +176,13 @@
 
 		@include tablet {
 			.li-wrap {
-				width: min-content;
+				width: 60vw;
 				margin-right: auto;
 				margin-left: auto;
-				margin-bottom: 9rem;
+				margin-bottom: 0rem;
+				li {
+					margin: 1rem 0;
+				}
 			}
 		}
 	}
