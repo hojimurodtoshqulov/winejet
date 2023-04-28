@@ -97,7 +97,7 @@ function LeftMenu() {
             to="/admin/teacher-under-case"
             className={`${s.nav_link} nav-item nav-link`}
           >
-            <i className="fa fa-solid fa-th me-2"></i>Table grapes
+            <i className="fa fa-solid fa-th me-2"></i>Teachers sign
           </NavLink>
           {/*    <NavLink
             to="/admin/order"
