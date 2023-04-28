@@ -63,9 +63,7 @@ const TeacherViewNew = () => {
 
   React.useEffect(() => {
     axios
-      .get(
-        `https://winejet-uz.herokuapp.com/api/courses/${id}`
-      )
+      .get(`https://winejet-uz.herokuapp.com/api/courses/${id}`)
       .then((res) => {
         console.log(res);
         const imageAttachment = res.data.attachmentContent;
@@ -77,6 +75,10 @@ const TeacherViewNew = () => {
           titleRu: res.data.titleRu,
           descriptionUz: res.data.descriptionUz,
           descriptionRu: res.data.descriptionRu,
+          descriptionUz2: res.data.descriptionUz2,
+          descriptionRu2: res.data.descriptionRu2,
+          descriptionUz3: res.data.descriptionUz3,
+          descriptionRu3: res.data.descriptionRu3,
           date: res.data.date,
           price: res.data.price,
           attachmentId: res.data.attachment.id,

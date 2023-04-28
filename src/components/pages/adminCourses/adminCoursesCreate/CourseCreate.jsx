@@ -64,6 +64,10 @@ const MyForm = () => {
     setTitleRu("");
     setDescriptionUz("");
     setDescriptionRu("");
+    setDescriptionUz2("");
+    setDescriptionRu2("");
+    setDescriptionUz3("");
+    setDescriptionRu3("");
     setDate(new Date());
     setPrice(0);
     setImage(null);
@@ -76,6 +80,10 @@ const MyForm = () => {
       setTitleRu(course.titleRu);
       setDescriptionUz(course.descriptionUz);
       setDescriptionRu(course.descriptionRu);
+      setDescriptionUz2(course.descriptionUz2);
+      setDescriptionRu2(course.descriptionRu2);
+      setDescriptionUz3(course.descriptionUz3);
+      setDescriptionRu3(course.descriptionRu3);
       setDate(moment(course.date).format("YYYY-MM-DDTHH:mm"));
       setPrice(course.price);
     }
@@ -116,6 +124,10 @@ const MyForm = () => {
           titleRu,
           descriptionUz,
           descriptionRu,
+          descriptionUz2,
+          descriptionRu2,
+          descriptionUz3,
+          descriptionRu3,
           date,
           price: +price,
           attachmentId: imgId,
@@ -167,6 +179,10 @@ const MyForm = () => {
       titleRu: titleRu || course.titleRu,
       descriptionUz: descriptionUz || course.descriptionUz,
       descriptionRu: descriptionRu || course.descriptionRu,
+      descriptionUz2: descriptionUz2 || course.descriptionUz2,
+      descriptionRu2: descriptionRu2 || course.descriptionRu2,
+      descriptionUz3: descriptionUz3 || course.descriptionUz3,
+      descriptionRu3: descriptionRu3 || course.descriptionRu3,
       date: date || course.date,
       price: +price || +course.price,
       attachmentId: course.attachmentId,
@@ -304,7 +320,7 @@ const MyForm = () => {
                 label="1-info in Russian"
                 value={descriptionRu2}
                 onChange={(e) => {
-                  setDescriptionRu(e.target.value);
+                  setDescriptionRu2(e.target.value);
                 }}
                 multiline
                 rows={4}
@@ -316,9 +332,9 @@ const MyForm = () => {
             <Box sx={{ marginBottom: 2 }}>
               <TextField
                 label="2-info in Uzbek"
-                value={descriptionRu}
+                value={descriptionUz3}
                 onChange={(e) => {
-                  setDescriptionRu(e.target.value);
+                  setDescriptionUz3(e.target.value);
                 }}
                 multiline
                 rows={4}
@@ -330,9 +346,9 @@ const MyForm = () => {
             <Box sx={{ marginBottom: 2 }}>
               <TextField
                 label="2-info in Russian"
-                value={descriptionRu}
+                value={descriptionRu3}
                 onChange={(e) => {
-                  setDescriptionRu(e.target.value);
+                  setDescriptionRu3(e.target.value);
                 }}
                 multiline
                 rows={4}
