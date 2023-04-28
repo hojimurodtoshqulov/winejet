@@ -42,6 +42,10 @@ const MyForm = () => {
   const [titleRu, setTitleRu] = React.useState("");
   const [descriptionUz, setDescriptionUz] = React.useState("");
   const [descriptionRu, setDescriptionRu] = React.useState("");
+  const [descriptionUz2, setDescriptionUz2] = React.useState("");
+  const [descriptionRu2, setDescriptionRu2] = React.useState("");
+  const [descriptionUz3, setDescriptionUz3] = React.useState("");
+  const [descriptionRu3, setDescriptionRu3] = React.useState("");
   const [date, setDate] = React.useState(new Date());
   const [price, setPrice] = React.useState("");
   const [image, setImage] = React.useState(null);
@@ -97,16 +101,12 @@ const MyForm = () => {
     formdata.append("file", image);
 
     axios
-      .post(
-        `https://winejet-uz.herokuapp.com/api/files`,
-        formdata,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        }
-      )
+      .post(`https://winejet-uz.herokuapp.com/api/files`, formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         return res.data.message;
       })
@@ -183,16 +183,12 @@ const MyForm = () => {
         formdata.append("file", image);
 
         updatedData.attachmentId = await axios
-          .post(
-            `https://winejet-uz.herokuapp.com/api/files`,
-            formdata,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-              },
-            }
-          )
+          .post(`https://winejet-uz.herokuapp.com/api/files`, formdata, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+          })
           .then((res) => {
             return res.data.message;
           });
@@ -278,6 +274,62 @@ const MyForm = () => {
             <Box sx={{ marginBottom: 2 }}>
               <TextField
                 label="Description in Russian"
+                value={descriptionRu}
+                onChange={(e) => {
+                  setDescriptionRu(e.target.value);
+                }}
+                multiline
+                rows={4}
+                fullWidth
+                required
+                color="secondary"
+              />
+            </Box>
+            <Box sx={{ marginBottom: 2 }}>
+              <TextField
+                label="1-info in Uzbek"
+                value={descriptionUz2}
+                onChange={(e) => {
+                  setDescriptionUz2(e.target.value);
+                }}
+                multiline
+                rows={4}
+                fullWidth
+                required
+                color="secondary"
+              />
+            </Box>
+            <Box sx={{ marginBottom: 2 }}>
+              <TextField
+                label="1-info in Russian"
+                value={descriptionRu2}
+                onChange={(e) => {
+                  setDescriptionRu(e.target.value);
+                }}
+                multiline
+                rows={4}
+                fullWidth
+                required
+                color="secondary"
+              />
+            </Box>
+            <Box sx={{ marginBottom: 2 }}>
+              <TextField
+                label="2-info in Uzbek"
+                value={descriptionRu}
+                onChange={(e) => {
+                  setDescriptionRu(e.target.value);
+                }}
+                multiline
+                rows={4}
+                fullWidth
+                required
+                color="secondary"
+              />
+            </Box>
+            <Box sx={{ marginBottom: 2 }}>
+              <TextField
+                label="2-info in Russian"
                 value={descriptionRu}
                 onChange={(e) => {
                   setDescriptionRu(e.target.value);

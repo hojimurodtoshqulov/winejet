@@ -52,6 +52,8 @@ import CoursesShowcase from "./components/pages/coursesShowcase/coursesShowcase"
 import CoursesShowcaseView from "./components/pages/coursesShowcase/coursesShowcaseView";
 import ContactAdmin from "./components/pages/contactAdmin/contactAdmin";
 import ContactAdminCreate from "./components/pages/contactAdmin/contactAdminCreate";
+import TeacherUndercase from "./components/pages/teacherUnderCase/TeacherUndercase";
+import TeacherUnderCaseCreate from "./components/pages/teacherUnderCase/TeacherUnderCaseCreate";
 
 function App() {
   setTimeout(function () {
@@ -123,6 +125,12 @@ function App() {
           <Route
             path="courses-showcase/view/:id"
             element={<CoursesShowcaseView />}
+          />
+
+          <Route path="teacher-under-case" element={<TeacherUndercase />} />
+          <Route
+            path="teacher-under-case/create"
+            element={<TeacherUnderCaseCreate />}
           />
 
           <Route path="contact" element={<ContactAdmin />} />
