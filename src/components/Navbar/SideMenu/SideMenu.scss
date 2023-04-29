@@ -1,69 +1,88 @@
 @import "../../../styles/styles.scss";
 
 .app {
-	&__side-container {
-		position: fixed;
-		display: none;
-		right: -40rem;
-		z-index: 100000;
-		top: 0;
-		background: linear-gradient(to bottom, #d82730, #77171c);
-		padding: 4rem;
-		bottom: 0;
-		width: 40rem;
-		height: 100vh;
-		overflow: auto;
-		box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
-		transition: all 0.4s ease;
-		color: $white;
-		@include phones {
-			width: 100%;
-			right: -100%;
-		}
+  &__side-container {
+    position: fixed;
+    display: none;
+    right: -40rem;
+    z-index: 100000;
+    top: 0;
+    background: linear-gradient(to bottom, #d82730, #77171c);
+    padding: 4rem;
+    bottom: 0;
+    width: 40rem;
+    height: 100vh;
+    overflow: auto;
+    box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+    color: $white;
+    @include phones {
+      width: 100%;
+      right: -100%;
+    }
 
-		@include tablet {
-			display: block;
-		}
-	}
+    @include tablet {
+      display: block;
+    }
+  }
 
-	&__side-active {
-		right: 0;
-	}
+  &__side-active {
+    right: 0;
+  }
 
-	&__close-icons {
-		font-size: 6rem;
-		cursor: pointer;
-	}
+  &__close-icons {
+    font-size: 6rem;
+    cursor: pointer;
+  }
 
-	&__drop-title {
-		font-size: 1.8rem;
-		color: $white;
-	}
+  &__drop-title {
+    font-size: 1.8rem;
+    color: $white;
+  }
 
-	&__link {
-		display: block;
-		text-align: center;
-		text-transform: uppercase;
-		margin-bottom: 2rem;
-		font-size: 1.8rem;
-		color: $white;
-		min-height: 4.8rem;
-		// display: flex;
-		// align-items: center;
-	}
+  &__link {
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: $white;
+    min-height: 4.8rem;
+    // display: flex;
+    // align-items: center;
+  }
 
-	&__expand-icon {
-		display: block;
-		font-size: 1.8rem;
-	}
+  &__expand-icon {
+    display: block;
+    font-size: 1.8rem;
+  }
 
-	&__drop-links {
-		display: block;
-		margin-bottom: 2rem;
-		color: $white;
-		font-size: 1.5rem;
-	}
+  &__drop-links {
+    display: block;
+    margin-bottom: 2rem;
+    color: $white;
+    font-size: 1.5rem;
+  }
 }
+
+.translator-btns-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 20px;
+  gap: 10px;
+
+  button {
+    border-radius: 8px;
+    padding: 4px 10px;
+  }
+
+  .active {
+    background-color: #77171c;
+    color: #fff;
+  }
+}
+
 .MuiBox-root {
-	z-index: 123456;
+  z-index: 123456;
 }
