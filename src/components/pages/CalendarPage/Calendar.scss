@@ -61,13 +61,13 @@
   }
 
   &__date-wrapper {
-    @include between-center;
-    flex-wrap: wrap;
-    margin-bottom: 4.5rem;
+    // @include between-center;
+    // flex-wrap: wrap;
+    // margin-bottom: 4.5rem;
 
-    @include laptop {
-      flex-direction: column;
-    }
+    // @include laptop {
+    //   flex-direction: column;
+    // }
 
     // &:nth-child(odd) {
     //   .calendar__weekDay {
@@ -77,6 +77,78 @@
     //     border-color: red;
     //   }
     // }
+  }
+
+  .filtered-courses {
+    $col-gap: 80px;
+    &__single-day {
+      display: flex;
+      align-items: center;
+      column-gap: $col-gap;
+      margin-bottom: 30px;
+      &:nth-child(even) {
+        .filtered-courses-date {
+          background-color: #d22630;
+        }
+
+        .filtered-courses__item {
+          border-left-color: #d22630;
+        }
+      }
+
+      @include phones {
+        flex-direction: column;
+        row-gap: 30px;
+        align-items: start;
+      }
+    }
+
+    &-date {
+      text-align: center;
+      background-color: #79535e;
+      color: #fff;
+      font-size: 48px;
+      padding: 2rem 4rem;
+      span {
+        display: block;
+        font-size: 18px;
+      }
+
+      @include phones {
+        padding: 1rem 2rem;
+        width: 100%;
+      }
+    }
+
+    &__courses-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      column-gap: $col-gap;
+      row-gap: 20px;
+    }
+
+    &__item {
+      padding-left: 16px;
+      border-left: 5px solid;
+      border-left-color: $blue;
+
+      span {
+        display: block;
+      }
+
+      &-hour,
+      &-title {
+        font-size: 22px;
+        color: #414141;
+        font-weight: 700;
+      }
+
+      &-desc {
+        font-size: 16px;
+        color: #414141;
+      }
+    }
   }
 
   &__weekDay {
