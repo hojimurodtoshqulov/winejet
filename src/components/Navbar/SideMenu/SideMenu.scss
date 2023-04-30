@@ -83,6 +83,15 @@
   }
 }
 
+.logoWrap-mobile {
+  max-width: 100%;
+  margin-bottom: 40px;
+  img {
+    width: 100%;
+    display: block;
+  }
+}
+
 .MuiBox-root {
   z-index: 123456;
 }
