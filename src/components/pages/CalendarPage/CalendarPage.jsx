@@ -1,5 +1,5 @@
 import "./Calendar.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AsideFilter from "../../AsideFilter/AsideFilter";
 import CalendarComponent from "./CalendarComponent";
 import moment from "moment";
@@ -160,9 +160,14 @@ const CalendarPage = () => {
     }
     return shortenedString;
   } */
+
+  const sectonClasses = useMemo(
+    () => ["calendar", isActive ? "trans-section" : ""].join(" ").trim(),
+    [isActive]
+  );
   return (
     <>
-      <section className="calendar">
+      <section className={sectonClasses}>
         <div className="calendar__container">
           <h1 className="calendar__title">
             {getContent("Календарь", "Kalendar")}

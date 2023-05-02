@@ -45,6 +45,15 @@ const SideMenu = ({ isActive, setIsActive }) => {
         </span>
       </div>
       <div>
+        <div className="logoWrap-mobile">
+          <Link to={"/"}>
+            <img
+              onClick={() => setIsActive(false)}
+              src="/images/logoGroup.png"
+              alt="logo"
+            />
+          </Link>
+        </div>
         {links.map((item, i) =>
           item.drop ? (
             <div key={i}>
