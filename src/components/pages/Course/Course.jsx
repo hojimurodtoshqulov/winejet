@@ -145,11 +145,11 @@ const Course = () => {
 					<div className="course-page__sectoin-2-wrapper">
 						<div data-aos="fade-up" className="course-page__cards">
 							<img src="/images/course-section2-img.png" alt="" />
-							<p>{getContent(data?.desc1_uz, data?.desc1_ru)}</p>
+							<p>{getContent(data?.desc1_ru, data?.desc1_uz)}</p>
 						</div>
 						<div data-aos="fade-up" className="course-page__cards">
 							<img src="/images/course-section2-img.png" alt="" />
-							<p>{getContent(data?.desc2_uz, data?.desc2_ru)}</p>
+							<p>{getContent(data?.desc2_ru, data?.desc2_uz)}</p>
 						</div>
 					</div>
 				</div>
