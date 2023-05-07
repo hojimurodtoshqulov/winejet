@@ -185,7 +185,7 @@ const MyForm = () => {
       descriptionRu3: descriptionRu3 || course.descriptionRu3,
       date: date || course.date,
       price: +price || +course.price,
-      attachmentId: course.attachmentId,
+      attachmentId: course.attachmentContentId,
       id: course.id,
     };
 

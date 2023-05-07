@@ -60,7 +60,7 @@ const TeacherViewNew = () => {
           textUz: res.data.textUz,
           textRu: res.data.textRu,
           id: res.data.id,
-          attachmentContents: res.data.attachmentContents,
+          attachmentContents: res.data.attachmentContentIds,
         });
       })
       .then((data) => setLoading(false));

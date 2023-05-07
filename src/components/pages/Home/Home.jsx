@@ -63,7 +63,7 @@ const Home = () => {
         setData(
           res.data.map((item) => {
             return {
-              img: `data:image/png;base64,${item.attachmentContent.data}`,
+              img: `https://winejet-uz.herokuapp.com/api/files/${item?.attachmentContentId}`,
               title_ru: item.titleRu,
               title_uz: item.titleUz,
               link: item.id,
