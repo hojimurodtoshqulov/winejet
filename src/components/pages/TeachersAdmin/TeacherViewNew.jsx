@@ -55,16 +55,15 @@ const TeacherViewNew = () => {
       .get(`https://winejet-uz.herokuapp.com/api/teachers/${id}`)
       .then((res) => {
         console.log(res);
-        const imageAttachment = res.data.attachmentContent;
-        const base64Data = imageAttachment.data;
-        const imageUrl = `data:image/png;base64,${base64Data}`;
+        const imageAttachment = res.data.attachmentContentId;
+        const imageUrl = `https://winejet-uz.herokuapp.com/api/files/${imageAttachment}`;
         setImage(imageUrl);
         setData({
           fullName: res.data.fullName,
           infoRu: res.data.infoRu,
           infoUz: res.data.infoUz,
-          attachmentId: res.data.attachment.id,
-          id: res.data.id,
+          attachmentId: res.data.attachmentContentId,
+          id: res.data.id
         });
       })
       .then((data) => setLoading(false));
