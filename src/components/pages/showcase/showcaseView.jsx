@@ -48,7 +48,7 @@ const MyForm = () => {
       price,
       dateTime,
       location,
-      attachmentContent,
+      attachmentContentId,
       id,
     },
     setState,
@@ -113,7 +113,7 @@ const MyForm = () => {
     price,
     dateTime,
     location,
-    attachmentContent,
+    attachmentContentId,
   });
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -146,7 +146,7 @@ const MyForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let imageId = attachmentContent.id;
+    let imageId = attachmentContentId;
 
     try {
       setLoading(true);
