@@ -107,7 +107,7 @@ const MyForm = () => {
         ...prev,
         defaultImages: [
           ...news.attachmentContents.map(
-            (item) => `data:image/png;base64,${item.data}`
+            (item) => `https://winejet-uz.herokuapp.com/api/files/${item}`
           ),
         ],
       }));
@@ -181,25 +181,24 @@ const MyForm = () => {
 
   const handleEdit = async (event) => {
     event.preventDefault();
-    setLoading(true);
-
-    let attachmentContentIds;
-
-    if (isTouched) {
-      attachmentContentIds = await submitImages();
-    }
-
-    const updatedData = {
-      textUz: textUz || news.textUz,
-      textRu: textRu || news.textRu,
-      attachmentContentIds:
-        attachmentContentIds || news.attachmentContents.map((item) => item.id),
-      id: news.id,
-    };
-
-    console.log(pictures);
 
     try {
+      setLoading(true);
+
+      let attachmentContentIds;
+
+      if (isTouched) {
+        attachmentContentIds = await submitImages();
+      }
+
+      const updatedData = {
+        textUz: textUz || news.textUz,
+        textRu: textRu || news.textRu,
+        attachmentContentIds: attachmentContentIds || news.attachmentContents,
+        id: news.id,
+      };
+
+      console.log(pictures);
       // Image validation
       console.log(updatedData);
       await axios.post(

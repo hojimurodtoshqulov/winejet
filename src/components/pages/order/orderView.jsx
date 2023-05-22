@@ -73,9 +73,8 @@ const TeacherViewNew = () => {
       .get(`https://winejet-uz.herokuapp.com/api/order/${id}`)
       .then((res) => {
         console.log(res);
-        const imageAttachment = res.data.course.attachmentContent;
-        const base64Data = imageAttachment.data;
-        const imageUrl = `data:image/png;base64,${base64Data}`;
+        const imageAttachment = res.data.course.attachmentContentId;
+        const imageUrl = `https://winejet-uz.herokuapp.com/api/files/${imageAttachment}`;
         setImage(imageUrl);
         setData({
           fullName: `${res.data.name} ${res.data.surname}`,

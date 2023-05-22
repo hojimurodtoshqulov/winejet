@@ -107,7 +107,7 @@ const MyForm = () => {
           fullName: fullName,
           infoUz: descriptionUZ,
           infoRu: descriptionRU,
-          attachmentId: imgId,
+          attachmentId: Number(imgId),
         };
 
         return axios.post(
